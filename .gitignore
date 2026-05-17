@@ -1,0 +1,10 @@
+venv/
+.env
+data/pdfs/
+data/index/
+data/audit_log.csv
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+dist/
