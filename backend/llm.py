@@ -1,4 +1,5 @@
 import os
+import threading
 from dotenv import load_dotenv
 from google import genai
 from groq import Groq
@@ -45,10 +46,13 @@ def get_confidence(chunks: list[dict]) -> str:
         return "medium"
     return "low"
 
+_audit_lock = threading.Lock()
+
+
 def log_query(question: str, answer: str, mode: str, sources: list):
     import csv, datetime
     os.makedirs("data", exist_ok=True)
-    with open("data/audit_log.csv", "a", newline="") as f:
+    with _audit_lock, open("data/audit_log.csv", "a", newline="") as f:  # rows never interleave
         writer = csv.writer(f)
         writer.writerow([
             datetime.datetime.now().isoformat(),

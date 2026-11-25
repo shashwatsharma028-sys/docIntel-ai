@@ -56,7 +56,7 @@ MUTANTS = [
     ("M20", "py", "backend/llm.py", "    log_query(question, answer, mode, sources)\n", "", "audit logging removed", "killed"),
     ("M21", "py", "backend/llm.py", "[Source: {c['source']}]", "[Source]", "citations stripped from prompt", "killed"),
     ("M22", "py", "backend/main.py", '"sources": list(set(c["source"] for c in chunks))', '"sources": [c["source"] for c in chunks]', "API sources not de-duplicated", "killed"),
-    ("M23", "py", "backend/main.py", "    build_index()\n", "", "upload skips indexing", "killed"),
+    ("M23", "py", "backend/main.py", "        await run_in_threadpool(build_index)", "        pass", "upload skips indexing", "killed"),
     ("M24", "py", "backend/main.py", 'mode: str = "enterprise"', 'mode: str = "legal"', "API default mode changed", "killed"),
     ("M25", "py", "backend/main.py", 'allow_origins=["http://localhost:5173"]', 'allow_origins=["*"]', "CORS widened", "killed"),
     ("M26", "py", "backend/main.py", '"model": "", "confidence": "low"', '"model": "", "confidence": "high"', "empty-index response contract", "killed"),
