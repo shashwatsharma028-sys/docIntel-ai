@@ -1,0 +1,230 @@
+{
+  "detected": 32,
+  "total": 32,
+  "mutants": [
+    {
+      "id": "M01",
+      "file": "backend/ingest.py",
+      "description": "remove chunk overlap",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M02",
+      "file": "backend/ingest.py",
+      "description": "off-by-one window step",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M03",
+      "file": "backend/ingest.py",
+      "description": "drop short-chunk filter",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M04",
+      "file": "backend/ingest.py",
+      "description": "chunk loses last word",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M05",
+      "file": "backend/ingest.py",
+      "description": "extract first page only",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M06",
+      "file": "backend/ingest.py",
+      "description": "wrong FAISS metric/index type",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M07",
+      "file": "backend/ingest.py",
+      "description": "swap source/text in persisted chunks",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M08",
+      "file": "backend/ingest.py",
+      "description": "wrong embedding model (ingest)",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M09",
+      "file": "backend/retriever.py",
+      "description": "source mapping swapped",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M10",
+      "file": "backend/retriever.py",
+      "description": "default top_k changed",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M11",
+      "file": "backend/retriever.py",
+      "description": "ranking order reversed",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M12",
+      "file": "backend/retriever.py",
+      "description": "FIX D-01 (must trip strict xfail)",
+      "expect": "xpass",
+      "result": "killed"
+    },
+    {
+      "id": "M13",
+      "file": "backend/llm.py",
+      "description": "Gemini ignores domain mode",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M14",
+      "file": "backend/llm.py",
+      "description": "Groq system prompt sent as user",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M15",
+      "file": "backend/llm.py",
+      "description": "fallback mislabels model",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M16",
+      "file": "backend/llm.py",
+      "description": "fallback retries Gemini instead of Groq",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M17",
+      "file": "backend/llm.py",
+      "description": "audit truncation length",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M18",
+      "file": "backend/llm.py",
+      "description": "confidence threshold boundary",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M19",
+      "file": "backend/llm.py",
+      "description": "empty evidence not low",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M20",
+      "file": "backend/llm.py",
+      "description": "audit logging removed",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M21",
+      "file": "backend/llm.py",
+      "description": "citations stripped from prompt",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M22",
+      "file": "backend/main.py",
+      "description": "API sources not de-duplicated",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M23",
+      "file": "backend/main.py",
+      "description": "upload skips indexing",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M24",
+      "file": "backend/main.py",
+      "description": "API default mode changed",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M25",
+      "file": "backend/main.py",
+      "description": "CORS widened",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "M26",
+      "file": "backend/main.py",
+      "description": "empty-index response contract",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "F01",
+      "file": "frontend/src/App.jsx",
+      "description": "chat request drops mode",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "F02",
+      "file": "frontend/src/App.jsx",
+      "description": "mode switch keeps history",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "F03",
+      "file": "frontend/src/components/Message.jsx",
+      "description": "confidence colour mapping",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "F04",
+      "file": "frontend/src/components/Message.jsx",
+      "description": "source pluralisation",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "F05",
+      "file": "frontend/src/components/Chat.jsx",
+      "description": "Shift+Enter sends",
+      "expect": "killed",
+      "result": "killed"
+    },
+    {
+      "id": "F06",
+      "file": "frontend/src/App.jsx",
+      "description": "uploaded file not listed",
+      "expect": "killed",
+      "result": "killed"
+    }
+  ]
+}

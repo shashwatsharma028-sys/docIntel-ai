@@ -1,0 +1,200 @@
+{
+  "checkpoint": "3e61052e89714a5af91ae686a82369c86d461b8e",
+  "python": "3.13.18",
+  "machine": "x86_64",
+  "faiss": "1.16.0",
+  "numpy": "2.5.5",
+  "note": "Offline, mocked embeddings/LLM. Wall times exclude all network/API latency.",
+  "parse_pdf_20_pages_8000_words": {
+    "mean_ms": 13.779,
+    "p95_ms": 14.428,
+    "min_ms": 13.086,
+    "runs": 20
+  },
+  "chunk_text_100k_words": {
+    "mean_ms": 3.749,
+    "p95_ms": 3.879,
+    "min_ms": 3.53,
+    "runs": 20,
+    "chunks": 143
+  },
+  "sequential_uploads_10_single_chunk_docs": {
+    "embedding_calls_per_upload": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "cumulative_embedding_calls": [
+      1,
+      3,
+      6,
+      10,
+      15,
+      21,
+      28,
+      36,
+      45,
+      55
+    ],
+    "build_index_wall_ms_zero_latency": [
+      1.92,
+      2.89,
+      4.13,
+      5.26,
+      7.83,
+      9.63,
+      10.91,
+      11.32,
+      11.85,
+      14.7
+    ],
+    "ideal_incremental_cumulative_calls": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10
+    ],
+    "projection": "real cost ~= calls x per-call Gemini latency; cumulative grows O(n^2) in uploads"
+  },
+  "retrieve_latency": {
+    "d768_n100": {
+      "retrieve_total": {
+        "mean_ms": 0.098,
+        "p95_ms": 0.144,
+        "min_ms": 0.068,
+        "runs": 30
+      },
+      "disk_load_only": {
+        "mean_ms": 0.028,
+        "p95_ms": 0.031,
+        "min_ms": 0.025,
+        "runs": 30
+      },
+      "faiss_search_only": {
+        "mean_ms": 0.008,
+        "p95_ms": 0.008,
+        "min_ms": 0.007,
+        "runs": 30
+      },
+      "index_bytes": 307245
+    },
+    "d768_n1000": {
+      "retrieve_total": {
+        "mean_ms": 1.046,
+        "p95_ms": 1.08,
+        "min_ms": 0.908,
+        "runs": 30
+      },
+      "disk_load_only": {
+        "mean_ms": 0.655,
+        "p95_ms": 0.7,
+        "min_ms": 0.589,
+        "runs": 30
+      },
+      "faiss_search_only": {
+        "mean_ms": 0.184,
+        "p95_ms": 0.234,
+        "min_ms": 0.151,
+        "runs": 30
+      },
+      "index_bytes": 3072045
+    },
+    "d768_n5000": {
+      "retrieve_total": {
+        "mean_ms": 6.008,
+        "p95_ms": 7.194,
+        "min_ms": 4.11,
+        "runs": 30
+      },
+      "disk_load_only": {
+        "mean_ms": 5.379,
+        "p95_ms": 4.168,
+        "min_ms": 3.052,
+        "runs": 30
+      },
+      "faiss_search_only": {
+        "mean_ms": 0.983,
+        "p95_ms": 1.584,
+        "min_ms": 0.843,
+        "runs": 30
+      },
+      "index_bytes": 15360045
+    },
+    "d3072_n100": {
+      "retrieve_total": {
+        "mean_ms": 0.38,
+        "p95_ms": 0.488,
+        "min_ms": 0.311,
+        "runs": 30
+      },
+      "disk_load_only": {
+        "mean_ms": 0.172,
+        "p95_ms": 0.226,
+        "min_ms": 0.148,
+        "runs": 30
+      },
+      "faiss_search_only": {
+        "mean_ms": 0.033,
+        "p95_ms": 0.044,
+        "min_ms": 0.028,
+        "runs": 30
+      },
+      "index_bytes": 1228845
+    },
+    "d3072_n1000": {
+      "retrieve_total": {
+        "mean_ms": 3.283,
+        "p95_ms": 3.71,
+        "min_ms": 2.94,
+        "runs": 30
+      },
+      "disk_load_only": {
+        "mean_ms": 2.215,
+        "p95_ms": 2.319,
+        "min_ms": 2.09,
+        "runs": 30
+      },
+      "faiss_search_only": {
+        "mean_ms": 0.798,
+        "p95_ms": 0.909,
+        "min_ms": 0.673,
+        "runs": 30
+      },
+      "index_bytes": 12288045
+    },
+    "d3072_n5000": {
+      "retrieve_total": {
+        "mean_ms": 51.428,
+        "p95_ms": 53.31,
+        "min_ms": 49.27,
+        "runs": 30
+      },
+      "disk_load_only": {
+        "mean_ms": 44.482,
+        "p95_ms": 47.87,
+        "min_ms": 41.795,
+        "runs": 30
+      },
+      "faiss_search_only": {
+        "mean_ms": 4.381,
+        "p95_ms": 6.32,
+        "min_ms": 3.449,
+        "runs": 30
+      },
+      "index_bytes": 61440045
+    }
+  }
+}
