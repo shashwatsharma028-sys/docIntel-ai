@@ -1,0 +1,11 @@
+Fabrikam Route Optimisation SaaS Subscription Terms
+
+Term and renewal. The subscription runs for 12 months and renews automatically for further 12-month terms unless the customer cancels at least 30 days before renewal through the account portal.
+
+Fees and price changes. Fabrikam may increase subscription fees at renewal by up to 7 percent per year. Price increases above 7 percent allow the customer to terminate without penalty within 30 days of notice.
+
+Service levels. Fabrikam targets 99.5 percent monthly availability. Service credits of 5 percent of the monthly fee apply below the target and must be requested within 15 days of the end of the month.
+
+Liability. Fabrikam's liability is capped at the fees paid in the 3 months before the claim, and Fabrikam is not liable for indirect or consequential losses, including lost profits.
+
+Data. Customer route data may be used by Fabrikam in aggregated and anonymised form to improve its routing models. Fabrikam will notify customers of a data breach within 72 hours.

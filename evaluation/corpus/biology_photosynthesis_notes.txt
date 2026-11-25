@@ -1,0 +1,11 @@
+Biology Chapter Three Study Notes: Photosynthesis
+
+Overview. Photosynthesis converts light energy into chemical energy stored in glucose. It takes place in chloroplasts, which contain the green pigment chlorophyll in the thylakoid membranes.
+
+The light-dependent reactions occur in the thylakoid membranes. Photolysis splits water, releasing oxygen as a by-product and producing ATP and NADPH.
+
+The Calvin cycle takes place in the stroma. The enzyme rubisco fixes carbon dioxide, and ATP and NADPH from the light reactions are used to make three-carbon sugars that build glucose.
+
+Limiting factors. The rate of photosynthesis is limited by light intensity, carbon dioxide concentration and temperature. Above about 40 degrees Celsius enzymes such as rubisco denature and the rate falls sharply.
+
+Exam summary. Overall equation: six carbon dioxide plus six water yields glucose plus six oxygen. Key terms: chlorophyll, thylakoid, stroma, photolysis, Calvin cycle, rubisco.

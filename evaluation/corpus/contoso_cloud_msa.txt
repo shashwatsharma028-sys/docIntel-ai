@@ -1,0 +1,13 @@
+Master Services Agreement between Contoso Cloud Hosting Ltd and Customer
+
+Term and renewal. The initial term is 36 months. The agreement renews automatically for successive 12-month periods unless either party gives written notice of non-renewal at least 90 days before the end of the current term.
+
+Termination for convenience. The customer may terminate for convenience on 60 days written notice by paying an early termination fee equal to 50 percent of the fees remaining for the current term.
+
+Service levels. Contoso commits to 99.9 percent monthly availability. If availability falls below that level the customer receives a service credit of 10 percent of the monthly fee, rising to 25 percent below 99.0 percent. Service credits are the sole remedy for downtime.
+
+Limitation of liability. Each party's total liability is capped at the fees paid in the 12 months before the claim. The cap does not apply to breach of confidentiality, the customer's payment obligations or indemnification obligations.
+
+Data handling. Contoso stores customer data only in data centres located in the European Economic Area and will notify the customer of a personal data breach within 48 hours of becoming aware of it.
+
+Governing law. This agreement is governed by the laws of Ireland. Disputes are resolved by the courts of Dublin, and each party waives the right to a jury trial.

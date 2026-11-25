@@ -1,0 +1,11 @@
+Northwind Logistics Information Security Policy IS-07
+
+Passwords. Passwords must be at least 14 characters long and are not subject to periodic expiry. A password must be changed immediately if compromise is suspected. Password reuse across company systems is prohibited.
+
+Multi-factor authentication. MFA is mandatory for email, VPN, the finance portal and all administrator accounts. Hardware security keys are required for administrators; other staff may use the authenticator app.
+
+Incident reporting. Suspected security incidents, including lost laptops and phishing clicks, must be reported to the security desk within one hour of discovery by phone on extension 4400 or through the incident form.
+
+Devices. Company laptops use full-disk encryption and lock automatically after five minutes of inactivity. Personal devices may access email only through the managed mobile application.
+
+Data classification. Information is classified as public, internal, confidential or restricted. Restricted data, such as payroll and medical records, may not be stored on removable media or sent to personal email addresses.

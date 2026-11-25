@@ -1,0 +1,25 @@
+{
+ "frozen_at_utc": "2026-11-25T06:37:13+00:00",
+ "statement": "Labels and corpus frozen BEFORE evaluating any retrieval system (dense, BM25, hybrid RRF, cross-encoder, context optimisation, RAGAS). The held-out split must not be used for tuning or method selection. Any change requires a new lock and must be reported.",
+ "provenance": "Synthetic, fictitious documents written for this project; no real persons, companies' real terms or patient data.",
+ "counts": {
+  "documents": 9,
+  "passages": 48,
+  "dev_questions": 24,
+  "heldout_questions": 24
+ },
+ "sha256": {
+  "corpus/passages.jsonl": "1d2fad339c5d30a383944fcf2d574eb8cdda206763da198b22ddd21fbb77c2d9",
+  "questions/dev.jsonl": "edf01b1ba7fb427ea8e7a5655cd4118f698e44278dba129d4ebed2f8c8812200",
+  "questions/heldout.jsonl": "237b416ebbcc84b534276a8dfe368e4e79bd77bf3c1b84bdb35fe88f563d71ec",
+  "corpus/biology_cellular_respiration_notes.txt": "ae237b4b0ca55a33c1436f541bf76287a48db6a5c56fdd83060742112b817a09",
+  "corpus/biology_photosynthesis_notes.txt": "7fbf704728861770fe65a325cd1b97cb129367c2928bfe29feb8d3bfd904e43a",
+  "corpus/contoso_cloud_msa.txt": "53398fa247207351f5d22dfa5363810231cda77edb6a779bb271bacdf56873e6",
+  "corpus/fabrikam_logistics_saas.txt": "29526980f9e447eb4a403f026f75526efe4fd0213fadb01f30540dd86b176863",
+  "corpus/northwind_it_security_policy.txt": "ead3ae7f39fb15877e746ba0a25e096b3601c0ece7ab312d174064c2f4024f6e",
+  "corpus/northwind_travel_policy_2022.txt": "b7fa5d8053191d541041959bd01f67742c24645a5c91fc5c6a25755cc58077a7",
+  "corpus/northwind_travel_policy_2024.txt": "e660e2f7ade3c71e8710970c77d3b9d739f8bca9dff3cbbe670b17a0121b7188",
+  "corpus/riverside_lab_report_jan2025.txt": "537dcf1cd36f40498aa514784a0d5991f130bdbf38ad5a5ddf303f69911652d2",
+  "corpus/riverside_lab_report_jul2025.txt": "d38899ada806fdf74718a14d34530d97ee247fb8c7baa11a799348dbab224276"
+ }
+}

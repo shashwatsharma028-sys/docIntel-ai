@@ -1,0 +1,13 @@
+Biology Chapter Four Study Notes: Cellular Respiration
+
+Overview. Cellular respiration releases energy from glucose to make ATP. The overall equation is glucose plus six oxygen yields six carbon dioxide plus six water plus energy, the reverse of the photosynthesis equation.
+
+Glycolysis takes place in the cytoplasm, does not need oxygen and splits one glucose into two pyruvate molecules, giving a net gain of two ATP and two NADH.
+
+The Krebs cycle, also called the citric acid cycle, takes place in the mitochondrial matrix. Each turn releases two carbon dioxide molecules and produces NADH, FADH2 and one ATP.
+
+Oxidative phosphorylation happens on the inner mitochondrial membrane. The electron transport chain pumps protons, and ATP synthase uses the proton gradient to produce about 34 ATP. Oxygen is the final electron acceptor and forms water.
+
+Anaerobic respiration. Without oxygen, human muscle cells convert pyruvate to lactate, while yeast produces ethanol and carbon dioxide. Anaerobic pathways yield only the two ATP from glycolysis.
+
+Exam summary. Aerobic respiration yields about 36 to 38 ATP per glucose in total. Key terms: glycolysis, pyruvate, Krebs cycle, mitochondrial matrix, electron transport chain, ATP synthase.
