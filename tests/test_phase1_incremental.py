@@ -379,6 +379,29 @@ class TestCompatibilityAndSafety:
         ingest.build_index()
         assert not marker.exists()
 
+    def test_offline_verify_detects_content_tampering(self, folder, embedder):
+        add(folder, "a.pdf", "legal_service_agreement")
+        ingest.build_index()
+        assert index_store.verify() == {"generation": 1, "n_chunks": 1, "ok": True}
+        with open(ingest.CHUNKS_PATH, "r+b") as f:  # same inode/size, flipped byte
+            f.seek(-3, 2)
+            f.write(b"X")
+        with pytest.raises(index_store.IndexIntegrityError, match="chunks content hash mismatch"):
+            index_store.verify()
+
+    @pytest.mark.parametrize("content", [b"{not json", b'{"schema": 999}'])
+    def test_unreadable_or_foreign_manifest_is_not_trusted(self, folder, embedder, content):
+        add(folder, "a.pdf", "legal_service_agreement")
+        ingest.build_index()
+        with open(index_store.MANIFEST_PATH, "wb") as f:
+            f.write(content)
+        with pytest.raises(index_store.IndexIntegrityError):
+            index_store.load_generation()
+        assert index_store.load_metadata() is None
+        stats = ingest.build_index()  # repairs from the corpus without trusting old metadata
+        assert stats["published"] and stats["documents_parsed"] == 1 and stats["embeddings_computed"] == 0
+        assert_aligned()
+
     @pytest.mark.parametrize("obj", [{"a": 1}, [("a.pdf",)], [(1, "x")], [("a", "b", "c")]])
     def test_metadata_schema_is_validated(self, obj):
         with pytest.raises(index_store.IndexIntegrityError):
