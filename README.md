@@ -75,6 +75,21 @@ accepted (27/27 upload batches HTTP 202); **all generation-run traces were lost*
 harness's upload-acknowledgement hook raised on compressed bodies (fixed afterwards); the
 tracing-only key cannot read traces back. Answer F1 is not a faithfulness or hallucination measure.
 
+## Application performance (offline; simulated provider)
+
+| Change | Result | Evidence |
+|---|---|---|
+| Opt-in embedding batching (`DOCINTEL_EMBED_BATCH_SIZE`, 1–100; default 1 = original single-item path) | 49 QASPER papers reconstructed as PDFs (246 chunks): **246 → 8 embedding HTTP requests at batch 32** (31 at 8, 16 at 16); same 246 items, so no token/billing change; index bit-identical and top-4 identical to batch 1. Indexing wall time 32.0 s → 3.2 s under an **assumed** latency model (120 ms/request + 4 ms/item) | `docs/phase4/batch_bench.json` |
+| Endpoints run blocking work in the thread pool, bounded (`DOCINTEL_MAX_CONCURRENT_CHAT`=8, `DOCINTEL_MAX_CONCURRENT_UPLOADS`=2) | Simulated blocking provider (30 ms embed + 300 ms LLM), 40 requests per level: throughput 3.0 → 14.9 / 23.8 / 23.9 req/s at concurrency 5 / 10 / 20 (saturates at the configured bound of 8); event-loop lag max ~13.3 s → ≤ 2.8 ms; provider concurrency ≤ 8; 0 failures; audit rows intact | `docs/phase4/load_test.json` |
+| Cache reconstruction | Index rebuilt from cached + new vectors vs full re-encode (real BGE, 5 edit types, 2 chunkers): **820/820 identical top-4 rankings**, max distance difference 0.0 | `evaluation/qasper/cache_topk_equivalence.json` |
+
+Simulated-provider results are not live production latency. In the in-process load test, baseline
+per-request client latency under-reports queueing (blocked client coroutines cannot start timers);
+throughput and event-loop lag are the valid comparisons. Live-pilot follow-up (offline, post-hoc):
+on the 25 questions both configurations answered, the F1 difference is −0.001 [−0.079, 0.097];
+the −0.074 pilot gap comes from 5 questions with different abstention behaviour
+(`evaluation/qasper/pilot_analysis.json`).
+
 ## Evaluated and rejected (kept for transparency)
 
 - **Hybrid BM25 + dense (RRF)** — best on dev, worse on held-out (MRR@10 0.792 vs dense 0.865);

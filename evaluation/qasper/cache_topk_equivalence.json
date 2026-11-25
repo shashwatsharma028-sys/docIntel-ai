@@ -1,0 +1,62 @@
+{
+ "fixed_T256|insert_middle|medium": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 125
+ },
+ "fixed_T256|append_end|small": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 246
+ },
+ "fixed_T256|replace_paragraphs|medium": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 130
+ },
+ "fixed_T256|delete_paragraphs|medium": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 125
+ },
+ "fixed_T256|insert_beginning|substantial": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 0
+ },
+ "structure_T256|insert_middle|medium": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 321
+ },
+ "structure_T256|append_end|small": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 323
+ },
+ "structure_T256|replace_paragraphs|medium": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 322
+ },
+ "structure_T256|delete_paragraphs|medium": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 318
+ },
+ "structure_T256|insert_beginning|substantial": {
+  "queries": 41,
+  "top4_identical": 41,
+  "max_abs_distance_diff": 0.0,
+  "reused_chunks": 320
+ }
+}

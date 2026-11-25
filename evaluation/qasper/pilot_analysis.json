@@ -1,0 +1,58 @@
+{
+ "n": 40,
+ "by_type": {
+  "abstractive": {
+   "n": 14,
+   "f1_fixed": 0.262,
+   "f1_struct": 0.239
+  },
+  "boolean": {
+   "n": 6,
+   "f1_fixed": 0.682,
+   "f1_struct": 0.5
+  },
+  "extractive": {
+   "n": 18,
+   "f1_fixed": 0.437,
+   "f1_struct": 0.406
+  },
+  "none": {
+   "n": 2,
+   "f1_fixed": 1.0,
+   "f1_struct": 0.5
+  }
+ },
+ "by_abstention_pattern": {
+  "both_answered": {
+   "n": 25,
+   "sum_f1_diff": -0.016
+  },
+  "only_structure_abstained": {
+   "n": 2,
+   "sum_f1_diff": -1.242
+  },
+  "only_fixed_abstained": {
+   "n": 3,
+   "sum_f1_diff": -1.714
+  },
+  "both_abstained": {
+   "n": 10,
+   "sum_f1_diff": 0.0
+  }
+ },
+ "paired_f1_both_answered": {
+  "mean_diff": -0.0006,
+  "ci95": [
+   -0.0787,
+   0.0971
+  ],
+  "papers": 18,
+  "questions": 25
+ },
+ "evidence_recall_at4_on_pilot_questions": {
+  "n": 35,
+  "fixed": 0.648,
+  "structure": 0.676
+ },
+ "note": "Post-hoc, descriptive only (n=40); not a new pre-registered test; no live calls."
+}
