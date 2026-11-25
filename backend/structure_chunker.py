@@ -62,8 +62,14 @@ def chunk_pdf_structured(pdf_path: str, budget: int = TOKEN_BUDGET, count=estima
                 cur = {"head": "", "paras": []}
                 sections.append(cur)
             cur["paras"].append(b)
+    return chunk_sections([(s["head"], s["paras"]) for s in sections], budget, count)
+
+
+def chunk_sections(sections, budget: int = TOKEN_BUDGET, count=estimate_tokens) -> list[str]:
+    """sections: [(heading or "", [paragraph, ...]), ...] -> chunks (shared by the PDF path)."""
     chunks = []
-    for s in sections:
+    for head, paras in sections:
+        s = {"head": head, "paras": paras}
         # reserve room for the heading so the first chunk of a section stays within budget
         room = budget - (count(s["head"] + ". ") if s["head"] else 0)
         pieces = []
