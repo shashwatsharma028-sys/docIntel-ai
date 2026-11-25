@@ -215,12 +215,25 @@ try:
     from langsmith import traceable as _ls_traceable
     _TRACING = os.environ.get("LANGSMITH_TRACING", "").lower() == "true"
     _LS_CLIENT = langsmith.Client(hide_inputs=_sanitize, hide_outputs=_sanitize) if _TRACING else None
+    TRACE_ACKS = HERE / "live_trace_acks.jsonl"
+    if _LS_CLIENT is not None:  # record LangSmith's acknowledgement of every trace upload (tracing keys cannot read back)
+        def _ack(resp, *a, **k):
+            if resp.request.method == "POST" and "/runs" in resp.request.url:
+                append(TRACE_ACKS, {"t": time.time(), "path": resp.request.url.split("?")[0].rsplit("/", 2)[-2:],
+                                    "status": resp.status_code, "bytes": len(resp.request.body or b"")})
+        _LS_CLIENT.session.hooks["response"].append(_ack)
+
 
     def traceable(**kw):
         return _ls_traceable(client=_LS_CLIENT, project_name=PROJECT, **kw) if _TRACING else (lambda f: f)
 except ImportError:  # pragma: no cover
     def traceable(**_):
         return lambda f: f
+
+
+def flush_traces():
+    if globals().get("_LS_CLIENT") is not None:
+        _LS_CLIENT.flush()
 
 
 # ----------------------------------------------------------------------------- retrieval
@@ -326,6 +339,7 @@ def run_generation(dry=False, limit=None):
             print(cfg, item["question_id"], repr((out.get("answer") or err or "")[:70]), out.get("finish_reason"), flush=True)
             if not STATE["quota_checked"] and out.get("answer") is not None:
                 quota_check(len(done) + sent)
+    flush_traces()
     if dry:
         print(f"dry run: {2 * len(items)} prompts, ~{est} input tokens (BGE x1.15 estimate)")
 
@@ -359,6 +373,7 @@ def run_faithfulness(limit=None):
         n += 1
         append(FAITH_LOG, {"config": cfg, "question_id": qid, "paper_id": g["paper_id"], **row})
         print("faith", cfg, qid, row["score"], row["error"], flush=True)
+    flush_traces()
 
 
 def report():
@@ -441,24 +456,18 @@ def report():
 
 
 def verify_traces():
-    import langsmith
-    cl = langsmith.Client()
-    roots = list(cl.list_runs(project_name=PROJECT, is_root=True))
-    allruns = list(cl.list_runs(project_name=PROJECT))
-    names = {}
-    for r in allruns:
-        names[r.name] = names.get(r.name, 0) + 1
-    res = {"project": PROJECT, "root_traces": len(roots), "runs_total": len(allruns), "runs_by_name": names,
-           "errored_runs": sum(1 for r in allruns if r.error)}
+    """Tracing keys cannot read projects back (403 projects:read), so report what LangSmith
+    ACKNOWLEDGED (HTTP status of every trace upload) plus local counts of traced calls."""
+    acks = read_jsonl(HERE / "live_trace_acks.jsonl")
+    gens = read_jsonl(GEN_LOG)
+    faith = read_jsonl(FAITH_LOG)
+    res = {"project": PROJECT, "upload_requests": len(acks), "upload_2xx": sum(200 <= a["status"] < 300 for a in acks),
+           "upload_non_2xx": sum(not 200 <= a["status"] < 300 for a in acks),
+           "traced_root_calls_local": {"qasper_pilot_question": len(gens), "ragas_faithfulness": len(faith)},
+           "note": "first generation trace was sent before upload acknowledgements were recorded; server-side "
+                   "read-back unavailable with a tracing-only key"}
     (HERE / "live_traces.json").write_text(json.dumps(res, indent=1) + "\n")
     print(json.dumps(res, indent=1))
-
-
-def preflight():
-    cl = client()
-    ids = sorted(m.id for m in cl.models.list().data)
-    ok = {m: m in ids for m in (GEN_MODEL, JUDGE_MODEL)}
-    print(json.dumps({"permitted": ok, "n_models": len(ids), "gpt_oss_like": [i for i in ids if "oss" in i]}, indent=1))
 
 
 if __name__ == "__main__":
