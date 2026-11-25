@@ -40,9 +40,11 @@ class FakeEmbedder:
         self.calls: list[dict] = []
 
     def embed_content(self, *, model, contents):
+        """One call == one provider request; a list input returns one embedding per item."""
         self.calls.append({"model": model, "contents": contents})
-        values = embed_text(contents).tolist()
-        return SimpleNamespace(embeddings=[SimpleNamespace(values=values)])
+        items = contents if isinstance(contents, list) else [contents]
+        self.items = getattr(self, "items", 0) + len(items)
+        return SimpleNamespace(embeddings=[SimpleNamespace(values=embed_text(t).tolist()) for t in items])
 
     @property
     def count(self) -> int:

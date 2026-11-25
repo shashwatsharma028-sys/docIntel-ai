@@ -23,6 +23,32 @@ EMBEDDING_MODEL = "gemini-embedding-001"
 EMBEDDING_OUTPUT_DIMENSIONALITY = None  # provider default (not requested explicitly)
 EMBEDDING_TASK_TYPE = None              # provider default
 
+MAX_EMBED_BATCH = 100  # upper bound accepted from configuration; verify against current provider limits
+
+
+class EmbeddingResponseError(RuntimeError):
+    """A provider response failed validation (count, dimension or non-finite values)."""
+
+
+def embed_batch_size() -> int:
+    n = int(os.environ.get("DOCINTEL_EMBED_BATCH_SIZE", "1"))
+    if not 1 <= n <= MAX_EMBED_BATCH:
+        raise ValueError(f"DOCINTEL_EMBED_BATCH_SIZE must be in 1..{MAX_EMBED_BATCH}, got {n}")
+    return n
+
+
+def get_embeddings(texts: list[str]) -> list:
+    """One provider request for several independent inputs; validated before use."""
+    result = client.models.embed_content(model=EMBEDDING_MODEL, contents=list(texts))
+    values = [e.values for e in (result.embeddings or [])]
+    if len(values) != len(texts):
+        raise EmbeddingResponseError(f"expected {len(texts)} embeddings, got {len(values)}")
+    arr = np.asarray(values, dtype="float32")
+    if arr.ndim != 2 or not np.isfinite(arr).all():
+        raise EmbeddingResponseError("embeddings must be finite and of equal dimension")
+    return list(arr)
+
+
 def get_embedding(text: str) -> list:
     result = client.models.embed_content(model=EMBEDDING_MODEL, contents=text)
     return result.embeddings[0].values
@@ -165,6 +191,8 @@ def build_index(pdf_folder: str = "data/pdfs") -> dict:
 
 
 def _embed_all(all_chunks, cache, stats) -> list:
+    if embed_batch_size() > 1:
+        return _embed_all_batched(all_chunks, cache, stats, embed_batch_size())
     vectors = []
     for _, text in all_chunks:
         key = text_key(text)
@@ -172,11 +200,44 @@ def _embed_all(all_chunks, cache, stats) -> list:
         if vec is None:
             raw = get_embedding(text)
             stats["embeddings_computed"] += 1  # count every provider invocation, even if rejected below
+            stats["embedding_requests"] = stats.get("embedding_requests", 0) + 1
             vec = cache.put(key, raw)
         else:
             stats["cache_hits"] += 1
         vectors.append(vec.reshape(1, -1))
     return vectors
+
+
+def _embed_all_batched(all_chunks, cache, stats, batch_size, retries=2):
+    """Unique cache misses (first-seen order) are embedded in bounded batches; each batch is
+    validated and cached before the next, so a later failure keeps earlier work and publishes nothing."""
+    keys = [text_key(t) for _, t in all_chunks]
+    texts = dict(zip(keys, (t for _, t in all_chunks)))
+    resolved, misses = {}, []
+    for k in dict.fromkeys(keys):  # unique, first-seen order
+        v = cache.get(k)
+        if v is None:
+            misses.append(k)
+        else:
+            resolved[k] = v
+    stats["cache_hits"] += len(keys) - len(misses)  # same definition as the single-item path
+    for i in range(0, len(misses), batch_size):
+        batch = misses[i:i + batch_size]
+        for attempt in range(retries + 1):
+            stats["embedding_requests"] = stats.get("embedding_requests", 0) + 1
+            try:
+                vecs = get_embeddings([texts[k] for k in batch])
+                break
+            except DimensionChanged:
+                raise
+            except Exception:
+                if attempt == retries:
+                    raise
+                time.sleep(0.5 * 2 ** attempt)
+        stats["embeddings_computed"] += len(batch)
+        for k, v in zip(batch, vecs):
+            resolved[k] = cache.put(k, v)
+    return [resolved[k].reshape(1, -1) for k in keys]
 
 
 if __name__ == "__main__":
