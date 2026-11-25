@@ -1,0 +1,1303 @@
+{
+ "split": "heldout_historical",
+ "selection": {
+  "rules": {
+   "dev_min_retention": 0.95,
+   "dev_max_recall_drop": 0.02,
+   "gen_min_token_reduction": 0.25,
+   "gen_min_retention": 0.95,
+   "gen_max_recall_drop": 0.05
+  },
+  "selected": {
+   "rel": 0.1
+  },
+  "selected_name": "rel=0.1",
+  "dev_baseline": {
+   "context_tokens": 158.2083,
+   "n_selected": 4.0,
+   "precision": 0.3021,
+   "recall": 1.0,
+   "rr": 0.9097,
+   "retention": 1.0,
+   "latency_p50_ms": 5.556,
+   "latency_p95_ms": 6.663,
+   "n": 24
+  },
+  "dev_selected": {
+   "context_tokens": 90.4167,
+   "n_selected": 2.2917,
+   "precision": 0.6285,
+   "recall": 1.0,
+   "rr": 0.9097,
+   "retention": 1.0,
+   "latency_p50_ms": 5.289,
+   "latency_p95_ms": 7.475,
+   "n": 24
+  }
+ },
+ "verdict": {
+  "token_reduction": 0.3948,
+  "retention": 0.963,
+  "recall_drop": 0.0417,
+  "generalises": true
+ },
+ "results": [
+  {
+   "name": "fixed-top4 (baseline)",
+   "config": {},
+   "summary": {
+    "context_tokens": 155.125,
+    "n_selected": 4.0,
+    "precision": 0.2812,
+    "recall": 0.9375,
+    "rr": 0.8646,
+    "retention": 1.0,
+    "latency_p50_ms": 4.944,
+    "latency_p95_ms": 6.71,
+    "n": 24
+   },
+   "per_query": [
+    {
+     "qid": "H01",
+     "selected": [
+      "TRV24-03",
+      "TRV22-03",
+      "TRV24-01",
+      "TRV24-04"
+     ],
+     "top4": [
+      "TRV24-03",
+      "TRV22-03",
+      "TRV24-01",
+      "TRV24-04"
+     ],
+     "relevant": [
+      "TRV24-03"
+     ],
+     "n_selected": 4,
+     "context_tokens": 149,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 6.71
+    },
+    {
+     "qid": "H02",
+     "selected": [
+      "TRV22-05",
+      "TRV24-06",
+      "TRV24-01",
+      "TRV22-01"
+     ],
+     "top4": [
+      "TRV22-05",
+      "TRV24-06",
+      "TRV24-01",
+      "TRV22-01"
+     ],
+     "relevant": [
+      "TRV22-05"
+     ],
+     "n_selected": 4,
+     "context_tokens": 138,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 6.356
+    },
+    {
+     "qid": "H03",
+     "selected": [
+      "TRV24-04",
+      "TRV22-01",
+      "TRV22-03",
+      "TRV22-04"
+     ],
+     "top4": [
+      "TRV24-04",
+      "TRV22-01",
+      "TRV22-03",
+      "TRV22-04"
+     ],
+     "relevant": [
+      "TRV24-04"
+     ],
+     "n_selected": 4,
+     "context_tokens": 112,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 6.02
+    },
+    {
+     "qid": "H04",
+     "selected": [
+      "TRV22-01",
+      "TRV24-01",
+      "TRV24-04",
+      "TRV22-03"
+     ],
+     "top4": [
+      "TRV22-01",
+      "TRV24-01",
+      "TRV24-04",
+      "TRV22-03"
+     ],
+     "relevant": [
+      "TRV24-01"
+     ],
+     "n_selected": 4,
+     "context_tokens": 135,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 0.5,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.013
+    },
+    {
+     "qid": "H05",
+     "selected": [
+      "TRV24-01",
+      "TRV24-02",
+      "TRV22-02",
+      "TRV24-03"
+     ],
+     "top4": [
+      "TRV24-01",
+      "TRV24-02",
+      "TRV22-02",
+      "TRV24-03"
+     ],
+     "relevant": [
+      "TRV24-02"
+     ],
+     "n_selected": 4,
+     "context_tokens": 157,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 0.5,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.643
+    },
+    {
+     "qid": "H06",
+     "selected": [
+      "TRV22-04",
+      "TRV24-04",
+      "TRV24-01",
+      "TRV22-01"
+     ],
+     "top4": [
+      "TRV22-04",
+      "TRV24-04",
+      "TRV24-01",
+      "TRV22-01"
+     ],
+     "relevant": [
+      "TRV22-04",
+      "TRV24-04"
+     ],
+     "n_selected": 4,
+     "context_tokens": 131,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 2,
+     "relevant_in_top4": 2,
+     "latency_ms": 7.356
+    },
+    {
+     "qid": "H07",
+     "selected": [
+      "SEC-01",
+      "SEC-02",
+      "SEC-04",
+      "SEC-03"
+     ],
+     "top4": [
+      "SEC-01",
+      "SEC-02",
+      "SEC-04",
+      "SEC-03"
+     ],
+     "relevant": [
+      "SEC-01"
+     ],
+     "n_selected": 4,
+     "context_tokens": 154,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.587
+    },
+    {
+     "qid": "H08",
+     "selected": [
+      "SEC-04",
+      "SEC-03",
+      "MSA-02",
+      "SEC-01"
+     ],
+     "top4": [
+      "SEC-04",
+      "SEC-03",
+      "MSA-02",
+      "SEC-01"
+     ],
+     "relevant": [
+      "SEC-04"
+     ],
+     "n_selected": 4,
+     "context_tokens": 149,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.238
+    },
+    {
+     "qid": "H09",
+     "selected": [
+      "SEC-02",
+      "SEC-04",
+      "TRV22-04",
+      "TRV24-06"
+     ],
+     "top4": [
+      "SEC-02",
+      "SEC-04",
+      "TRV22-04",
+      "TRV24-06"
+     ],
+     "relevant": [
+      "SEC-05"
+     ],
+     "n_selected": 4,
+     "context_tokens": 127,
+     "precision": 0.0,
+     "recall": 0.0,
+     "rr": 0.0,
+     "relevant_selected": 0,
+     "relevant_in_top4": 0,
+     "latency_ms": 4.013
+    },
+    {
+     "qid": "H10",
+     "selected": [
+      "MSA-03",
+      "MSA-05",
+      "FAB-03",
+      "TRV24-06"
+     ],
+     "top4": [
+      "MSA-03",
+      "MSA-05",
+      "FAB-03",
+      "TRV24-06"
+     ],
+     "relevant": [
+      "MSA-03"
+     ],
+     "n_selected": 4,
+     "context_tokens": 171,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.266
+    },
+    {
+     "qid": "H11",
+     "selected": [
+      "MSA-06",
+      "MSA-05",
+      "TRV22-01",
+      "MSA-03"
+     ],
+     "top4": [
+      "MSA-06",
+      "MSA-05",
+      "TRV22-01",
+      "MSA-03"
+     ],
+     "relevant": [
+      "MSA-06"
+     ],
+     "n_selected": 4,
+     "context_tokens": 158,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.797
+    },
+    {
+     "qid": "H12",
+     "selected": [
+      "FAB-02",
+      "FAB-01",
+      "FAB-05",
+      "FAB-04"
+     ],
+     "top4": [
+      "FAB-02",
+      "FAB-01",
+      "FAB-05",
+      "FAB-04"
+     ],
+     "relevant": [
+      "FAB-01"
+     ],
+     "n_selected": 4,
+     "context_tokens": 160,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 0.5,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.924
+    },
+    {
+     "qid": "H13",
+     "selected": [
+      "FAB-02",
+      "FAB-04",
+      "FAB-03",
+      "FAB-05"
+     ],
+     "top4": [
+      "FAB-02",
+      "FAB-04",
+      "FAB-03",
+      "FAB-05"
+     ],
+     "relevant": [
+      "FAB-02"
+     ],
+     "n_selected": 4,
+     "context_tokens": 165,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.686
+    },
+    {
+     "qid": "H14",
+     "selected": [
+      "MSA-03",
+      "MSA-01",
+      "FAB-03",
+      "FAB-02"
+     ],
+     "top4": [
+      "MSA-03",
+      "MSA-01",
+      "FAB-03",
+      "FAB-02"
+     ],
+     "relevant": [
+      "FAB-03",
+      "MSA-03"
+     ],
+     "n_selected": 4,
+     "context_tokens": 180,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 2,
+     "relevant_in_top4": 2,
+     "latency_ms": 4.944
+    },
+    {
+     "qid": "H15",
+     "selected": [
+      "MSA-04",
+      "FAB-04",
+      "MSA-03",
+      "TRV22-05"
+     ],
+     "top4": [
+      "MSA-04",
+      "FAB-04",
+      "MSA-03",
+      "TRV22-05"
+     ],
+     "relevant": [
+      "MSA-04"
+     ],
+     "n_selected": 4,
+     "context_tokens": 175,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.012
+    },
+    {
+     "qid": "H16",
+     "selected": [
+      "LABF-03",
+      "LABF-05",
+      "LABJ-03",
+      "LABJ-05"
+     ],
+     "top4": [
+      "LABF-03",
+      "LABF-05",
+      "LABJ-03",
+      "LABJ-05"
+     ],
+     "relevant": [
+      "LABF-03",
+      "LABJ-03"
+     ],
+     "n_selected": 4,
+     "context_tokens": 160,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 2,
+     "relevant_in_top4": 2,
+     "latency_ms": 5.597
+    },
+    {
+     "qid": "H17",
+     "selected": [
+      "LABF-04",
+      "LABJ-04",
+      "LABF-05",
+      "LABF-02"
+     ],
+     "top4": [
+      "LABF-04",
+      "LABJ-04",
+      "LABF-05",
+      "LABF-02"
+     ],
+     "relevant": [
+      "LABF-04"
+     ],
+     "n_selected": 4,
+     "context_tokens": 146,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.08
+    },
+    {
+     "qid": "H18",
+     "selected": [
+      "LABJ-05",
+      "LABF-05",
+      "LABF-03",
+      "LABF-01"
+     ],
+     "top4": [
+      "LABJ-05",
+      "LABF-05",
+      "LABF-03",
+      "LABF-01"
+     ],
+     "relevant": [
+      "LABJ-01",
+      "LABJ-05"
+     ],
+     "n_selected": 4,
+     "context_tokens": 160,
+     "precision": 0.25,
+     "recall": 0.5,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.896
+    },
+    {
+     "qid": "H19",
+     "selected": [
+      "LABF-05",
+      "LABJ-05",
+      "SEC-03",
+      "LABF-02"
+     ],
+     "top4": [
+      "LABF-05",
+      "LABJ-05",
+      "SEC-03",
+      "LABF-02"
+     ],
+     "relevant": [
+      "LABF-02"
+     ],
+     "n_selected": 4,
+     "context_tokens": 150,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 0.25,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.733
+    },
+    {
+     "qid": "H20",
+     "selected": [
+      "RESP-03",
+      "RESP-04",
+      "RESP-02",
+      "RESP-06"
+     ],
+     "top4": [
+      "RESP-03",
+      "RESP-04",
+      "RESP-02",
+      "RESP-06"
+     ],
+     "relevant": [
+      "RESP-03"
+     ],
+     "n_selected": 4,
+     "context_tokens": 176,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.481
+    },
+    {
+     "qid": "H21",
+     "selected": [
+      "PHOTO-04",
+      "PHOTO-02",
+      "PHOTO-01",
+      "RESP-01"
+     ],
+     "top4": [
+      "PHOTO-04",
+      "PHOTO-02",
+      "PHOTO-01",
+      "RESP-01"
+     ],
+     "relevant": [
+      "PHOTO-04"
+     ],
+     "n_selected": 4,
+     "context_tokens": 157,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.42
+    },
+    {
+     "qid": "H22",
+     "selected": [
+      "PHOTO-02",
+      "PHOTO-01",
+      "PHOTO-05",
+      "PHOTO-04"
+     ],
+     "top4": [
+      "PHOTO-02",
+      "PHOTO-01",
+      "PHOTO-05",
+      "PHOTO-04"
+     ],
+     "relevant": [
+      "PHOTO-02"
+     ],
+     "n_selected": 4,
+     "context_tokens": 162,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.643
+    },
+    {
+     "qid": "H23",
+     "selected": [
+      "RESP-05",
+      "RESP-06",
+      "RESP-01",
+      "RESP-02"
+     ],
+     "top4": [
+      "RESP-05",
+      "RESP-06",
+      "RESP-01",
+      "RESP-02"
+     ],
+     "relevant": [
+      "RESP-05"
+     ],
+     "n_selected": 4,
+     "context_tokens": 172,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.164
+    },
+    {
+     "qid": "H24",
+     "selected": [
+      "RESP-06",
+      "RESP-05",
+      "RESP-01",
+      "RESP-04"
+     ],
+     "top4": [
+      "RESP-06",
+      "RESP-05",
+      "RESP-01",
+      "RESP-04"
+     ],
+     "relevant": [
+      "RESP-05",
+      "RESP-06"
+     ],
+     "n_selected": 4,
+     "context_tokens": 179,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 2,
+     "relevant_in_top4": 2,
+     "latency_ms": 6.419
+    }
+   ]
+  },
+  {
+   "name": "rel=0.1",
+   "config": {
+    "rel": 0.1
+   },
+   "summary": {
+    "context_tokens": 93.875,
+    "n_selected": 2.4583,
+    "precision": 0.5625,
+    "recall": 0.8958,
+    "rr": 0.8438,
+    "retention": 0.963,
+    "latency_p50_ms": 4.874,
+    "latency_p95_ms": 5.871,
+    "n": 24
+   },
+   "per_query": [
+    {
+     "qid": "H01",
+     "selected": [
+      "TRV24-03",
+      "TRV22-03"
+     ],
+     "top4": [
+      "TRV24-03",
+      "TRV22-03",
+      "TRV24-01",
+      "TRV24-04"
+     ],
+     "relevant": [
+      "TRV24-03"
+     ],
+     "n_selected": 2,
+     "context_tokens": 67,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.685
+    },
+    {
+     "qid": "H02",
+     "selected": [
+      "TRV22-05",
+      "TRV24-06",
+      "TRV24-01"
+     ],
+     "top4": [
+      "TRV22-05",
+      "TRV24-06",
+      "TRV24-01",
+      "TRV22-01"
+     ],
+     "relevant": [
+      "TRV22-05"
+     ],
+     "n_selected": 3,
+     "context_tokens": 108,
+     "precision": 0.3333333333333333,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.874
+    },
+    {
+     "qid": "H03",
+     "selected": [
+      "TRV24-04",
+      "TRV22-01",
+      "TRV22-03",
+      "TRV22-04"
+     ],
+     "top4": [
+      "TRV24-04",
+      "TRV22-01",
+      "TRV22-03",
+      "TRV22-04"
+     ],
+     "relevant": [
+      "TRV24-04"
+     ],
+     "n_selected": 4,
+     "context_tokens": 112,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.58
+    },
+    {
+     "qid": "H04",
+     "selected": [
+      "TRV22-01",
+      "TRV24-01"
+     ],
+     "top4": [
+      "TRV22-01",
+      "TRV24-01",
+      "TRV24-04",
+      "TRV22-03"
+     ],
+     "relevant": [
+      "TRV24-01"
+     ],
+     "n_selected": 2,
+     "context_tokens": 72,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 0.5,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 3.974
+    },
+    {
+     "qid": "H05",
+     "selected": [
+      "TRV24-01",
+      "TRV24-02",
+      "TRV22-02",
+      "TRV24-03"
+     ],
+     "top4": [
+      "TRV24-01",
+      "TRV24-02",
+      "TRV22-02",
+      "TRV24-03"
+     ],
+     "relevant": [
+      "TRV24-02"
+     ],
+     "n_selected": 4,
+     "context_tokens": 157,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 0.5,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.469
+    },
+    {
+     "qid": "H06",
+     "selected": [
+      "TRV22-04",
+      "TRV24-04"
+     ],
+     "top4": [
+      "TRV22-04",
+      "TRV24-04",
+      "TRV24-01",
+      "TRV22-01"
+     ],
+     "relevant": [
+      "TRV22-04",
+      "TRV24-04"
+     ],
+     "n_selected": 2,
+     "context_tokens": 59,
+     "precision": 1.0,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 2,
+     "relevant_in_top4": 2,
+     "latency_ms": 4.75
+    },
+    {
+     "qid": "H07",
+     "selected": [
+      "SEC-01"
+     ],
+     "top4": [
+      "SEC-01",
+      "SEC-02",
+      "SEC-04",
+      "SEC-03"
+     ],
+     "relevant": [
+      "SEC-01"
+     ],
+     "n_selected": 1,
+     "context_tokens": 42,
+     "precision": 1.0,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.325
+    },
+    {
+     "qid": "H08",
+     "selected": [
+      "SEC-04",
+      "SEC-03"
+     ],
+     "top4": [
+      "SEC-04",
+      "SEC-03",
+      "MSA-02",
+      "SEC-01"
+     ],
+     "relevant": [
+      "SEC-04"
+     ],
+     "n_selected": 2,
+     "context_tokens": 73,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.143
+    },
+    {
+     "qid": "H09",
+     "selected": [
+      "SEC-02",
+      "SEC-04",
+      "TRV22-04",
+      "TRV24-06"
+     ],
+     "top4": [
+      "SEC-02",
+      "SEC-04",
+      "TRV22-04",
+      "TRV24-06"
+     ],
+     "relevant": [
+      "SEC-05"
+     ],
+     "n_selected": 4,
+     "context_tokens": 127,
+     "precision": 0.0,
+     "recall": 0.0,
+     "rr": 0.0,
+     "relevant_selected": 0,
+     "relevant_in_top4": 0,
+     "latency_ms": 4.293
+    },
+    {
+     "qid": "H10",
+     "selected": [
+      "MSA-03"
+     ],
+     "top4": [
+      "MSA-03",
+      "MSA-05",
+      "FAB-03",
+      "TRV24-06"
+     ],
+     "relevant": [
+      "MSA-03"
+     ],
+     "n_selected": 1,
+     "context_tokens": 55,
+     "precision": 1.0,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.874
+    },
+    {
+     "qid": "H11",
+     "selected": [
+      "MSA-06",
+      "MSA-05",
+      "TRV22-01"
+     ],
+     "top4": [
+      "MSA-06",
+      "MSA-05",
+      "TRV22-01",
+      "MSA-03"
+     ],
+     "relevant": [
+      "MSA-06"
+     ],
+     "n_selected": 3,
+     "context_tokens": 103,
+     "precision": 0.3333333333333333,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.469
+    },
+    {
+     "qid": "H12",
+     "selected": [
+      "FAB-02"
+     ],
+     "top4": [
+      "FAB-02",
+      "FAB-01",
+      "FAB-05",
+      "FAB-04"
+     ],
+     "relevant": [
+      "FAB-01"
+     ],
+     "n_selected": 1,
+     "context_tokens": 40,
+     "precision": 0.0,
+     "recall": 0.0,
+     "rr": 0.0,
+     "relevant_selected": 0,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.508
+    },
+    {
+     "qid": "H13",
+     "selected": [
+      "FAB-02"
+     ],
+     "top4": [
+      "FAB-02",
+      "FAB-04",
+      "FAB-03",
+      "FAB-05"
+     ],
+     "relevant": [
+      "FAB-02"
+     ],
+     "n_selected": 1,
+     "context_tokens": 40,
+     "precision": 1.0,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.491
+    },
+    {
+     "qid": "H14",
+     "selected": [
+      "MSA-03",
+      "MSA-01",
+      "FAB-03",
+      "FAB-02"
+     ],
+     "top4": [
+      "MSA-03",
+      "MSA-01",
+      "FAB-03",
+      "FAB-02"
+     ],
+     "relevant": [
+      "FAB-03",
+      "MSA-03"
+     ],
+     "n_selected": 4,
+     "context_tokens": 180,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 2,
+     "relevant_in_top4": 2,
+     "latency_ms": 5.011
+    },
+    {
+     "qid": "H15",
+     "selected": [
+      "MSA-04",
+      "FAB-04",
+      "MSA-03"
+     ],
+     "top4": [
+      "MSA-04",
+      "FAB-04",
+      "MSA-03",
+      "TRV22-05"
+     ],
+     "relevant": [
+      "MSA-04"
+     ],
+     "n_selected": 3,
+     "context_tokens": 145,
+     "precision": 0.3333333333333333,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.073
+    },
+    {
+     "qid": "H16",
+     "selected": [
+      "LABF-03",
+      "LABF-05",
+      "LABJ-03",
+      "LABJ-05"
+     ],
+     "top4": [
+      "LABF-03",
+      "LABF-05",
+      "LABJ-03",
+      "LABJ-05"
+     ],
+     "relevant": [
+      "LABF-03",
+      "LABJ-03"
+     ],
+     "n_selected": 4,
+     "context_tokens": 160,
+     "precision": 0.5,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 2,
+     "relevant_in_top4": 2,
+     "latency_ms": 5.871
+    },
+    {
+     "qid": "H17",
+     "selected": [
+      "LABF-04",
+      "LABJ-04",
+      "LABF-05"
+     ],
+     "top4": [
+      "LABF-04",
+      "LABJ-04",
+      "LABF-05",
+      "LABF-02"
+     ],
+     "relevant": [
+      "LABF-04"
+     ],
+     "n_selected": 3,
+     "context_tokens": 113,
+     "precision": 0.3333333333333333,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.458
+    },
+    {
+     "qid": "H18",
+     "selected": [
+      "LABJ-05",
+      "LABF-05",
+      "LABF-03",
+      "LABF-01"
+     ],
+     "top4": [
+      "LABJ-05",
+      "LABF-05",
+      "LABF-03",
+      "LABF-01"
+     ],
+     "relevant": [
+      "LABJ-01",
+      "LABJ-05"
+     ],
+     "n_selected": 4,
+     "context_tokens": 160,
+     "precision": 0.25,
+     "recall": 0.5,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.98
+    },
+    {
+     "qid": "H19",
+     "selected": [
+      "LABF-05",
+      "LABJ-05",
+      "SEC-03",
+      "LABF-02"
+     ],
+     "top4": [
+      "LABF-05",
+      "LABJ-05",
+      "SEC-03",
+      "LABF-02"
+     ],
+     "relevant": [
+      "LABF-02"
+     ],
+     "n_selected": 4,
+     "context_tokens": 150,
+     "precision": 0.25,
+     "recall": 1.0,
+     "rr": 0.25,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.492
+    },
+    {
+     "qid": "H20",
+     "selected": [
+      "RESP-03"
+     ],
+     "top4": [
+      "RESP-03",
+      "RESP-04",
+      "RESP-02",
+      "RESP-06"
+     ],
+     "relevant": [
+      "RESP-03"
+     ],
+     "n_selected": 1,
+     "context_tokens": 40,
+     "precision": 1.0,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.415
+    },
+    {
+     "qid": "H21",
+     "selected": [
+      "PHOTO-04"
+     ],
+     "top4": [
+      "PHOTO-04",
+      "PHOTO-02",
+      "PHOTO-01",
+      "RESP-01"
+     ],
+     "relevant": [
+      "PHOTO-04"
+     ],
+     "n_selected": 1,
+     "context_tokens": 43,
+     "precision": 1.0,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.715
+    },
+    {
+     "qid": "H22",
+     "selected": [
+      "PHOTO-02"
+     ],
+     "top4": [
+      "PHOTO-02",
+      "PHOTO-01",
+      "PHOTO-05",
+      "PHOTO-04"
+     ],
+     "relevant": [
+      "PHOTO-02"
+     ],
+     "n_selected": 1,
+     "context_tokens": 32,
+     "precision": 1.0,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 5.869
+    },
+    {
+     "qid": "H23",
+     "selected": [
+      "RESP-05"
+     ],
+     "top4": [
+      "RESP-05",
+      "RESP-06",
+      "RESP-01",
+      "RESP-02"
+     ],
+     "relevant": [
+      "RESP-05"
+     ],
+     "n_selected": 1,
+     "context_tokens": 44,
+     "precision": 1.0,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 1,
+     "relevant_in_top4": 1,
+     "latency_ms": 4.945
+    },
+    {
+     "qid": "H24",
+     "selected": [
+      "RESP-06",
+      "RESP-05",
+      "RESP-01"
+     ],
+     "top4": [
+      "RESP-06",
+      "RESP-05",
+      "RESP-01",
+      "RESP-04"
+     ],
+     "relevant": [
+      "RESP-05",
+      "RESP-06"
+     ],
+     "n_selected": 3,
+     "context_tokens": 131,
+     "precision": 0.6666666666666666,
+     "recall": 1.0,
+     "rr": 1.0,
+     "relevant_selected": 2,
+     "relevant_in_top4": 2,
+     "latency_ms": 5.969
+    }
+   ]
+  }
+ ]
+}
