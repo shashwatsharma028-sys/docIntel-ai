@@ -1,0 +1,49 @@
+{
+ "rule": "max dev MRR@10, then dev Recall@4, then lower dev p50 latency",
+ "selected": {
+  "kind": "hybrid",
+  "rrf_k": 10,
+  "dense": {
+   "kind": "dense",
+   "prefix": false
+  },
+  "bm25": {
+   "kind": "bm25",
+   "k1": 1.5,
+   "b": 0.75
+  }
+ },
+ "selected_name": "hybrid-rrf(k=10; dense(bge-small) + bm25(k1=1.5,b=0.75))",
+ "family_best": {
+  "dense": {
+   "kind": "dense",
+   "prefix": false
+  },
+  "bm25": {
+   "kind": "bm25",
+   "k1": 1.5,
+   "b": 0.75
+  },
+  "hybrid": {
+   "kind": "hybrid",
+   "rrf_k": 10,
+   "dense": {
+    "kind": "dense",
+    "prefix": false
+   },
+   "bm25": {
+    "kind": "bm25",
+    "k1": 1.5,
+    "b": 0.75
+   }
+  },
+  "rerank": {
+   "kind": "rerank",
+   "first": {
+    "kind": "dense",
+    "prefix": false
+   },
+   "depth": 10
+  }
+ }
+}
