@@ -1,6 +1,6 @@
 import os
 import shutil
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from backend.ingest import build_index
@@ -20,14 +20,29 @@ class ChatRequest(BaseModel):
     question: str
     mode: str = "enterprise"
 
+PDF_DIR = "data/pdfs"
+
+
+def safe_upload_path(filename: str | None) -> tuple[str, str]:
+    """D-08: keep only the final path component and confine the result to PDF_DIR."""
+    name = os.path.basename((filename or "").replace("\\", "/"))
+    if name in ("", ".", "..") or "\x00" in name:
+        raise HTTPException(status_code=400, detail="Invalid filename")
+    root = os.path.realpath(PDF_DIR)
+    path = os.path.realpath(os.path.join(root, name))
+    if os.path.dirname(path) != root:
+        raise HTTPException(status_code=400, detail="Invalid filename")
+    return name, path
+
+
 @app.post("/upload")
 async def upload_pdf(file: UploadFile = File(...)):
-    os.makedirs("data/pdfs", exist_ok=True)
-    path = f"data/pdfs/{file.filename}"
+    os.makedirs(PDF_DIR, exist_ok=True)
+    name, path = safe_upload_path(file.filename)
     with open(path, "wb") as f:
         shutil.copyfileobj(file.file, f)
     build_index()
-    return {"message": f"{file.filename} uploaded and indexed successfully"}
+    return {"message": f"{name} uploaded and indexed successfully"}
 
 @app.post("/chat")
 async def chat(req: ChatRequest):

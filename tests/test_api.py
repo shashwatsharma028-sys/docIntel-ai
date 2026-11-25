@@ -184,8 +184,7 @@ class TestKnownDefects:
         upload(client, "corrupt.pdf", b"not a pdf")
         assert upload(client, "enterprise_leave_policy.pdf").status_code == 200
 
-    @pytest.mark.known_defect
-    @pytest.mark.xfail(strict=True, reason="D-08: upload filename is used unsanitised (path traversal)")
+    # D-08 FIXED (Phase 1): strict xfail removed; original assertions unchanged.
     def test_upload_cannot_write_outside_pdf_folder(self, client, embedder, isolated_workdir):
         (isolated_workdir / "data" / "pdfs").mkdir(parents=True)
         upload(client, "../escaped.pdf", make_pdf_bytes(["escape attempt " * 10]))
