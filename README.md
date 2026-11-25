@@ -95,6 +95,25 @@ on the 25 questions both configurations answered, the F1 difference is −0.001 
 the −0.074 pilot gap comes from 5 questions with different abstention behaviour
 (`evaluation/qasper/pilot_analysis.json`).
 
+## Retrieval ablation (QASPER, local BGE harness — not application validation)
+
+Structure-aware T=256 chunks, top-4, 1,024-token budget, pool 20; selection frozen on the 41 dev
+questions (`evaluation/qasper/ablation_criteria.json`). Test results are confirmatory only (this
+test set's retrieval results were examined in earlier phases).
+
+| Config | Dev R@1024 tok | Dev MRR@10 | Test R@1024 tok | Test MRR@10 | Test R@4 / P@4 | Test p50 latency |
+|---|---|---|---|---|---|---|
+| A dense | 0.687 | 0.656 | 0.657 | 0.453 | 0.608 / 0.197 | 11 ms |
+| B dense + BM25 (RRF) — eliminated on dev | 0.705 | 0.502 | 0.735 | 0.518 | 0.640 / 0.215 | 11 ms |
+| C = B + cross-encoder rerank | 0.816 | 0.610 | 0.764 | 0.625 | 0.723 / 0.244 | 470 ms |
+| **Selected: dense + cross-encoder rerank** | 0.816 | 0.610 | **0.772** | **0.624** | 0.714 / 0.240 | 447 ms |
+
+Selected vs A on test (paired, paper-clustered 95 % CI): evidence recall @1,024 tokens
++0.114 [0.025, 0.208]; MRR@10 +0.172 [0.104, 0.244]; ~+435 ms CPU per query. BM25/RRF was
+eliminated by the frozen dev rule although it helped on test. Available in the app as
+`DOCINTEL_RERANKER=minilm` (default off; optional deps `onnxruntime`, `tokenizers`,
+`huggingface_hub`; pool `DOCINTEL_RERANK_POOL`, default 20). Answer-level effect not yet measured.
+
 ## Evaluated and rejected (kept for transparency)
 
 - **Hybrid BM25 + dense (RRF)** — best on dev, worse on held-out (MRR@10 0.792 vs dense 0.865);

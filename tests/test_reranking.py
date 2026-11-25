@@ -104,3 +104,19 @@ def test_application_reranker_matches_evaluation_harness(monkeypatch):
     app_scores = MiniLMReranker().score("How many days of annual leave carry forward?", texts)
     eval_scores = rre.CrossEncoder().score("How many days of annual leave carry forward?", texts)
     assert np.allclose(app_scores, eval_scores, atol=1e-5) and int(np.argmax(app_scores)) == 0
+
+
+class ReversingReranker:
+    """Scores = candidate position, so a correct implementation returns the dense pool reversed."""
+    def score(self, query, texts):
+        return np.arange(len(texts), dtype=float)
+
+
+def test_reranked_order_follows_scores_exactly(indexed, monkeypatch):
+    monkeypatch.delenv("DOCINTEL_RERANKER", raising=False)
+    dense_pool = retriever.retrieve("termination notice agreement", top_k=4)  # all 4 chunks, dense order
+    monkeypatch.setattr(retriever, "_RERANKER", ReversingReranker())
+    monkeypatch.setenv("DOCINTEL_RERANKER", "minilm")
+    monkeypatch.setenv("DOCINTEL_RERANK_POOL", "4")
+    assert retriever.retrieve("termination notice agreement", top_k=4) == dense_pool[::-1]
+    assert retriever.retrieve("termination notice agreement", top_k=2) == dense_pool[::-1][:2]
