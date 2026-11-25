@@ -1,0 +1,16 @@
+{
+ "frozen_before": "any ablation run on dev or test",
+ "fixed": {"chunker": "structure-aware, T=256 BGE tokens", "embedding": "BAAI/bge-small-en-v1.5 (ONNX, local)",
+           "candidate_pool": 20, "top_k": 4, "context_budget_tokens": 1024,
+           "bm25": {"k1": 1.5, "b": 0.75}, "rrf_k": 10, "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2 (ONNX)"},
+ "configs": {"A": "dense", "B": "dense + BM25 via RRF (k=10)", "C": "B, then cross-encoder rerank of the top-20 fused candidates",
+             "D": "C with an LLM-rewritten search query (requires live calls; not run offline)",
+             "REF": "dense top-20 reranked by the cross-encoder (existing reference)"},
+ "selection_on_dev": {
+   "primary": "evidence recall at 1,024 context tokens",
+   "advance_rule": "a step (B over A, C over B) advances only if dev primary improves by >= 0.02, or MRR@10 improves by >= 0.03 with primary not lower by more than 0.02",
+   "elimination": "a step that does not advance is dropped; later steps are built on the last advancing configuration"},
+ "test_disclosure": "Retrieval results of A, BM25, hybrid and dense rerank on these 123 test questions were examined in earlier phases; test metrics here are confirmatory only and are not used for selection",
+ "statistics": "paired paper-clustered bootstrap, 10,000 reps, seed 7, 95% CI",
+ "latency": "per-query retrieval wall time on CPU incl. query encoding, BM25 scoring and reranking"
+}
