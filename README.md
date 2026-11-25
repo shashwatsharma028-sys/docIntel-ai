@@ -1,8 +1,9 @@
 # DocIntel AI — Multi-Domain RAG Document Q&A
 
-Upload PDFs and ask questions about them in four domain modes (enterprise SOP, legal, medical,
-study). FastAPI backend, React frontend, FAISS vector search, Gemini embeddings and generation
-with a Groq fallback.
+A domain-configurable document Q&A prototype: upload PDFs and ask questions in four specialised
+prompt modes (enterprise SOP, legal, medical, study). FastAPI backend, React frontend, FAISS
+vector search, Gemini embeddings and generation with a Groq fallback. It is an offline-validated
+prototype, not a production-deployed service, and makes no claim of validated medical or legal accuracy.
 
 > Resume-supporting work lives on branch `claude/youthful-gates-7szl31`
 > (final checkpoint: see the latest commit on that branch). `main` holds the original version.
@@ -10,9 +11,11 @@ with a Groq fallback.
 ## Features (implemented)
 
 - PDF upload → PyMuPDF text extraction → chunking → `gemini-embedding-001` → FAISS `IndexFlatL2`.
-- Four domain system prompts; Gemini `gemini-2.0-flash` with automatic fallback to Groq
-  `llama-3.3-70b-versatile` when the Gemini call raises.
-- Document-level source list per answer; CSV audit log of every answered query.
+- Four domain system prompts; Gemini `gemini-2.0-flash` with fallback to Groq
+  `llama-3.3-70b-versatile` when the Gemini call raises any exception (no timeout is set; an empty
+  or poor answer does not trigger the fallback).
+- Sources are the file names of all top-4 retrieved chunks, not citations verified against the
+  answer; there is no abstention or grounding check for unsupported answers. CSV audit log per answered query.
 - "Confidence" label (high/medium/low). **Caveat:** it is a chunk-length heuristic, not a
   relevance or calibration measure (known defect D-02).
 - **Incremental indexing** — document fingerprints + content-addressed, namespaced embedding
@@ -39,13 +42,15 @@ Key modules: `backend/ingest.py`, `backend/index_store.py`, `backend/embedding_c
 
 ## Measured results (offline; evidence committed in the repository)
 
-| Result | Conditions | Evidence |
+| Result | What it is compared against | Evidence |
 |---|---|---|
-| Embedding requests for 100 sequential single-chunk uploads: **5,050 → 100 (−98.0 %)**; per-upload indexing p50 66.6 → 5.6 ms | Offline fake embedder (exact call counts, zero network latency); 3 alternating repetitions; baseline = original code loaded from git | `docs/phase1/bench/p1a_indexing.json` |
-| Local warm-cache retrieval p50 **69.9 → 2.8 ms (25.1×)** at 20,000 × 768-d; 7.1–15.2× at 1k–5k chunks; identical results 50/50 queries | Precomputed query vectors, no network/LLM time; 4 alternating rounds | `docs/phase1/bench/p1b_retrieval.json` |
-| Structure-aware chunking: **−57 % top-4 context tokens** (1,149.5 → 493.8) at equal evidence recall@4 (1.000) and MRR 0.875 → 0.896 vs dev-selected fixed token windows | Real PDF extraction, local `BAAI/bge-small-en-v1.5`, 16 fresh frozen questions with span-level evidence; acceptance rule pre-registered | `evaluation/chunking/results/test.json` |
+| Embedding requests for 100 sequential single-chunk uploads: **5,050 → 100 (−98.0 %)** | The **original full-corpus re-embedding** on every upload (not a competent baseline); offline fake embedder, exact call counts | `docs/phase1/bench/p1a_indexing.json` |
+| Chunk-level reuse vs **document-level incremental indexing** (both skip unchanged and renamed files): structure-aware chunks need **87.2 % fewer** embeddings across 15 edit categories (62–97 % per category); default 800-word windows 31.9 % (0 % for beginning insertions); **0 % for unique documents** | Same chunker for both; 11 real QASPER papers; real local BGE compute 201 s → 22.5 s (structure-aware) | `evaluation/qasper/cache_benchmark.json` |
+| Local warm-cache retrieval p50 **69.9 → 2.8 ms (25.1×)** at 20,000 × 768-d | **In-memory index reuse vs re-loading the index from disk on every query**, not a faster FAISS search; synthetic vectors (infrastructure, not retrieval quality) | `docs/phase1/bench/p1b_retrieval.json` |
+| QASPER (38 papers, 123 questions): structure-aware vs fixed 256-token windows (overlap 32) at equal budget: evidence recall @1,024 context tokens **+0.077 [95 % CI 0.014, 0.144]**; top-4 context **−33 %** (995 → 664 tokens); MRR −0.013 [−0.073, 0.046] (not shown non-inferior) | Pre-registered, paper-clustered paired bootstrap; dataset paper text (not original PDFs); academic domain only | `evaluation/qasper/results_test.json` |
 
-Not measured: live Gemini/Groq latency, provider billing, answer quality.
+Experimental: all quality results use local `BAAI/bge-small-en-v1.5` (ONNX), not the application's
+Gemini embeddings. Not measured: live Gemini/Groq latency, provider billing, answer quality.
 
 ## Evaluated and rejected (kept for transparency)
 
