@@ -36,12 +36,12 @@ ROOT = Path(__file__).resolve().parent.parent
 MUTANTS = [
     ("M01", "py", "backend/ingest.py", "CHUNK_OVERLAP = 100", "CHUNK_OVERLAP = 0", "remove chunk overlap", "killed"),
     ("M02", "py", "backend/ingest.py", "i += CHUNK_SIZE - CHUNK_OVERLAP", "i += CHUNK_SIZE - CHUNK_OVERLAP + 1", "off-by-one window step", "killed"),
-    ("M03", "py", "backend/ingest.py", "len(c.strip()) > 50", "len(c.strip()) > 0", "drop short-chunk filter", "killed"),
+    ("M03", "py", "backend/ingest.py", "MIN_CHUNK_CHARS = 50", "MIN_CHUNK_CHARS = 0", "drop short-chunk filter", "killed"),
     ("M04", "py", "backend/ingest.py", "words[i:i + CHUNK_SIZE]", "words[i:i + CHUNK_SIZE - 1]", "chunk loses last word", "killed"),
     ("M05", "py", "backend/ingest.py", "page.get_text() for page in doc", "page.get_text() for page in list(doc)[:1]", "extract first page only", "killed"),
-    ("M06", "py", "backend/ingest.py", "faiss.IndexFlatL2(", "faiss.IndexFlatIP(", "wrong FAISS metric/index type", "killed"),
-    ("M07", "py", "backend/ingest.py", "[(filename, c) for c", "[(c, filename) for c", "swap source/text in persisted chunks", "killed"),
-    ("M08", "py", "backend/ingest.py", 'model="gemini-embedding-001"', 'model="text-embedding-004"', "wrong embedding model (ingest)", "killed"),
+    ("M06", "py", "backend/index_store.py", "index = faiss.IndexFlatL2(", "index = faiss.IndexFlatIP(", "wrong FAISS metric/index type", "killed"),
+    ("M07", "py", "backend/ingest.py", "all_chunks.extend((filename, t) for t", "all_chunks.extend((t, filename) for t", "swap source/text in persisted chunks", "killed"),
+    ("M08", "py", "backend/ingest.py", 'EMBEDDING_MODEL = "gemini-embedding-001"', 'EMBEDDING_MODEL = "text-embedding-004"', "wrong embedding model (ingest)", "killed"),
     ("M09", "py", "backend/retriever.py", 'chunks[i][0], "text": chunks[i][1]', 'chunks[i][1], "text": chunks[i][0]', "source mapping swapped", "killed"),
     ("M10", "py", "backend/retriever.py", "top_k: int = 4", "top_k: int = 3", "default top_k changed", "killed"),
     ("M11", "py", "backend/retriever.py", "for i in indices[0]", "for i in indices[0][::-1]", "ranking order reversed", "killed"),
@@ -60,6 +60,19 @@ MUTANTS = [
     ("M24", "py", "backend/main.py", 'mode: str = "enterprise"', 'mode: str = "legal"', "API default mode changed", "killed"),
     ("M25", "py", "backend/main.py", 'allow_origins=["http://localhost:5173"]', 'allow_origins=["*"]', "CORS widened", "killed"),
     ("M26", "py", "backend/main.py", '"model": "", "confidence": "low"', '"model": "", "confidence": "high"', "empty-index response contract", "killed"),
+    # ---- Phase 1 / P1A: incremental indexing, cache validity, atomic publication, safe metadata
+    ("P01", "py", "backend/ingest.py", '"model": EMBEDDING_MODEL,', '"model": "fixed",', "cache namespace ignores model identity", "killed"),
+    ("P02", "py", "backend/ingest.py", 'f"{file_sha}|{chunker_signature()}"', 'f"{filename}|{chunker_signature()}"', "document reuse keyed by name, not content", "killed"),
+    ("P03", "py", "backend/ingest.py", 'previous[0].get("corpus_fingerprint") == fingerprint', 'previous is not None', "unchanged-corpus check ignores content", "killed"),
+    ("P04", "py", "backend/embedding_cache.py", "(k for k in self._vec if k not in live_keys)", "(k for k in self._vec)", "eviction may drop live entries", "killed"),
+    ("P05", "py", "backend/ingest.py", 'stats["cache"] = cache.save({text_key(t) for _, t in all_chunks})', 'stats["cache"] = cache.stats()', "embedding cache never persisted", "killed"),
+    ("P06", "py", "backend/index_store.py", "os.replace(backups.pop(final), final)", "backups.pop(final)", "publish rollback disabled", "killed"),
+    ("P07", "py", "backend/index_store.py", 'raise pickle.UnpicklingError(f"refusing to load global {module}.{name} from chunk metadata")', "return super().find_class(module, name)", "unrestricted unpickling of metadata", "killed"),
+    ("P08", "py", "backend/index_store.py", "        if manifest is not None:\n            _check_artifact(INDEX_PATH", "        if False:\n            _check_artifact(INDEX_PATH", "generation identity check skipped on load", "killed"),
+    ("P09", "py", "backend/ingest.py", "            stats[\"embeddings_computed\"] += 1  # count every", "            pass  # count every", "embedding invocations not counted", "killed"),
+    ("P10", "py", "backend/ingest.py", "            stats[\"published\"] = index_store.publish_empty()", "            stats[\"published\"] = False", "empty corpus leaves stale generation (D-09a)", "killed"),
+    ("P11", "py", "backend/main.py", "        if name.endswith(\".pdf\"):\n            parse_pdf(staged)", "        if False:\n            parse_pdf(staged)", "upload validation skipped (D-05)", "killed"),
+    ("P12", "py", "backend/main.py", 'name = os.path.basename((filename or "").replace("\\\\", "/"))', 'name = (filename or "")', "upload path not confined (D-08)", "killed"),
     ("F01", "js", "frontend/src/App.jsx", "JSON.stringify({ question, mode })", "JSON.stringify({ question })", "chat request drops mode", "killed"),
     ("F02", "js", "frontend/src/App.jsx", "    setMode(newMode)\n    setMessages([])", "    setMode(newMode)", "mode switch keeps history", "killed"),
     ("F03", "js", "frontend/src/components/Message.jsx", 'high: "text-green-400"', 'high: "text-red-400"', "confidence colour mapping", "killed"),
@@ -171,7 +184,8 @@ def main():
             entry = {"id": mid, "runner": runner, "file": rel, "description": desc, "expect": expect}
             if runner not in runners:
                 entry["result"] = "not_run"
-                entry["reason"] = "frontend tooling unavailable" if runner == "js" else "runner disabled"
+                entry["reason"] = ("disabled by --backend-only" if args.backend_only
+                                   else "frontend tooling unavailable")
             else:
                 path = base / rel
                 original = path.read_text() if path.exists() else ""

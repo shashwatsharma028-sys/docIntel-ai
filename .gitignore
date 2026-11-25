@@ -13,3 +13,6 @@ dist/
 htmlcov/
 .pytest_cache/
 frontend/coverage/
+# Phase 1 runtime artefacts
+data/embedding_cache/
+data/.index-*.lock

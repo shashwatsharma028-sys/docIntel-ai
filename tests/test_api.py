@@ -165,8 +165,7 @@ class TestChat:
 
 # ---------------------------------------------------------------- known defects (xfail strict)
 class TestKnownDefects:
-    @pytest.mark.known_defect
-    @pytest.mark.xfail(strict=True, reason="D-03: every upload re-parses and re-embeds ALL PDFs")
+    # D-03 FIXED (Phase 1, P1A): strict xfail removed; original assertions unchanged.
     def test_upload_embeds_only_new_document(self, client, embedder):
         upload(client, "enterprise_leave_policy.pdf")
         before = embedder.count
