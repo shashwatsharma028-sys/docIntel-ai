@@ -48,7 +48,7 @@ MUTANTS = [
     ("M12", "py", "backend/retriever.py", "if 0 <= i < len(chunks)", "if i < len(chunks)", "reintroduce D-01 negative-index defect", "killed"),
     ("M13", "py", "backend/llm.py", 'system_prompt = SYSTEM_PROMPTS.get(mode, SYSTEM_PROMPTS["enterprise"])\n    response = gemini_client', 'system_prompt = SYSTEM_PROMPTS["enterprise"]\n    response = gemini_client', "Gemini ignores domain mode", "killed"),
     ("M14", "py", "backend/llm.py", '{"role": "system", "content": system_prompt}', '{"role": "user", "content": system_prompt}', "Groq system prompt sent as user", "killed"),
-    ("M15", "py", "backend/llm.py", 'model_used = "groq-llama-3.3"', 'model_used = "gemini-2.0-flash"', "fallback mislabels model", "killed"),
+    ("M15", "py", "backend/llm.py", "model_used = groq_label()", "model_used = gemini_model()", "fallback mislabels model", "killed"),
     ("M16", "py", "backend/llm.py", "answer = ask_groq(chunks, question, mode)", "answer = ask_gemini(chunks, question, mode)", "fallback retries Gemini instead of Groq", "killed"),
     ("M17", "py", "backend/llm.py", "answer[:100]", "answer[:99]", "audit truncation length", "killed"),
     ("M18", "py", "backend/llm.py", "if avg_len > 300", "if avg_len >= 300", "confidence threshold boundary", "killed"),
