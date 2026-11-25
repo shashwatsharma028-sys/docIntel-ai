@@ -64,7 +64,12 @@ class _NoGlobalsUnpickler(pickle.Unpickler):
 
 
 def loads_chunks(data: bytes) -> list[tuple[str, str]]:
-    obj = _NoGlobalsUnpickler(io.BytesIO(data)).load()
+    return load_chunks_file(io.BytesIO(data))
+
+
+def load_chunks_file(f) -> list[tuple[str, str]]:
+    """Stream-unpickle chunk metadata (no globals => no code execution) and validate its schema."""
+    obj = _NoGlobalsUnpickler(f).load()
     if not isinstance(obj, list):
         raise IndexIntegrityError("chunk metadata is not a list")
     out = []
@@ -151,14 +156,13 @@ def read_manifest() -> dict | None:
     return manifest
 
 
-def _check_artifact(path: str, record: dict, data: bytes | None = None) -> None:
+def _check_artifact(path: str, record: dict) -> None:
     """Fast path: inode/size/mtime identity recorded at publish. Fallback: content sha256
     (e.g. after a backup/restore changed inodes). Mismatch => IndexIntegrityError."""
     if list(_identity(os.stat(path))) == record["identity"]:
         return
-    if data is None:
-        with open(path, "rb") as f:
-            data = f.read()
+    with open(path, "rb") as f:
+        data = f.read()
     if sha256_bytes(data) != record["sha256"]:
         COUNTERS["integrity_failures"] += 1
         raise IndexIntegrityError(f"{path} does not belong to the published generation; rebuild the index")
@@ -182,17 +186,16 @@ class Generation:
 def load_generation() -> Generation:
     """Load the current generation coherently (shared publish lock + identity checks)."""
     t = time.perf_counter()
-    with read_lock():
+    with read_lock():  # writers cannot swap files while this is held, so stat-then-open is safe
         key = signature()
         manifest = read_manifest()
-        with open(CHUNKS_PATH, "rb") as f:
-            chunk_bytes = f.read()
         if manifest is not None:
             _check_artifact(INDEX_PATH, manifest["artifacts"]["index"])
-            _check_artifact(CHUNKS_PATH, manifest["artifacts"]["chunks"], chunk_bytes)
+            _check_artifact(CHUNKS_PATH, manifest["artifacts"]["chunks"])
         index = faiss.read_index(INDEX_PATH)
         COUNTERS["index_disk_loads"] += 1
-    chunks = loads_chunks(chunk_bytes)
+        with open(CHUNKS_PATH, "rb") as f:
+            chunks = load_chunks_file(f)  # streamed: no full in-memory copy of the file
     if index.ntotal != len(chunks):
         COUNTERS["integrity_failures"] += 1
         raise IndexIntegrityError(f"index has {index.ntotal} vectors but metadata has {len(chunks)} chunks")
@@ -210,12 +213,11 @@ def load_metadata() -> tuple[dict, list[tuple[str, str]]] | None:
             manifest = read_manifest()
             if manifest is None:
                 return None
-            with open(CHUNKS_PATH, "rb") as f:
-                chunk_bytes = f.read()
             _check_artifact(INDEX_PATH, manifest["artifacts"]["index"])
-            _check_artifact(CHUNKS_PATH, manifest["artifacts"]["chunks"], chunk_bytes)
+            _check_artifact(CHUNKS_PATH, manifest["artifacts"]["chunks"])
+            with open(CHUNKS_PATH, "rb") as f:
+                chunks = load_chunks_file(f)
         COUNTERS["metadata_disk_loads"] += 1
-        chunks = loads_chunks(chunk_bytes)
     except (FileNotFoundError, IndexIntegrityError, pickle.UnpicklingError, KeyError):
         return None
     if len(chunks) != manifest.get("n_chunks"):
