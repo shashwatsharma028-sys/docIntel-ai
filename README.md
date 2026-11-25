@@ -50,7 +50,30 @@ Key modules: `backend/ingest.py`, `backend/index_store.py`, `backend/embedding_c
 | QASPER (38 papers, 123 questions): structure-aware vs fixed 256-token windows (overlap 32) at equal budget: evidence recall @1,024 context tokens **+0.077 [95 % CI 0.014, 0.144]**; top-4 context **−33 %** (995 → 664 tokens); MRR −0.013 [−0.073, 0.046] (not shown non-inferior) | Pre-registered, paper-clustered paired bootstrap; dataset paper text (not original PDFs); academic domain only | `evaluation/qasper/results_test.json` |
 
 Experimental: all quality results use local `BAAI/bge-small-en-v1.5` (ONNX), not the application's
-Gemini embeddings. Not measured: live Gemini/Groq latency, provider billing, answer quality.
+Gemini embeddings. Not measured: live Gemini embedding/generation inside the application, provider billing.
+
+## Live answer-level pilot (QASPER, 40 paired questions)
+
+Scope: **live Groq generation over local BGE retrieval on QASPER paper text** — not an evaluation of
+the full Gemini–FAISS application (no separate Gemini credential was available; the app smoke test
+was deferred). Generation `openai/gpt-oss-120b` (temperature 0, reasoning effort low, 1,024-token
+completion budget), identical prompts for both configurations; judge `openai/gpt-oss-20b` via
+RAGAS 0.4.4 Faithfulness. Evidence: `evaluation/qasper/live_report.json`, raw logs `live_*.jsonl`.
+
+| | Fixed 256-token windows | Structure-aware 256 | Paired difference (95 % paper-clustered CI) |
+|---|---|---|---|
+| QASPER answer F1 (official scoring) | 0.441 | 0.366 | −0.074 [−0.174, +0.028] → **inconclusive** (frozen rule) |
+| Provider prompt tokens / question | 1,107.6 | 768.0 | −340 [−390, −293] |
+| RAGAS Faithfulness (matched scorable pairs, n = 11) | — | — | +0.212 [0.000, +0.417] (not shown better) |
+| Abstentions (“Unanswerable”) | 13 / 40 (2 / 2 gold correct) | 12 / 40 (1 / 2 correct) | over-abstention: only 2 gold-unanswerable |
+| End-to-end p50 / p95 | 1.19 s / 48.5 s | 1.43 s / 47.6 s | p95 dominated by free-tier rate-limit pacing |
+
+Responses: 80/80 answered, 0 failed, 0 truncated (no budget escalations). Faithfulness: 25 judged,
+13 skipped as model abstentions (pre-declared rule), 0 failed. Provider usage: 130 attempted
+requests, 0 HTTP errors; 79,793 generation + 71,717 judge tokens. LangSmith: judge-run traces were
+accepted (27/27 upload batches HTTP 202); **all generation-run traces were lost** because the
+harness's upload-acknowledgement hook raised on compressed bodies (fixed afterwards); the
+tracing-only key cannot read traces back. Answer F1 is not a faithfulness or hallucination measure.
 
 ## Evaluated and rejected (kept for transparency)
 

@@ -1,0 +1,13 @@
+{
+ "project": "docintel-qasper-pilot",
+ "upload_requests": 27,
+ "upload_2xx": 27,
+ "upload_non_2xx": 0,
+ "traced_root_calls_local": {
+  "qasper_pilot_question": 80,
+  "ragas_faithfulness_judged": 25,
+  "faithfulness_skipped_not_traced": 13
+ },
+ "generation_trace_delivery": "FAILED: all generation-run uploads were dropped (83 failed multipart POSTs) because the ack hook raised on len(BytesIO); fixed before the judge run",
+ "note": "acknowledgements are per upload batch (HTTP 202), not per run; server-side read-back is unavailable with a tracing-only key (403 projects:read)"
+}

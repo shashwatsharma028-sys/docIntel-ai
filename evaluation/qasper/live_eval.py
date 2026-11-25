@@ -475,9 +475,13 @@ def verify_traces():
     faith = read_jsonl(FAITH_LOG)
     res = {"project": PROJECT, "upload_requests": len(acks), "upload_2xx": sum(200 <= a["status"] < 300 for a in acks),
            "upload_non_2xx": sum(not 200 <= a["status"] < 300 for a in acks),
-           "traced_root_calls_local": {"qasper_pilot_question": len(gens), "ragas_faithfulness": len(faith)},
-           "note": "first generation trace was sent before upload acknowledgements were recorded; server-side "
-                   "read-back unavailable with a tracing-only key"}
+           "traced_root_calls_local": {"qasper_pilot_question": len(gens),
+                                       "ragas_faithfulness_judged": sum(1 for r in faith if not r.get("skipped")),
+                                       "faithfulness_skipped_not_traced": sum(1 for r in faith if r.get("skipped"))},
+           "generation_trace_delivery": "FAILED: all generation-run uploads were dropped (83 failed multipart POSTs) "
+                                        "because the ack hook raised on len(BytesIO); fixed before the judge run",
+           "note": "acknowledgements are per upload batch (HTTP 202), not per run; server-side read-back is "
+                   "unavailable with a tracing-only key (403 projects:read)"}
     (HERE / "live_traces.json").write_text(json.dumps(res, indent=1) + "\n")
     print(json.dumps(res, indent=1))
 

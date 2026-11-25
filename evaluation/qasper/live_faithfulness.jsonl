@@ -2,3 +2,37 @@
 {"config": "fixed_T256", "question_id": "1e582319df1739dcd07ba0ba39e8f70187fba049", "paper_id": "1709.04005", "score": null, "error": null, "skipped": "abstention"}
 {"config": "fixed_T256", "question_id": "3a40559e5a3c2a87c7b9031c89e762b828249c05", "paper_id": "1909.07873", "score": null, "error": null, "skipped": "abstention"}
 {"config": "fixed_T256", "question_id": "3e5162e6399c7d03ecc7007efd21d06c04cf2843", "paper_id": "1911.11025", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "3fd8eab282569b1c18b82f20d579b335ae70e79f", "paper_id": "1906.01502", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "441be93e2830cc0fc65afad6959db92754c9f5a8", "paper_id": "1911.03090", "score": 0.0, "error": null}
+{"config": "fixed_T256", "question_id": "5aa6556ffd7142933f820a015f1294d38e8cd96c", "paper_id": "1911.07620", "score": null, "error": null, "skipped": "abstention"}
+{"config": "fixed_T256", "question_id": "5d0a3f8ca3882f87773cf8c2ef1b4f72b9cc241e", "paper_id": "1808.10006", "score": null, "error": null, "skipped": "abstention"}
+{"config": "fixed_T256", "question_id": "63cdac43a643fc1e06da44910458e89b2c7cd921", "paper_id": "1904.03670", "score": 0.6666666666666666, "error": null}
+{"config": "fixed_T256", "question_id": "6ec267f66a1c5f996519aed8aa0befb5e5aec205", "paper_id": "2002.04374", "score": null, "error": null, "skipped": "abstention"}
+{"config": "fixed_T256", "question_id": "7c398615141ca416a32c9f72dbb785d3a6986a0f", "paper_id": "1911.03090", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "7cf44877dae8873139aede381fb9908dd0c546c4", "paper_id": "1703.04357", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "833d3ae7613500f2867ed8b33d233d71781014e7", "paper_id": "1803.08419", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "8e9561541f2e928eb239860c2455a254b5aceaeb", "paper_id": "1906.01502", "score": null, "error": null, "skipped": "abstention"}
+{"config": "fixed_T256", "question_id": "9262292ca4cc78de515b5617f6a91e540eb2678c", "paper_id": "1705.10754", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "bd255aadf099854541d06997f83a0e478f526120", "paper_id": "1911.11025", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "cbb4eba59434d596749408be5b923efda7560890", "paper_id": "1603.00957", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "f15bc40960bd3f81bc791f43ab5c94c52378692d", "paper_id": "1804.00982", "score": 1.0, "error": null}
+{"config": "fixed_T256", "question_id": "f9ae1b31c1a60aacb9ef869e1cc6b0e70c6e5d8e", "paper_id": "2002.04374", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "175cddfd0bcd77b7327b62f99e57d8ea93f8d8ba", "paper_id": "1906.05685", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "1e582319df1739dcd07ba0ba39e8f70187fba049", "paper_id": "1709.04005", "score": null, "error": null, "skipped": "abstention"}
+{"config": "structure_T256", "question_id": "3a40559e5a3c2a87c7b9031c89e762b828249c05", "paper_id": "1909.07873", "score": null, "error": null, "skipped": "abstention"}
+{"config": "structure_T256", "question_id": "3e5162e6399c7d03ecc7007efd21d06c04cf2843", "paper_id": "1911.11025", "score": null, "error": null, "skipped": "abstention"}
+{"config": "structure_T256", "question_id": "3fd8eab282569b1c18b82f20d579b335ae70e79f", "paper_id": "1906.01502", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "441be93e2830cc0fc65afad6959db92754c9f5a8", "paper_id": "1911.03090", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "5aa6556ffd7142933f820a015f1294d38e8cd96c", "paper_id": "1911.07620", "score": null, "error": null, "skipped": "abstention"}
+{"config": "structure_T256", "question_id": "5d0a3f8ca3882f87773cf8c2ef1b4f72b9cc241e", "paper_id": "1808.10006", "score": null, "error": null, "skipped": "abstention"}
+{"config": "structure_T256", "question_id": "63cdac43a643fc1e06da44910458e89b2c7cd921", "paper_id": "1904.03670", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "6ec267f66a1c5f996519aed8aa0befb5e5aec205", "paper_id": "2002.04374", "score": null, "error": null, "skipped": "abstention"}
+{"config": "structure_T256", "question_id": "7c398615141ca416a32c9f72dbb785d3a6986a0f", "paper_id": "1911.03090", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "7cf44877dae8873139aede381fb9908dd0c546c4", "paper_id": "1703.04357", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "833d3ae7613500f2867ed8b33d233d71781014e7", "paper_id": "1803.08419", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "8e9561541f2e928eb239860c2455a254b5aceaeb", "paper_id": "1906.01502", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "9262292ca4cc78de515b5617f6a91e540eb2678c", "paper_id": "1705.10754", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "bd255aadf099854541d06997f83a0e478f526120", "paper_id": "1911.11025", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "cbb4eba59434d596749408be5b923efda7560890", "paper_id": "1603.00957", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "f15bc40960bd3f81bc791f43ab5c94c52378692d", "paper_id": "1804.00982", "score": 1.0, "error": null}
+{"config": "structure_T256", "question_id": "f9ae1b31c1a60aacb9ef869e1cc6b0e70c6e5d8e", "paper_id": "2002.04374", "score": null, "error": null, "skipped": "abstention"}
