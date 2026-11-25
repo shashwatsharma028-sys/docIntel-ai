@@ -72,7 +72,23 @@ python scripts/phase1_bench_retrieval.py --large --out /tmp/p1b.json
 # real-model evaluations (need onnxruntime, tokenizers, huggingface_hub and Hugging Face access):
 python evaluation/run_retrieval_eval.py --split dev
 python evaluation/chunking/run_chunking_eval.py --split dev && python evaluation/chunking/run_chunking_eval.py --split test
+# QASPER external benchmark (frozen selection in evaluation/qasper/frozen.json; needs pyarrow):
+python evaluation/qasper/run_qasper_eval.py --split test
+PYTHONPATH=. python evaluation/qasper/run_cache_benchmark.py        # B vs C caching by edit category
+python evaluation/qasper/live_eval.py --dry-run                      # live pilot harness, no network
 ```
+
+## Model configuration
+
+The original generation defaults (`gemini-2.0-flash`, Groq `llama-3.3-70b-versatile`) have been
+discontinued upstream and are kept only as code defaults for compatibility. Set replacements:
+
+```bash
+export DOCINTEL_GEMINI_MODEL=<current Gemini generation model>   # primary
+export DOCINTEL_GROQ_MODEL=openai/gpt-oss-120b                    # fallback (check your Groq account)
+```
+
+The fallback to Groq runs when the Gemini call raises; the `model` response field reports the ID used.
 
 ## Run the app
 
@@ -87,8 +103,10 @@ API: `GET /health`; `POST /upload` (multipart `file`); `POST /chat` `{"question"
 
 ## Limitations
 
-- Benchmarks are offline and single-machine; evaluation corpora are small and synthetic
-  (9 documents; 16–24 questions per split). Quality results use a local model, not Gemini.
+- Benchmarks are offline and single-machine. Retrieval quality is measured on public QASPER
+  papers (38 test papers, 123 annotated questions; academic domain only, dataset text rather than
+  original PDFs) plus small synthetic sets used for earlier experiments. Quality results use a
+  local BGE model, not the application's Gemini embeddings.
 - No authentication, upload size limit or multi-user isolation; locking is single-host (POSIX `flock`).
 - Open defects are tracked in `docs/KNOWN_DEFECTS.md` (e.g. confidence heuristic, error masking in `/chat`).
 - No pinned production `requirements.txt` yet.
