@@ -39,6 +39,10 @@ def build_index(pdf_folder: str = "data/pdfs"):
             all_chunks.extend([(filename, c) for c in chunk_text(text)])
     if not all_chunks:
         print("No PDFs found.")
+        # D-09: an empty corpus must not leave a previous generation searchable.
+        for path in (INDEX_PATH, CHUNKS_PATH):
+            if os.path.exists(path):
+                os.remove(path)
         return
     texts = [c for _, c in all_chunks]
     embeddings = np.array([get_embedding(t) for t in texts]).astype("float32")
