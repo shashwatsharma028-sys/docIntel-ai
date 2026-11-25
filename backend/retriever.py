@@ -21,4 +21,4 @@ def retrieve(query: str, top_k: int = 4) -> list[dict]:
         chunks = pickle.load(f)
     query_vec = np.array([get_embedding(query)]).astype("float32")
     _, indices = index.search(query_vec, top_k)
-    return [{"source": chunks[i][0], "text": chunks[i][1]} for i in indices[0] if i < len(chunks)]
+    return [{"source": chunks[i][0], "text": chunks[i][1]} for i in indices[0] if 0 <= i < len(chunks)]

@@ -111,10 +111,8 @@ class TestEmptyAndMissingIndex:
             retriever.retrieve("alpha")
 
 
-class TestKnownDefects:
-    @pytest.mark.known_defect
-    @pytest.mark.xfail(strict=True, reason="D-01: FAISS returns -1 for missing neighbours; "
-                       "`i < len(chunks)` admits -1 so chunks[-1] is returned as a fake hit")
+class TestFixedDefects:
+    # D-01 FIXED (Phase 1): strict xfail removed; original assertions unchanged.
     def test_fewer_chunks_than_top_k_returns_only_real_chunks(self, embedder):
         chunks = [("a.pdf", "alpha " * 20), ("b.pdf", "beta " * 20)]
         _write_index(chunks, np.array([embed_text(t) for _, t in chunks]))

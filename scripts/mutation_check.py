@@ -32,7 +32,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 
-# (id, runner, file, old, new, description, expect)   expect: "killed" | "xpass"
+# (id, runner, file, old, new, description, expect)   expect: "killed"
 MUTANTS = [
     ("M01", "py", "backend/ingest.py", "CHUNK_OVERLAP = 100", "CHUNK_OVERLAP = 0", "remove chunk overlap", "killed"),
     ("M02", "py", "backend/ingest.py", "i += CHUNK_SIZE - CHUNK_OVERLAP", "i += CHUNK_SIZE - CHUNK_OVERLAP + 1", "off-by-one window step", "killed"),
@@ -45,7 +45,7 @@ MUTANTS = [
     ("M09", "py", "backend/retriever.py", 'chunks[i][0], "text": chunks[i][1]', 'chunks[i][1], "text": chunks[i][0]', "source mapping swapped", "killed"),
     ("M10", "py", "backend/retriever.py", "top_k: int = 4", "top_k: int = 3", "default top_k changed", "killed"),
     ("M11", "py", "backend/retriever.py", "for i in indices[0]", "for i in indices[0][::-1]", "ranking order reversed", "killed"),
-    ("M12", "py", "backend/retriever.py", "if i < len(chunks)", "if 0 <= i < len(chunks)", "FIX D-01 (must trip strict xfail)", "xpass"),
+    ("M12", "py", "backend/retriever.py", "if 0 <= i < len(chunks)", "if i < len(chunks)", "reintroduce D-01 negative-index defect", "killed"),
     ("M13", "py", "backend/llm.py", 'system_prompt = SYSTEM_PROMPTS.get(mode, SYSTEM_PROMPTS["enterprise"])\n    response = gemini_client', 'system_prompt = SYSTEM_PROMPTS["enterprise"]\n    response = gemini_client', "Gemini ignores domain mode", "killed"),
     ("M14", "py", "backend/llm.py", '{"role": "system", "content": system_prompt}', '{"role": "user", "content": system_prompt}', "Groq system prompt sent as user", "killed"),
     ("M15", "py", "backend/llm.py", 'model_used = "groq-llama-3.3"', 'model_used = "gemini-2.0-flash"', "fallback mislabels model", "killed"),
