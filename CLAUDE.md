@@ -29,7 +29,10 @@ contributors working on this repository. When in doubt, stop and ask the reposit
 - Backend: `python -m pytest` (config in `pytest.ini`; deps in `requirements-test.txt`).
 - Frontend: `scripts/run_frontend_tests.sh` (does not touch frontend manifests).
 - Mutation check: `python scripts/mutation_check.py` — all mutants must be detected.
-- Offline baseline performance: `python scripts/baseline_perf.py --out <file>`.
+- Offline baseline performance: `python scripts/baseline_perf.py --out <file>` (Phase 0).
+- Phase 1 matched benchmarks (baseline loaded from git vs current):
+  `python scripts/phase1_bench_indexing.py` and `python scripts/phase1_bench_retrieval.py [--large]`.
+  Never overwrite committed evidence files from an earlier phase; write new result files.
 - **All default tests run offline** with no credentials. `tests/conftest.py` forces dummy API keys,
   replaces the Gemini/Groq SDK clients with strict mocks that fail on unconfigured use, and blocks
   outbound sockets. Never weaken these guards.
@@ -71,9 +74,13 @@ contributors working on this repository. When in doubt, stop and ask the reposit
 
 ## 6. Project map
 
-- `backend/ingest.py` — PDF parse (PyMuPDF), word chunking (800/100), Gemini embeddings, FAISS build.
-- `backend/retriever.py` — loads FAISS index + pickled chunks, top-k L2 search.
+- `backend/ingest.py` — PDF parse (PyMuPDF), word chunking (800/100), incremental indexing with Gemini embeddings.
+- `backend/retriever.py` — top-k L2 search over a validated, cached index generation.
+- `backend/index_store.py` — atomic generation publication (manifest, locks, rollback), safe metadata loading.
+- `backend/embedding_cache.py` — bounded, namespaced, content-addressed embedding cache.
 - `backend/llm.py` — 4 domain prompts, Gemini → Groq fallback, confidence heuristic, CSV audit log.
 - `backend/main.py` — FastAPI app and CORS.
 - `frontend/src` — React 19 + Vite 8 + Tailwind 3 UI.
 - `docs/BASELINE.md`, `docs/KNOWN_DEFECTS.md`, `docs/PHASE0_REPORT.md` — Phase 0 baseline record.
+- `docs/phase1/` — Phase 1 report, test-status log, benchmark and mutation evidence.
+- `evaluation/` — frozen Phase 2 corpus and labels (do not modify without a new lock; never tune on held-out).

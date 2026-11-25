@@ -50,3 +50,17 @@ Severity: **H** high (data integrity / security / misleading users) · **M** med
 - **L-10 Model availability**: `gemini-2.0-flash` / `llama-3.3-70b-versatile` availability was not
   verified (live calls are out of scope).
 - **L-11 Unknown modes** silently use the enterprise prompt; empty questions are accepted.
+
+## Phase 1 status (rows above are the unchanged Phase 0 record)
+
+| ID | Status after Phase 1 | Where |
+|---|---|---|
+| D-01 | **Fixed** — negative FAISS ids discarded | `06d2625` |
+| D-03 | **Fixed** — content-addressed embedding reuse + document fingerprints | `0448756` |
+| D-05 | **Fixed** — uploads staged and validated before entering the corpus (status still 500) | `cb92a2e` |
+| D-08 | **Fixed** — uploads confined to `data/pdfs`; unusable names -> 400 | `4581b8c` |
+| D-09 | **Split**: D-09a stale content after an empty rebuild — **fixed** (`3c57a8f`); D-09b misleading "indexed successfully" for blank PDFs — **open**, contract change proposed | `docs/phase1/PHASE1_REPORT.md` §8 |
+| L-1 | Addressed — per-query disk reload replaced by a validated in-memory generation cache | `3359804`, `06714fd` |
+| L-2 | Partly — redundant embeddings eliminated; remaining calls are still one per chunk (no batching) | — |
+| L-4 | Closed — metadata is loaded only via a no-globals unpickler with schema validation | `0448756` |
+| D-02, D-04, D-06, D-07, D-10–D-16, L-3, L-5–L-11 | Unchanged | — |
