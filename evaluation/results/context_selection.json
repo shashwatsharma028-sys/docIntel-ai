@@ -1,0 +1,35 @@
+{
+ "rules": {
+  "dev_min_retention": 0.95,
+  "dev_max_recall_drop": 0.02,
+  "gen_min_token_reduction": 0.25,
+  "gen_min_retention": 0.95,
+  "gen_max_recall_drop": 0.05
+ },
+ "selected": {
+  "rel": 0.1
+ },
+ "selected_name": "rel=0.1",
+ "dev_baseline": {
+  "context_tokens": 158.2083,
+  "n_selected": 4.0,
+  "precision": 0.3021,
+  "recall": 1.0,
+  "rr": 0.9097,
+  "retention": 1.0,
+  "latency_p50_ms": 5.556,
+  "latency_p95_ms": 6.663,
+  "n": 24
+ },
+ "dev_selected": {
+  "context_tokens": 90.4167,
+  "n_selected": 2.2917,
+  "precision": 0.6285,
+  "recall": 1.0,
+  "rr": 0.9097,
+  "retention": 1.0,
+  "latency_p50_ms": 5.289,
+  "latency_p95_ms": 7.475,
+  "n": 24
+ }
+}

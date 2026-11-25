@@ -71,6 +71,5 @@ def test_unseen_set_frozen_and_well_formed():
     existing = {q["question"].lower() for q in QUESTIONS}
     for q in UNSEEN:
         assert q["question"].lower() not in existing
-        test_labels_are_well_formed.__wrapped__(q) if hasattr(test_labels_are_well_formed, "__wrapped__") else None
         rel, neg = set(q["relevant_passage_ids"]), set(q["hard_negative_passage_ids"])
         assert rel and rel <= set(PASSAGES) and neg <= set(PASSAGES) and not rel & neg
