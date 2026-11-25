@@ -72,7 +72,7 @@ python evaluation/chunking/run_chunking_eval.py --split dev && python evaluation
 ## Run the app
 
 ```bash
-echo "GEMINI_API_KEY=...\nGROQ_API_KEY=..." > .env
+printf 'GEMINI_API_KEY=...\nGROQ_API_KEY=...\n' > .env
 PYTHONPATH=. uvicorn backend.main:app --reload     # http://127.0.0.1:8000
 cd frontend && npm install && npm run dev          # http://localhost:5173
 ```
