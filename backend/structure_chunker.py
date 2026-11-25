@@ -49,9 +49,14 @@ def _is_heading(block: str) -> bool:
     return len(block.split()) <= 12 and not block.endswith(".")
 
 
-def chunk_pdf_structured(pdf_path: str, budget: int = TOKEN_BUDGET, count=estimate_tokens) -> list[str]:
-    blocks = [_norm(b[4]) for page in fitz.open(pdf_path) for b in page.get_text("blocks")
-              if b[6] == 0 and _norm(b[4])]
+def _pdf_blocks(pdf):
+    doc = fitz.open(stream=pdf, filetype="pdf") if isinstance(pdf, (bytes, bytearray)) else fitz.open(pdf)
+    return [_norm(b[4]) for page in doc for b in page.get_text("blocks") if b[6] == 0 and _norm(b[4])]
+
+
+def chunk_pdf_structured(pdf_path: "str | bytes", budget: int = TOKEN_BUDGET, count=estimate_tokens) -> list[str]:
+    from backend.pdf_runtime import run_pdf  # PyMuPDF only on its dedicated thread
+    blocks = run_pdf(_pdf_blocks, pdf_path)
     sections, cur = [], None
     for b in blocks:
         if _is_heading(b):

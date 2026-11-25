@@ -56,7 +56,7 @@ MUTANTS = [
     ("M20", "py", "backend/llm.py", "    log_query(question, answer, mode, sources)\n", "", "audit logging removed", "killed"),
     ("M21", "py", "backend/llm.py", "[Source: {c['source']}]", "[Source]", "citations stripped from prompt", "killed"),
     ("M22", "py", "backend/main.py", '"sources": list(set(c["source"] for c in chunks))', '"sources": [c["source"] for c in chunks]', "API sources not de-duplicated", "killed"),
-    ("M23", "py", "backend/main.py", "        await run_in_threadpool(build_index)", "        pass", "upload skips indexing", "killed"),
+    ("M23", "py", "backend/ingest.py", "        os.replace(staged, path)\n        return _build_index_locked(pdf_folder, t_start, stats)", "        os.replace(staged, path)\n        return stats", "upload skips indexing", "killed"),
     ("M24", "py", "backend/main.py", 'mode: str = "enterprise"', 'mode: str = "legal"', "API default mode changed", "killed"),
     ("M25", "py", "backend/main.py", 'allow_origins=["http://localhost:5173"]', 'allow_origins=["*"]', "CORS widened", "killed"),
     ("M26", "py", "backend/main.py", '"model": "", "confidence": "low"', '"model": "", "confidence": "high"', "empty-index response contract", "killed"),
@@ -70,7 +70,7 @@ MUTANTS = [
     ("P07", "py", "backend/index_store.py", 'raise pickle.UnpicklingError(f"refusing to load global {module}.{name} from chunk metadata")', "return super().find_class(module, name)", "unrestricted unpickling of metadata", "killed"),
     ("P08", "py", "backend/index_store.py", "        if manifest is not None:\n            _check_artifact(INDEX_PATH", "        if False:\n            _check_artifact(INDEX_PATH", "generation identity check skipped on load", "killed"),
     ("P09", "py", "backend/ingest.py", "            stats[\"embeddings_computed\"] += 1  # count every", "            pass  # count every", "embedding invocations not counted", "killed"),
-    ("P10", "py", "backend/ingest.py", "            stats[\"published\"] = index_store.publish_empty()", "            stats[\"published\"] = False", "empty corpus leaves stale generation (D-09a)", "killed"),
+    ("P10", "py", "backend/ingest.py", "        stats[\"published\"] = index_store.publish_empty()", "        stats[\"published\"] = False", "empty corpus leaves stale generation (D-09a)", "killed"),
     ("P11", "py", "backend/main.py", "        if name.endswith(\".pdf\"):\n            parse_pdf(staged)", "        if False:\n            parse_pdf(staged)", "upload validation skipped (D-05)", "killed"),
     ("P12", "py", "backend/main.py", 'name = os.path.basename((filename or "").replace("\\\\", "/"))', 'name = (filename or "")', "upload path not confined (D-08)", "killed"),
     # ---- Phase 1 / P1B: version-aware generation cache
