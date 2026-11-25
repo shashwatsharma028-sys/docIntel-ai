@@ -229,7 +229,8 @@ def run(split_name):
             st["bge_truncated"] += sum(n > 510 for n in ntok)
             for q in paper["questions"]:
                 t0 = time.perf_counter()
-                d = list(np.argsort(-(vec @ dense.encode([q["question"]])[0]), kind="stable"))
+                d = (list(np.argsort(-(vec @ dense.encode([q["question"]])[0]), kind="stable"))
+                     if ret != "bm25" else None)  # BM25 latency must not include a dense encoding
                 if ret == "dense":
                     order = d
                 elif ret == "bm25":
