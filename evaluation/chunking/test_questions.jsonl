@@ -1,0 +1,16 @@
+{"qid": "C01", "question": "When are expense claims rejected outright under the 2024 policy?", "evidence_spans": ["Claims submitted after 90 days are rejected"]}
+{"qid": "C02", "question": "Which flights allow premium economy under the 2024 rules?", "evidence_spans": ["Premium economy may be booked for flights of six hours or longer"]}
+{"qid": "C03", "question": "Is client entertainment claimed as part of the meal allowance?", "evidence_spans": ["Client entertainment is claimed separately under the hospitality procedure"]}
+{"qid": "C04", "question": "Who covered contractors under the 2022 travel policy?", "evidence_spans": ["Contractors are covered by their own agreements"]}
+{"qid": "C05", "question": "Can a password be reused on another company system?", "evidence_spans": ["Password reuse across company systems is prohibited"]}
+{"qid": "C06", "question": "What protects the data on company laptops?", "evidence_spans": ["Company laptops use full-disk encryption"]}
+{"qid": "C07", "question": "Is there a jury trial for disputes under the Contoso contract?", "evidence_spans": ["each party waives the right to a jury trial"]}
+{"qid": "C08", "question": "What happens if Fabrikam raises its price by more than 7 percent?", "evidence_spans": ["Price increases above 7 percent allow the customer to terminate without penalty within 30 days of notice"]}
+{"qid": "C09", "question": "What availability does Fabrikam target?", "evidence_spans": ["Fabrikam targets 99.5 percent monthly availability"]}
+{"qid": "C10", "question": "What was the platelet count in July?", "evidence_spans": ["White cell count 6.5 and platelets 240"]}
+{"qid": "C11", "question": "How long did the patient take iron supplements before the July test?", "evidence_spans": ["after three months of oral iron supplementation"]}
+{"qid": "C12", "question": "What was the HDL cholesterol in January?", "evidence_spans": ["HDL 41 mg/dL"]}
+{"qid": "C13", "question": "What does the Krebs cycle release on each turn?", "evidence_spans": ["Each turn releases two carbon dioxide molecules"]}
+{"qid": "C14", "question": "Which pigment makes chloroplasts green, and where is it found?", "evidence_spans": ["the green pigment chlorophyll in the thylakoid membranes"]}
+{"qid": "C15", "question": "Compare the hotel limits for standard cities in the 2022 and 2024 policies.", "evidence_spans": ["The nightly room limit is 150 euros in all cities", "The nightly room limit is 180 euros in standard cities"]}
+{"qid": "C16", "question": "What were the patient's fasting glucose values in January and July?", "evidence_spans": ["Fasting glucose 118 mg/dL", "Fasting glucose 104 mg/dL"]}

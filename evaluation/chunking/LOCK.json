@@ -1,0 +1,8 @@
+{
+ "frozen_at_utc": "2026-11-25T09:53:11+00:00",
+ "statement": "Evidence spans (exact substrings of the source text, independent of any chunk boundary) frozen before any chunking configuration was run. dev = tuning; test = fresh unseen questions, never used for tuning.",
+ "sha256": {
+  "dev_evidence.jsonl": "df2f85fd490d97a341798c49dd21d19bf05700ad858a0ad23fb258b782a2645f",
+  "test_questions.jsonl": "985862e19e01130d7ec6e46175faea39545ce97b0e028dcf6dc39e3d44588ef9"
+ }
+}

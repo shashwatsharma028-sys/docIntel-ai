@@ -1,0 +1,24 @@
+{"qid": "D01", "question": "What is the nightly hotel limit in London under the current travel policy?", "evidence_spans": ["260 euros in designated high-cost cities, which are London"]}
+{"qid": "D02", "question": "How long do I have to file my expenses after I get back from a trip?", "evidence_spans": ["submitted in the finance portal within 30 days of returning"]}
+{"qid": "D03", "question": "Which cities count as high-cost for hotel bookings?", "evidence_spans": ["London, Zurich, New York and Tokyo"]}
+{"qid": "D04", "question": "What mileage rate does Northwind pay for using my own car?", "evidence_spans": ["0.42 euros per kilometre up to 400 kilometres per trip"]}
+{"qid": "D05", "question": "Under the 2022 policy, what was the daily meal allowance?", "evidence_spans": ["The daily meal allowance is 50 euros"]}
+{"qid": "D06", "question": "How did the flight duration threshold for business class change between the 2022 and 2024 travel policies?", "evidence_spans": ["Business class may be booked for flights of eight hours or longer", "Business class requires CFO approval and is limited to flights over ten hours"]}
+{"qid": "D07", "question": "How quickly must a lost laptop be reported?", "evidence_spans": ["within one hour of discovery"]}
+{"qid": "D08", "question": "Do I have to rotate my password every few months?", "evidence_spans": ["are not subject to periodic expiry"]}
+{"qid": "D09", "question": "Which accounts require hardware security keys?", "evidence_spans": ["Hardware security keys are required for administrators"]}
+{"qid": "D10", "question": "How many days' notice are required to stop the Contoso agreement from auto-renewing?", "evidence_spans": ["at least 90 days before the end of the current term"]}
+{"qid": "D11", "question": "What is the early termination fee if we exit the Contoso contract for convenience?", "evidence_spans": ["early termination fee equal to 50 percent of the fees remaining"]}
+{"qid": "D12", "question": "What remedy do we get if Contoso misses its uptime commitment?", "evidence_spans": ["service credit of 10 percent of the monthly fee, rising to 25 percent below 99.0 percent"]}
+{"qid": "D13", "question": "What is Fabrikam's liability cap?", "evidence_spans": ["capped at the fees paid in the 3 months before the claim"]}
+{"qid": "D14", "question": "Can Fabrikam use our routing data for its own purposes?", "evidence_spans": ["in aggregated and anonymised form to improve its routing models"]}
+{"qid": "D15", "question": "Which vendor notifies customers of a data breach faster, and by how much?", "evidence_spans": ["within 48 hours of becoming aware of it", "notify customers of a data breach within 72 hours"]}
+{"qid": "D16", "question": "What was the patient's haemoglobin in January 2025?", "evidence_spans": ["Haemoglobin 10.9 g/dL"]}
+{"qid": "D17", "question": "Do the January results show signs of iron deficiency?", "evidence_spans": ["Serum ferritin 9 ng/mL (reference 30 to 400) and transferrin saturation 11 percent"]}
+{"qid": "D18", "question": "By how much did serum ferritin rise between January and July?", "evidence_spans": ["Serum ferritin 9 ng/mL", "Serum ferritin 38 ng/mL"]}
+{"qid": "D19", "question": "What did the July pathologist recommend about glucose testing?", "evidence_spans": ["repeat glucose testing in twelve months"]}
+{"qid": "D20", "question": "Where does glycolysis happen and does it need oxygen?", "evidence_spans": ["Glycolysis takes place in the cytoplasm, does not need oxygen"]}
+{"qid": "D21", "question": "Where does the Calvin cycle take place?", "evidence_spans": ["The Calvin cycle takes place in the stroma"]}
+{"qid": "D22", "question": "How many ATP does oxidative phosphorylation produce?", "evidence_spans": ["ATP synthase uses the proton gradient to produce about 34 ATP"]}
+{"qid": "D23", "question": "What happens to pyruvate in muscles when there is no oxygen?", "evidence_spans": ["human muscle cells convert pyruvate to lactate"]}
+{"qid": "D24", "question": "How are the overall equations of photosynthesis and cellular respiration related?", "evidence_spans": ["the reverse of the photosynthesis equation", "six carbon dioxide plus six water yields glucose plus six oxygen"]}
