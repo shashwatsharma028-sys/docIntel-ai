@@ -1,0 +1,2886 @@
+{
+ "split": "heldout",
+ "environment": {
+  "onnxruntime_threads": 4,
+  "models": {
+   "embed": [
+    "BAAI/bge-small-en-v1.5",
+    "5c38ec7c405ec4b44b94cc5a9bb96e735b38267a"
+   ],
+   "rerank": [
+    "cross-encoder/ms-marco-MiniLM-L-6-v2",
+    "233902d25c440f23af6f7d6e94d2946bac0bee0a"
+   ]
+  },
+  "cpu_count": 4,
+  "python": "3.13.18",
+  "labels_lock_sha256": "994e455e99cfab6f25ea9c40c5d4c9b49cc4b5f6636e8832c593ffd5aa78c7e6"
+ },
+ "selection": {
+  "rule": "max dev MRR@10, then dev Recall@4, then lower dev p50 latency",
+  "selected": {
+   "kind": "hybrid",
+   "rrf_k": 10,
+   "dense": {
+    "kind": "dense",
+    "prefix": false
+   },
+   "bm25": {
+    "kind": "bm25",
+    "k1": 1.5,
+    "b": 0.75
+   }
+  },
+  "selected_name": "hybrid-rrf(k=10; dense(bge-small) + bm25(k1=1.5,b=0.75))",
+  "family_best": {
+   "dense": {
+    "kind": "dense",
+    "prefix": false
+   },
+   "bm25": {
+    "kind": "bm25",
+    "k1": 1.5,
+    "b": 0.75
+   },
+   "hybrid": {
+    "kind": "hybrid",
+    "rrf_k": 10,
+    "dense": {
+     "kind": "dense",
+     "prefix": false
+    },
+    "bm25": {
+     "kind": "bm25",
+     "k1": 1.5,
+     "b": 0.75
+    }
+   },
+   "rerank": {
+    "kind": "rerank",
+    "first": {
+     "kind": "dense",
+     "prefix": false
+    },
+    "depth": 10
+   }
+  }
+ },
+ "results": [
+  {
+   "system": "dense(bge-small)",
+   "config": {
+    "kind": "dense",
+    "prefix": false
+   },
+   "summary": {
+    "precision@4": 0.2812,
+    "recall@4": 0.9375,
+    "rr@10": 0.8646,
+    "latency_p50_ms": 6.301,
+    "latency_p95_ms": 6.881,
+    "n": 24
+   },
+   "per_query": [
+    {
+     "qid": "H01",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-03",
+      "TRV22-03",
+      "TRV24-01",
+      "TRV24-04",
+      "TRV22-01",
+      "MSA-04",
+      "TRV24-02",
+      "TRV22-02",
+      "FAB-04",
+      "TRV22-04"
+     ],
+     "relevant": [
+      "TRV24-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "TRV22-03"
+     ],
+     "latency_ms": 6.335
+    },
+    {
+     "qid": "H02",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV22-05",
+      "TRV24-06",
+      "TRV24-01",
+      "TRV22-01",
+      "TRV24-04",
+      "MSA-04",
+      "FAB-04",
+      "MSA-02",
+      "TRV24-02",
+      "MSA-01"
+     ],
+     "relevant": [
+      "TRV22-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "TRV24-06"
+     ],
+     "latency_ms": 6.578
+    },
+    {
+     "qid": "H03",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "TRV24-04",
+      "TRV22-01",
+      "TRV22-03",
+      "TRV22-04",
+      "TRV22-02",
+      "TRV24-02",
+      "TRV24-03",
+      "TRV24-01",
+      "TRV22-05",
+      "TRV24-06"
+     ],
+     "relevant": [
+      "TRV24-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.608
+    },
+    {
+     "qid": "H04",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "TRV22-01",
+      "TRV24-01",
+      "TRV24-04",
+      "TRV22-03",
+      "TRV24-02",
+      "TRV24-03",
+      "TRV22-05",
+      "TRV22-02",
+      "MSA-06",
+      "TRV24-06"
+     ],
+     "relevant": [
+      "TRV24-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [
+      "TRV22-01"
+     ],
+     "latency_ms": 6.156
+    },
+    {
+     "qid": "H05",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV24-02",
+      "TRV22-02",
+      "TRV24-03",
+      "TRV22-03",
+      "TRV22-01",
+      "TRV24-04",
+      "TRV24-05",
+      "TRV22-05",
+      "MSA-04"
+     ],
+     "relevant": [
+      "TRV24-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [
+      "TRV22-02"
+     ],
+     "latency_ms": 6.943
+    },
+    {
+     "qid": "H06",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "TRV22-04",
+      "TRV24-04",
+      "TRV24-01",
+      "TRV22-01",
+      "LABF-05",
+      "FAB-01",
+      "LABF-03",
+      "TRV22-03",
+      "MSA-01",
+      "LABF-04"
+     ],
+     "relevant": [
+      "TRV22-04",
+      "TRV24-04"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.678
+    },
+    {
+     "qid": "H07",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "SEC-01",
+      "SEC-02",
+      "SEC-04",
+      "SEC-03",
+      "MSA-04",
+      "FAB-05",
+      "MSA-01",
+      "TRV24-06",
+      "MSA-03",
+      "MSA-05"
+     ],
+     "relevant": [
+      "SEC-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.663
+    },
+    {
+     "qid": "H08",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "SEC-04",
+      "SEC-03",
+      "MSA-02",
+      "SEC-01",
+      "SEC-02",
+      "FAB-05",
+      "MSA-05",
+      "TRV22-02",
+      "TRV24-02",
+      "MSA-04"
+     ],
+     "relevant": [
+      "SEC-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.878
+    },
+    {
+     "qid": "H09",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "SEC-02",
+      "SEC-04",
+      "TRV22-04",
+      "TRV24-06",
+      "SEC-01",
+      "TRV24-04",
+      "TRV22-05",
+      "FAB-05",
+      "MSA-02",
+      "SEC-03"
+     ],
+     "relevant": [
+      "SEC-05"
+     ],
+     "precision@4": 0.0,
+     "recall@4": 0.0,
+     "rr@10": 0.0,
+     "first_relevant_rank": null,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.771
+    },
+    {
+     "qid": "H10",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "MSA-03",
+      "MSA-05",
+      "FAB-03",
+      "TRV24-06",
+      "FAB-02",
+      "TRV22-05",
+      "FAB-04",
+      "MSA-02",
+      "FAB-01",
+      "MSA-04"
+     ],
+     "relevant": [
+      "MSA-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "FAB-03"
+     ],
+     "latency_ms": 6.432
+    },
+    {
+     "qid": "H11",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "MSA-06",
+      "MSA-05",
+      "TRV22-01",
+      "MSA-03",
+      "MSA-01",
+      "TRV24-04",
+      "FAB-04",
+      "MSA-04",
+      "TRV22-04",
+      "TRV24-05"
+     ],
+     "relevant": [
+      "MSA-06"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.627
+    },
+    {
+     "qid": "H12",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "FAB-02",
+      "FAB-01",
+      "FAB-05",
+      "FAB-04",
+      "FAB-03",
+      "MSA-01",
+      "TRV24-06",
+      "MSA-02",
+      "MSA-04",
+      "SEC-01"
+     ],
+     "relevant": [
+      "FAB-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.374
+    },
+    {
+     "qid": "H13",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "FAB-02",
+      "FAB-04",
+      "FAB-03",
+      "FAB-05",
+      "FAB-01",
+      "MSA-01",
+      "TRV24-03",
+      "MSA-04",
+      "TRV24-06",
+      "TRV24-05"
+     ],
+     "relevant": [
+      "FAB-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.695
+    },
+    {
+     "qid": "H14",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "MSA-03",
+      "MSA-01",
+      "FAB-03",
+      "FAB-02",
+      "FAB-04",
+      "MSA-04",
+      "TRV24-03",
+      "TRV22-03",
+      "FAB-05",
+      "TRV22-01"
+     ],
+     "relevant": [
+      "FAB-03",
+      "MSA-03"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.881
+    },
+    {
+     "qid": "H15",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "MSA-04",
+      "FAB-04",
+      "MSA-03",
+      "TRV22-05",
+      "MSA-05",
+      "MSA-06",
+      "TRV22-01",
+      "TRV24-06",
+      "MSA-02",
+      "FAB-02"
+     ],
+     "relevant": [
+      "MSA-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "FAB-04"
+     ],
+     "latency_ms": 6.073
+    },
+    {
+     "qid": "H16",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "LABF-03",
+      "LABF-05",
+      "LABJ-03",
+      "LABJ-05",
+      "MSA-01",
+      "TRV24-01",
+      "LABF-04",
+      "LABF-02",
+      "LABF-01",
+      "LABJ-01"
+     ],
+     "relevant": [
+      "LABF-03",
+      "LABJ-03"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.301
+    },
+    {
+     "qid": "H17",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "LABF-04",
+      "LABJ-04",
+      "LABF-05",
+      "LABF-02",
+      "LABF-03",
+      "LABJ-05",
+      "LABJ-03",
+      "LABF-01",
+      "LABJ-01",
+      "LABJ-02"
+     ],
+     "relevant": [
+      "LABF-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "LABJ-04"
+     ],
+     "latency_ms": 5.787
+    },
+    {
+     "qid": "H18",
+     "query_types": [
+      "paraphrase",
+      "distractor"
+     ],
+     "top10": [
+      "LABJ-05",
+      "LABF-05",
+      "LABF-03",
+      "LABF-01",
+      "LABJ-01",
+      "LABJ-02",
+      "LABF-02",
+      "LABJ-03",
+      "LABJ-04",
+      "LABF-04"
+     ],
+     "relevant": [
+      "LABJ-01",
+      "LABJ-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 0.5,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "LABF-01"
+     ],
+     "latency_ms": 5.767
+    },
+    {
+     "qid": "H19",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "LABF-05",
+      "LABJ-05",
+      "SEC-03",
+      "LABF-02",
+      "LABJ-02",
+      "MSA-02",
+      "FAB-04",
+      "MSA-04",
+      "TRV22-05",
+      "FAB-05"
+     ],
+     "relevant": [
+      "LABF-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.25,
+     "first_relevant_rank": 4,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.457
+    },
+    {
+     "qid": "H20",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "RESP-03",
+      "RESP-04",
+      "RESP-02",
+      "RESP-06",
+      "PHOTO-03",
+      "RESP-05",
+      "RESP-01",
+      "PHOTO-01",
+      "PHOTO-02",
+      "PHOTO-04"
+     ],
+     "relevant": [
+      "RESP-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.321
+    },
+    {
+     "qid": "H21",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "PHOTO-04",
+      "PHOTO-02",
+      "PHOTO-01",
+      "RESP-01",
+      "PHOTO-05",
+      "PHOTO-03",
+      "RESP-02",
+      "RESP-04",
+      "RESP-03",
+      "RESP-06"
+     ],
+     "relevant": [
+      "PHOTO-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.77
+    },
+    {
+     "qid": "H22",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "PHOTO-02",
+      "PHOTO-01",
+      "PHOTO-05",
+      "PHOTO-04",
+      "RESP-01",
+      "RESP-04",
+      "RESP-02",
+      "PHOTO-03",
+      "RESP-03",
+      "LABJ-02"
+     ],
+     "relevant": [
+      "PHOTO-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.598
+    },
+    {
+     "qid": "H23",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "RESP-05",
+      "RESP-06",
+      "RESP-01",
+      "RESP-02",
+      "RESP-03",
+      "RESP-04",
+      "PHOTO-02",
+      "PHOTO-03",
+      "PHOTO-05",
+      "PHOTO-01"
+     ],
+     "relevant": [
+      "RESP-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.692
+    },
+    {
+     "qid": "H24",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "RESP-06",
+      "RESP-05",
+      "RESP-01",
+      "RESP-04",
+      "PHOTO-05",
+      "RESP-02",
+      "RESP-03",
+      "PHOTO-02",
+      "PHOTO-03",
+      "PHOTO-01"
+     ],
+     "relevant": [
+      "RESP-05",
+      "RESP-06"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "RESP-04"
+     ],
+     "latency_ms": 6.174
+    }
+   ]
+  },
+  {
+   "system": "bm25(k1=1.5,b=0.75)",
+   "config": {
+    "kind": "bm25",
+    "k1": 1.5,
+    "b": 0.75
+   },
+   "summary": {
+    "precision@4": 0.25,
+    "recall@4": 0.8333,
+    "rr@10": 0.7597,
+    "latency_p50_ms": 0.089,
+    "latency_p95_ms": 0.129,
+    "n": 24
+   },
+   "per_query": [
+    {
+     "qid": "H01",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV22-02",
+      "TRV24-04",
+      "TRV24-02",
+      "MSA-04",
+      "TRV24-03",
+      "TRV24-01",
+      "SEC-02",
+      "TRV22-04",
+      "FAB-04",
+      "MSA-06"
+     ],
+     "relevant": [
+      "TRV24-03"
+     ],
+     "precision@4": 0.0,
+     "recall@4": 0.0,
+     "rr@10": 0.2,
+     "first_relevant_rank": 5,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.089
+    },
+    {
+     "qid": "H02",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV24-04",
+      "TRV22-01",
+      "TRV22-05",
+      "TRV24-06",
+      "TRV22-02",
+      "TRV24-02",
+      "SEC-01",
+      "TRV22-03",
+      "MSA-03"
+     ],
+     "relevant": [
+      "TRV22-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.25,
+     "first_relevant_rank": 4,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.11
+    },
+    {
+     "qid": "H03",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "TRV22-05",
+      "TRV24-05",
+      "TRV22-01",
+      "TRV24-01",
+      "TRV24-04",
+      "SEC-01",
+      "TRV24-06",
+      "TRV22-02",
+      "TRV24-02",
+      "TRV22-03"
+     ],
+     "relevant": [
+      "TRV24-04"
+     ],
+     "precision@4": 0.0,
+     "recall@4": 0.0,
+     "rr@10": 0.2,
+     "first_relevant_rank": 5,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.077
+    },
+    {
+     "qid": "H04",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV22-01",
+      "TRV24-05",
+      "MSA-02",
+      "MSA-01",
+      "TRV24-02",
+      "TRV24-04",
+      "TRV22-02",
+      "MSA-03",
+      "PHOTO-03"
+     ],
+     "relevant": [
+      "TRV24-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "TRV22-01"
+     ],
+     "latency_ms": 0.076
+    },
+    {
+     "qid": "H05",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV22-02",
+      "TRV24-04",
+      "TRV24-02",
+      "SEC-03",
+      "PHOTO-01",
+      "TRV22-01",
+      "MSA-03",
+      "TRV24-03",
+      "MSA-02"
+     ],
+     "relevant": [
+      "TRV24-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.25,
+     "first_relevant_rank": 4,
+     "hard_negative_in_top4": [
+      "TRV22-02"
+     ],
+     "latency_ms": 0.093
+    },
+    {
+     "qid": "H06",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "TRV22-04",
+      "TRV24-04",
+      "TRV24-01",
+      "TRV22-01",
+      "LABF-03",
+      "LABF-05",
+      "TRV24-03",
+      "PHOTO-02",
+      "MSA-05",
+      "RESP-03"
+     ],
+     "relevant": [
+      "TRV22-04",
+      "TRV24-04"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.092
+    },
+    {
+     "qid": "H07",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "SEC-01",
+      "FAB-04",
+      "TRV24-04",
+      "TRV22-03",
+      "TRV22-04",
+      "MSA-06",
+      "LABF-05",
+      "RESP-04",
+      "MSA-04",
+      "RESP-01"
+     ],
+     "relevant": [
+      "SEC-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.063
+    },
+    {
+     "qid": "H08",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "SEC-04",
+      "SEC-01",
+      "MSA-02",
+      "RESP-02",
+      "LABF-04",
+      "LABF-02",
+      "MSA-04",
+      "TRV22-01",
+      "TRV24-06",
+      "TRV24-01"
+     ],
+     "relevant": [
+      "SEC-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.067
+    },
+    {
+     "qid": "H09",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "SEC-05",
+      "MSA-06",
+      "FAB-05",
+      "MSA-03",
+      "TRV24-05",
+      "SEC-01",
+      "PHOTO-02",
+      "RESP-02",
+      "TRV24-04",
+      "MSA-05"
+     ],
+     "relevant": [
+      "SEC-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.129
+    },
+    {
+     "qid": "H10",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "MSA-03",
+      "FAB-03",
+      "LABJ-03",
+      "RESP-02",
+      "MSA-05",
+      "TRV22-01",
+      "TRV24-01",
+      "LABJ-04",
+      "FAB-02",
+      "MSA-04"
+     ],
+     "relevant": [
+      "MSA-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "FAB-03"
+     ],
+     "latency_ms": 0.089
+    },
+    {
+     "qid": "H11",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "MSA-06",
+      "MSA-04",
+      "PHOTO-01",
+      "FAB-04",
+      "MSA-05",
+      "MSA-01",
+      "TRV24-03",
+      "MSA-03",
+      "TRV22-05",
+      "PHOTO-03"
+     ],
+     "relevant": [
+      "MSA-06"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.114
+    },
+    {
+     "qid": "H12",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "FAB-02",
+      "FAB-01",
+      "FAB-03",
+      "FAB-05",
+      "MSA-01",
+      "FAB-04",
+      "SEC-01",
+      "TRV24-05",
+      "SEC-03",
+      "TRV22-05"
+     ],
+     "relevant": [
+      "FAB-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.109
+    },
+    {
+     "qid": "H13",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "FAB-02",
+      "FAB-01",
+      "FAB-04",
+      "FAB-05",
+      "MSA-01",
+      "MSA-06",
+      "FAB-03",
+      "PHOTO-02",
+      "TRV22-01",
+      "TRV22-05"
+     ],
+     "relevant": [
+      "FAB-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.077
+    },
+    {
+     "qid": "H14",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "MSA-03",
+      "RESP-02",
+      "TRV24-03",
+      "RESP-03",
+      "FAB-03",
+      "PHOTO-01",
+      "RESP-05",
+      "PHOTO-03",
+      "MSA-06",
+      "SEC-02"
+     ],
+     "relevant": [
+      "FAB-03",
+      "MSA-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 0.5,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.102
+    },
+    {
+     "qid": "H15",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "MSA-04",
+      "TRV22-05",
+      "TRV24-06",
+      "FAB-04",
+      "MSA-03",
+      "RESP-02",
+      "FAB-03",
+      "MSA-05",
+      "PHOTO-03",
+      "MSA-06"
+     ],
+     "relevant": [
+      "MSA-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "FAB-04"
+     ],
+     "latency_ms": 0.086
+    },
+    {
+     "qid": "H16",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "LABF-03",
+      "MSA-04",
+      "LABJ-03",
+      "TRV24-01",
+      "FAB-04",
+      "TRV22-01",
+      "PHOTO-03",
+      "RESP-05",
+      "RESP-01",
+      "MSA-03"
+     ],
+     "relevant": [
+      "LABF-03",
+      "LABJ-03"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.093
+    },
+    {
+     "qid": "H17",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "LABJ-04",
+      "LABF-04",
+      "TRV24-05",
+      "FAB-02",
+      "PHOTO-01",
+      "LABF-05",
+      "LABF-03",
+      "MSA-05",
+      "TRV24-03",
+      "TRV22-03"
+     ],
+     "relevant": [
+      "LABF-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [
+      "LABJ-04"
+     ],
+     "latency_ms": 0.088
+    },
+    {
+     "qid": "H18",
+     "query_types": [
+      "paraphrase",
+      "distractor"
+     ],
+     "top10": [
+      "LABF-03",
+      "LABF-01",
+      "LABJ-01",
+      "MSA-04",
+      "FAB-04",
+      "RESP-05",
+      "LABJ-03",
+      "PHOTO-01",
+      "LABF-05",
+      "MSA-05"
+     ],
+     "relevant": [
+      "LABJ-01",
+      "LABJ-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 0.5,
+     "rr@10": 0.3333333333333333,
+     "first_relevant_rank": 3,
+     "hard_negative_in_top4": [
+      "LABF-01"
+     ],
+     "latency_ms": 0.14
+    },
+    {
+     "qid": "H19",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "RESP-02",
+      "RESP-03",
+      "RESP-05",
+      "TRV22-05",
+      "MSA-04",
+      "PHOTO-03",
+      "FAB-03",
+      "RESP-04",
+      "MSA-01",
+      "MSA-06"
+     ],
+     "relevant": [
+      "LABF-02"
+     ],
+     "precision@4": 0.0,
+     "recall@4": 0.0,
+     "rr@10": 0.0,
+     "first_relevant_rank": null,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.087
+    },
+    {
+     "qid": "H20",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "RESP-03",
+      "RESP-06",
+      "PHOTO-02",
+      "PHOTO-01",
+      "RESP-02",
+      "MSA-04",
+      "TRV24-03",
+      "PHOTO-03",
+      "MSA-05",
+      "PHOTO-05"
+     ],
+     "relevant": [
+      "RESP-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.091
+    },
+    {
+     "qid": "H21",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "PHOTO-04",
+      "RESP-01",
+      "TRV22-03",
+      "PHOTO-01",
+      "MSA-06",
+      "MSA-03",
+      "MSA-04",
+      "LABJ-05",
+      "FAB-03",
+      "MSA-02"
+     ],
+     "relevant": [
+      "PHOTO-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.087
+    },
+    {
+     "qid": "H22",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "PHOTO-02",
+      "PHOTO-03",
+      "PHOTO-04",
+      "PHOTO-01",
+      "MSA-06",
+      "RESP-01",
+      "RESP-04",
+      "LABF-05",
+      "FAB-04",
+      "TRV22-03"
+     ],
+     "relevant": [
+      "PHOTO-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.095
+    },
+    {
+     "qid": "H23",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "RESP-05",
+      "RESP-04",
+      "RESP-06",
+      "RESP-01",
+      "TRV24-01",
+      "TRV24-02",
+      "TRV24-03",
+      "TRV24-04",
+      "TRV24-05",
+      "TRV24-06"
+     ],
+     "relevant": [
+      "RESP-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.061
+    },
+    {
+     "qid": "H24",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "RESP-05",
+      "RESP-06",
+      "RESP-01",
+      "MSA-04",
+      "TRV24-04",
+      "TRV24-06",
+      "TRV22-02",
+      "RESP-04",
+      "RESP-02",
+      "LABJ-04"
+     ],
+     "relevant": [
+      "RESP-05",
+      "RESP-06"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 0.085
+    }
+   ]
+  },
+  {
+   "system": "hybrid-rrf(k=10; dense(bge-small) + bm25(k1=1.5,b=0.75))",
+   "config": {
+    "kind": "hybrid",
+    "rrf_k": 10,
+    "dense": {
+     "kind": "dense",
+     "prefix": false
+    },
+    "bm25": {
+     "kind": "bm25",
+     "k1": 1.5,
+     "b": 0.75
+    }
+   },
+   "summary": {
+    "precision@4": 0.2812,
+    "recall@4": 0.9375,
+    "rr@10": 0.7917,
+    "latency_p50_ms": 5.943,
+    "latency_p95_ms": 6.985,
+    "n": 24
+   },
+   "per_query": [
+    {
+     "qid": "H01",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-03",
+      "TRV24-04",
+      "TRV22-02",
+      "TRV24-01",
+      "TRV24-02",
+      "MSA-04",
+      "TRV22-03",
+      "TRV22-04",
+      "FAB-04",
+      "SEC-02"
+     ],
+     "relevant": [
+      "TRV24-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.384
+    },
+    {
+     "qid": "H02",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV22-05",
+      "TRV24-04",
+      "TRV24-06",
+      "TRV22-01",
+      "TRV24-02",
+      "TRV22-02",
+      "MSA-04",
+      "TRV22-03",
+      "MSA-02"
+     ],
+     "relevant": [
+      "TRV22-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [
+      "TRV24-06"
+     ],
+     "latency_ms": 6.277
+    },
+    {
+     "qid": "H03",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "TRV22-01",
+      "TRV24-04",
+      "TRV22-05",
+      "TRV24-05",
+      "TRV24-01",
+      "TRV22-03",
+      "TRV22-02",
+      "TRV24-02",
+      "TRV24-06",
+      "FAB-04"
+     ],
+     "relevant": [
+      "TRV24-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.985
+    },
+    {
+     "qid": "H04",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV22-01",
+      "TRV24-04",
+      "TRV24-02",
+      "TRV24-05",
+      "MSA-02",
+      "TRV22-02",
+      "MSA-01",
+      "MSA-06",
+      "TRV22-03"
+     ],
+     "relevant": [
+      "TRV24-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "TRV22-01"
+     ],
+     "latency_ms": 5.879
+    },
+    {
+     "qid": "H05",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV22-02",
+      "TRV24-02",
+      "TRV24-04",
+      "TRV24-03",
+      "TRV22-01",
+      "SEC-03",
+      "MSA-03",
+      "SEC-02",
+      "TRV24-05"
+     ],
+     "relevant": [
+      "TRV24-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.3333333333333333,
+     "first_relevant_rank": 3,
+     "hard_negative_in_top4": [
+      "TRV22-02"
+     ],
+     "latency_ms": 7.691
+    },
+    {
+     "qid": "H06",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "TRV22-04",
+      "TRV24-04",
+      "TRV24-01",
+      "TRV22-01",
+      "LABF-05",
+      "LABF-03",
+      "TRV24-03",
+      "TRV22-03",
+      "FAB-01",
+      "MSA-04"
+     ],
+     "relevant": [
+      "TRV22-04",
+      "TRV24-04"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.288
+    },
+    {
+     "qid": "H07",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "SEC-01",
+      "SEC-02",
+      "MSA-04",
+      "TRV22-03",
+      "FAB-04",
+      "TRV24-04",
+      "MSA-01",
+      "TRV22-04",
+      "SEC-04",
+      "SEC-03"
+     ],
+     "relevant": [
+      "SEC-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.438
+    },
+    {
+     "qid": "H08",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "SEC-04",
+      "SEC-01",
+      "MSA-02",
+      "MSA-04",
+      "TRV24-06",
+      "RESP-02",
+      "TRV24-01",
+      "LABF-02",
+      "TRV22-01",
+      "LABF-04"
+     ],
+     "relevant": [
+      "SEC-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.218
+    },
+    {
+     "qid": "H09",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "FAB-05",
+      "SEC-01",
+      "SEC-05",
+      "TRV24-04",
+      "MSA-06",
+      "MSA-03",
+      "TRV24-05",
+      "SEC-02",
+      "MSA-05",
+      "FAB-02"
+     ],
+     "relevant": [
+      "SEC-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.3333333333333333,
+     "first_relevant_rank": 3,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.37
+    },
+    {
+     "qid": "H10",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "MSA-03",
+      "FAB-03",
+      "MSA-05",
+      "FAB-02",
+      "LABJ-03",
+      "MSA-04",
+      "MSA-02",
+      "TRV22-01",
+      "RESP-02",
+      "FAB-01"
+     ],
+     "relevant": [
+      "MSA-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "FAB-03"
+     ],
+     "latency_ms": 6.288
+    },
+    {
+     "qid": "H11",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "MSA-06",
+      "MSA-05",
+      "MSA-04",
+      "FAB-04",
+      "MSA-01",
+      "MSA-03",
+      "PHOTO-01",
+      "TRV22-01",
+      "TRV24-03",
+      "TRV22-05"
+     ],
+     "relevant": [
+      "MSA-06"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.985
+    },
+    {
+     "qid": "H12",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "FAB-02",
+      "FAB-01",
+      "FAB-05",
+      "FAB-03",
+      "FAB-04",
+      "MSA-01",
+      "SEC-01",
+      "TRV24-06",
+      "TRV22-05",
+      "MSA-04"
+     ],
+     "relevant": [
+      "FAB-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.198
+    },
+    {
+     "qid": "H13",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "FAB-02",
+      "FAB-04",
+      "FAB-01",
+      "FAB-05",
+      "FAB-03",
+      "MSA-01",
+      "MSA-04",
+      "TRV24-05",
+      "MSA-06",
+      "MSA-02"
+     ],
+     "relevant": [
+      "FAB-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.436
+    },
+    {
+     "qid": "H14",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "MSA-03",
+      "FAB-03",
+      "TRV24-03",
+      "MSA-01",
+      "RESP-02",
+      "FAB-04",
+      "RESP-03",
+      "FAB-02",
+      "SEC-02",
+      "TRV22-01"
+     ],
+     "relevant": [
+      "FAB-03",
+      "MSA-03"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.346
+    },
+    {
+     "qid": "H15",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "MSA-04",
+      "TRV22-05",
+      "FAB-04",
+      "MSA-03",
+      "TRV24-06",
+      "MSA-05",
+      "MSA-06",
+      "FAB-03",
+      "FAB-02",
+      "MSA-02"
+     ],
+     "relevant": [
+      "MSA-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "FAB-04"
+     ],
+     "latency_ms": 5.765
+    },
+    {
+     "qid": "H16",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "LABF-03",
+      "LABJ-03",
+      "TRV24-01",
+      "MSA-04",
+      "TRV22-01",
+      "LABJ-05",
+      "LABF-05",
+      "FAB-04",
+      "MSA-01",
+      "LABF-02"
+     ],
+     "relevant": [
+      "LABF-03",
+      "LABJ-03"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.298
+    },
+    {
+     "qid": "H17",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "LABJ-04",
+      "LABF-04",
+      "LABF-05",
+      "LABF-03",
+      "FAB-02",
+      "LABJ-05",
+      "TRV24-05",
+      "PHOTO-01",
+      "RESP-03",
+      "PHOTO-03"
+     ],
+     "relevant": [
+      "LABF-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [
+      "LABJ-04"
+     ],
+     "latency_ms": 5.943
+    },
+    {
+     "qid": "H18",
+     "query_types": [
+      "paraphrase",
+      "distractor"
+     ],
+     "top10": [
+      "LABF-03",
+      "LABF-01",
+      "LABJ-01",
+      "LABF-05",
+      "LABJ-05",
+      "LABJ-03",
+      "MSA-04",
+      "FAB-04",
+      "RESP-05",
+      "RESP-02"
+     ],
+     "relevant": [
+      "LABJ-01",
+      "LABJ-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 0.5,
+     "rr@10": 0.3333333333333333,
+     "first_relevant_rank": 3,
+     "hard_negative_in_top4": [
+      "LABF-01"
+     ],
+     "latency_ms": 5.513
+    },
+    {
+     "qid": "H19",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "LABF-05",
+      "TRV22-05",
+      "MSA-04",
+      "RESP-02",
+      "RESP-03",
+      "LABJ-05",
+      "FAB-04",
+      "SEC-03",
+      "MSA-02",
+      "RESP-05"
+     ],
+     "relevant": [
+      "LABF-02"
+     ],
+     "precision@4": 0.0,
+     "recall@4": 0.0,
+     "rr@10": 0.0,
+     "first_relevant_rank": null,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.181
+    },
+    {
+     "qid": "H20",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "RESP-03",
+      "RESP-06",
+      "RESP-02",
+      "PHOTO-02",
+      "PHOTO-01",
+      "PHOTO-03",
+      "RESP-04",
+      "PHOTO-05",
+      "LABJ-05",
+      "TRV24-03"
+     ],
+     "relevant": [
+      "RESP-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.834
+    },
+    {
+     "qid": "H21",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "PHOTO-04",
+      "RESP-01",
+      "PHOTO-01",
+      "PHOTO-02",
+      "LABJ-05",
+      "MSA-03",
+      "TRV22-03",
+      "PHOTO-03",
+      "RESP-02",
+      "RESP-04"
+     ],
+     "relevant": [
+      "PHOTO-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.447
+    },
+    {
+     "qid": "H22",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "PHOTO-02",
+      "PHOTO-01",
+      "PHOTO-04",
+      "PHOTO-03",
+      "RESP-01",
+      "RESP-04",
+      "PHOTO-05",
+      "LABF-05",
+      "MSA-06",
+      "RESP-02"
+     ],
+     "relevant": [
+      "PHOTO-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 6.359
+    },
+    {
+     "qid": "H23",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "RESP-05",
+      "RESP-06",
+      "RESP-01",
+      "RESP-04",
+      "RESP-02",
+      "RESP-03",
+      "PHOTO-02",
+      "PHOTO-03",
+      "PHOTO-05",
+      "PHOTO-01"
+     ],
+     "relevant": [
+      "RESP-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 5.845
+    },
+    {
+     "qid": "H24",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "RESP-05",
+      "RESP-06",
+      "RESP-01",
+      "RESP-04",
+      "RESP-02",
+      "PHOTO-02",
+      "RESP-03",
+      "TRV24-04",
+      "LABF-05",
+      "PHOTO-03"
+     ],
+     "relevant": [
+      "RESP-05",
+      "RESP-06"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "RESP-04"
+     ],
+     "latency_ms": 6.873
+    }
+   ]
+  },
+  {
+   "system": "rerank(ms-marco-MiniLM-L6, top-10 of dense(bge-small))",
+   "config": {
+    "kind": "rerank",
+    "first": {
+     "kind": "dense",
+     "prefix": false
+    },
+    "depth": 10
+   },
+   "summary": {
+    "precision@4": 0.2812,
+    "recall@4": 0.9375,
+    "rr@10": 0.8681,
+    "latency_p50_ms": 101.463,
+    "latency_p95_ms": 116.848,
+    "n": 24
+   },
+   "per_query": [
+    {
+     "qid": "H01",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-03",
+      "TRV22-03",
+      "TRV24-01",
+      "TRV22-01",
+      "MSA-04",
+      "TRV24-04",
+      "FAB-04",
+      "TRV22-04",
+      "TRV24-02",
+      "TRV22-02"
+     ],
+     "relevant": [
+      "TRV24-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "TRV22-03"
+     ],
+     "latency_ms": 102.029
+    },
+    {
+     "qid": "H02",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV22-05",
+      "TRV24-06",
+      "TRV24-04",
+      "TRV24-01",
+      "MSA-04",
+      "TRV22-01",
+      "MSA-01",
+      "FAB-04",
+      "MSA-02",
+      "TRV24-02"
+     ],
+     "relevant": [
+      "TRV22-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "TRV24-06"
+     ],
+     "latency_ms": 92.303
+    },
+    {
+     "qid": "H03",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "TRV22-05",
+      "TRV24-04",
+      "TRV22-01",
+      "TRV24-01",
+      "TRV22-02",
+      "TRV24-06",
+      "TRV24-02",
+      "TRV22-04",
+      "TRV22-03",
+      "TRV24-03"
+     ],
+     "relevant": [
+      "TRV24-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [],
+     "latency_ms": 87.418
+    },
+    {
+     "qid": "H04",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV22-01",
+      "TRV22-02",
+      "TRV24-02",
+      "TRV22-05",
+      "TRV24-04",
+      "TRV24-03",
+      "MSA-06",
+      "TRV24-06",
+      "TRV22-03"
+     ],
+     "relevant": [
+      "TRV24-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "TRV22-01"
+     ],
+     "latency_ms": 103.403
+    },
+    {
+     "qid": "H05",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "TRV24-01",
+      "TRV22-01",
+      "TRV24-02",
+      "TRV22-02",
+      "TRV22-05",
+      "TRV24-03",
+      "TRV24-04",
+      "TRV24-05",
+      "MSA-04",
+      "TRV22-03"
+     ],
+     "relevant": [
+      "TRV24-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.3333333333333333,
+     "first_relevant_rank": 3,
+     "hard_negative_in_top4": [
+      "TRV22-02"
+     ],
+     "latency_ms": 101.463
+    },
+    {
+     "qid": "H06",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "TRV22-04",
+      "TRV24-04",
+      "TRV22-01",
+      "TRV24-01",
+      "MSA-01",
+      "TRV22-03",
+      "LABF-03",
+      "LABF-04",
+      "FAB-01",
+      "LABF-05"
+     ],
+     "relevant": [
+      "TRV22-04",
+      "TRV24-04"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 93.74
+    },
+    {
+     "qid": "H07",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "SEC-01",
+      "SEC-02",
+      "MSA-01",
+      "SEC-03",
+      "SEC-04",
+      "MSA-04",
+      "TRV24-06",
+      "MSA-05",
+      "MSA-03",
+      "FAB-05"
+     ],
+     "relevant": [
+      "SEC-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 99.122
+    },
+    {
+     "qid": "H08",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "SEC-04",
+      "SEC-03",
+      "FAB-05",
+      "MSA-02",
+      "MSA-05",
+      "SEC-01",
+      "MSA-04",
+      "TRV24-02",
+      "TRV22-02",
+      "SEC-02"
+     ],
+     "relevant": [
+      "SEC-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 112.633
+    },
+    {
+     "qid": "H09",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "TRV22-04",
+      "SEC-02",
+      "SEC-01",
+      "TRV24-06",
+      "TRV24-04",
+      "MSA-02",
+      "SEC-04",
+      "TRV22-05",
+      "SEC-03",
+      "FAB-05"
+     ],
+     "relevant": [
+      "SEC-05"
+     ],
+     "precision@4": 0.0,
+     "recall@4": 0.0,
+     "rr@10": 0.0,
+     "first_relevant_rank": null,
+     "hard_negative_in_top4": [],
+     "latency_ms": 100.552
+    },
+    {
+     "qid": "H10",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "MSA-03",
+      "FAB-03",
+      "MSA-05",
+      "FAB-02",
+      "MSA-02",
+      "TRV24-06",
+      "MSA-04",
+      "FAB-01",
+      "FAB-04",
+      "TRV22-05"
+     ],
+     "relevant": [
+      "MSA-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "FAB-03"
+     ],
+     "latency_ms": 107.73
+    },
+    {
+     "qid": "H11",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "MSA-06",
+      "MSA-05",
+      "MSA-03",
+      "MSA-01",
+      "TRV22-01",
+      "FAB-04",
+      "MSA-04",
+      "TRV24-05",
+      "TRV22-04",
+      "TRV24-04"
+     ],
+     "relevant": [
+      "MSA-06"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 116.848
+    },
+    {
+     "qid": "H12",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "FAB-02",
+      "FAB-01",
+      "FAB-03",
+      "FAB-04",
+      "MSA-01",
+      "FAB-05",
+      "MSA-02",
+      "TRV24-06",
+      "MSA-04",
+      "SEC-01"
+     ],
+     "relevant": [
+      "FAB-01"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [],
+     "latency_ms": 103.444
+    },
+    {
+     "qid": "H13",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "FAB-02",
+      "FAB-03",
+      "FAB-04",
+      "FAB-05",
+      "MSA-01",
+      "FAB-01",
+      "TRV24-03",
+      "TRV24-05",
+      "TRV24-06",
+      "MSA-04"
+     ],
+     "relevant": [
+      "FAB-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 87.45
+    },
+    {
+     "qid": "H14",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "MSA-03",
+      "FAB-03",
+      "TRV22-01",
+      "MSA-01",
+      "FAB-02",
+      "MSA-04",
+      "TRV24-03",
+      "FAB-04",
+      "TRV22-03",
+      "FAB-05"
+     ],
+     "relevant": [
+      "FAB-03",
+      "MSA-03"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 114.839
+    },
+    {
+     "qid": "H15",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "MSA-04",
+      "FAB-04",
+      "MSA-03",
+      "MSA-05",
+      "TRV24-06",
+      "TRV22-05",
+      "TRV22-01",
+      "MSA-06",
+      "MSA-02",
+      "FAB-02"
+     ],
+     "relevant": [
+      "MSA-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "FAB-04"
+     ],
+     "latency_ms": 105.902
+    },
+    {
+     "qid": "H16",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "LABF-03",
+      "LABJ-03",
+      "TRV24-01",
+      "LABJ-05",
+      "LABF-05",
+      "LABF-02",
+      "MSA-01",
+      "LABF-01",
+      "LABJ-01",
+      "LABF-04"
+     ],
+     "relevant": [
+      "LABF-03",
+      "LABJ-03"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 120.631
+    },
+    {
+     "qid": "H17",
+     "query_types": [
+      "numerical",
+      "distractor"
+     ],
+     "top10": [
+      "LABF-04",
+      "LABJ-04",
+      "LABJ-03",
+      "LABF-02",
+      "LABJ-02",
+      "LABF-01",
+      "LABJ-05",
+      "LABJ-01",
+      "LABF-03",
+      "LABF-05"
+     ],
+     "relevant": [
+      "LABF-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "LABJ-04"
+     ],
+     "latency_ms": 105.467
+    },
+    {
+     "qid": "H18",
+     "query_types": [
+      "paraphrase",
+      "distractor"
+     ],
+     "top10": [
+      "LABF-03",
+      "LABJ-01",
+      "LABF-01",
+      "LABJ-03",
+      "LABJ-05",
+      "LABF-05",
+      "LABJ-02",
+      "LABF-02",
+      "LABJ-04",
+      "LABF-04"
+     ],
+     "relevant": [
+      "LABJ-01",
+      "LABJ-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 0.5,
+     "rr@10": 0.5,
+     "first_relevant_rank": 2,
+     "hard_negative_in_top4": [
+      "LABF-01"
+     ],
+     "latency_ms": 102.929
+    },
+    {
+     "qid": "H19",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "LABF-02",
+      "LABF-05",
+      "LABJ-02",
+      "LABJ-05",
+      "SEC-03",
+      "FAB-04",
+      "MSA-04",
+      "MSA-02",
+      "TRV22-05",
+      "FAB-05"
+     ],
+     "relevant": [
+      "LABF-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 80.526
+    },
+    {
+     "qid": "H20",
+     "query_types": [
+      "factual",
+      "distractor"
+     ],
+     "top10": [
+      "RESP-03",
+      "RESP-04",
+      "RESP-06",
+      "PHOTO-03",
+      "RESP-02",
+      "PHOTO-02",
+      "PHOTO-01",
+      "RESP-05",
+      "RESP-01",
+      "PHOTO-04"
+     ],
+     "relevant": [
+      "RESP-03"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "PHOTO-03"
+     ],
+     "latency_ms": 100.223
+    },
+    {
+     "qid": "H21",
+     "query_types": [
+      "numerical"
+     ],
+     "top10": [
+      "PHOTO-04",
+      "PHOTO-01",
+      "RESP-01",
+      "PHOTO-02",
+      "PHOTO-05",
+      "PHOTO-03",
+      "RESP-04",
+      "RESP-06",
+      "RESP-03",
+      "RESP-02"
+     ],
+     "relevant": [
+      "PHOTO-04"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 101.655
+    },
+    {
+     "qid": "H22",
+     "query_types": [
+      "paraphrase"
+     ],
+     "top10": [
+      "PHOTO-02",
+      "PHOTO-03",
+      "RESP-01",
+      "PHOTO-01",
+      "PHOTO-04",
+      "PHOTO-05",
+      "RESP-03",
+      "RESP-04",
+      "RESP-02",
+      "LABJ-02"
+     ],
+     "relevant": [
+      "PHOTO-02"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 84.409
+    },
+    {
+     "qid": "H23",
+     "query_types": [
+      "factual"
+     ],
+     "top10": [
+      "RESP-05",
+      "RESP-06",
+      "RESP-01",
+      "RESP-03",
+      "PHOTO-02",
+      "RESP-04",
+      "RESP-02",
+      "PHOTO-03",
+      "PHOTO-01",
+      "PHOTO-05"
+     ],
+     "relevant": [
+      "RESP-05"
+     ],
+     "precision@4": 0.25,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [],
+     "latency_ms": 86.477
+    },
+    {
+     "qid": "H24",
+     "query_types": [
+      "multi_passage",
+      "numerical"
+     ],
+     "top10": [
+      "RESP-06",
+      "RESP-05",
+      "RESP-01",
+      "RESP-04",
+      "PHOTO-05",
+      "RESP-02",
+      "RESP-03",
+      "PHOTO-02",
+      "PHOTO-03",
+      "PHOTO-01"
+     ],
+     "relevant": [
+      "RESP-05",
+      "RESP-06"
+     ],
+     "precision@4": 0.5,
+     "recall@4": 1.0,
+     "rr@10": 1.0,
+     "first_relevant_rank": 1,
+     "hard_negative_in_top4": [
+      "RESP-04"
+     ],
+     "latency_ms": 95.375
+    }
+   ]
+  }
+ ]
+}
