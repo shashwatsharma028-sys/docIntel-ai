@@ -6,9 +6,16 @@ repository (the working tree is never modified). The relevant suite is run
 against the copy; a mutant is "killed" when the suite fails. Surviving mutants
 show assertions that do not detect that defect.
 
-Mutants marked expect="xpass" deliberately FIX a documented known defect; the
-suite must fail because a strict xfail unexpectedly passes -- proving that the
-expected-failure tests detect behaviour changes in both directions.
+Classification (Phase 1 hardening):
+  killed    -- the suite ran and >=1 test FAILED (genuine assertion detection)
+  survived  -- the suite passed with the mutant applied
+  error     -- collection/import/setup/internal error, no test failure: NOT counted as a kill
+  obsolete  -- the target text no longer occurs exactly once (reported, never dropped)
+  not_run   -- runner unavailable (e.g. no frontend tooling); reported, never dropped
+The denominator is always the full list of defined mutants.
+
+Copies exclude .git, data/, virtualenvs, .env*, key/credential files, audit logs,
+node_modules (symlinked read-only), caches and build output.
 
 usage:  python scripts/mutation_check.py [--backend-only] [--json OUT]
 """
@@ -19,6 +26,8 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -60,20 +69,87 @@ MUTANTS = [
 ]
 
 
+# Never copy secrets, private data, audit logs, environments or build outputs into mutant copies.
+_EXCLUDE_TOP = {".git", "data", "venv", ".venv", "env", "htmlcov", ".pytest_cache", "coverage"}
+_EXCLUDE_ANY = {"node_modules", "__pycache__", ".pytest_cache", "coverage", "dist", ".coverage",
+                "audit_log.csv", ".DS_Store"}
+_SECRET_SUFFIXES = (".pem", ".key", ".p12", ".pfx")
+
+
+def _ignore(directory, names):
+    rel = Path(directory).resolve().relative_to(ROOT)
+    out = set()
+    for n in names:
+        if (rel == Path(".") and n in _EXCLUDE_TOP) or n in _EXCLUDE_ANY:
+            out.add(n)
+        elif n == ".env" or n.startswith(".env.") or n.endswith(_SECRET_SUFFIXES) or n.startswith("credentials"):
+            out.add(n)
+    return out
+
+
 def copy_repo(dst: Path):
-    ignore = shutil.ignore_patterns(".git", "node_modules", "__pycache__", ".pytest_cache", "coverage", ".coverage")
-    shutil.copytree(ROOT, dst, ignore=ignore, symlinks=True)
+    shutil.copytree(ROOT, dst, ignore=_ignore, symlinks=True)
     nm = ROOT / "frontend" / "node_modules"
     if nm.exists():
         os.symlink(nm.resolve(), dst / "frontend" / "node_modules")
+    leaked = [p for p in dst.rglob("*") if p.name == ".env" or p.name == "audit_log.csv"
+              or (p.parent == dst and p.name in _EXCLUDE_TOP)]
+    if leaked:
+        raise SystemExit(f"refusing to run: excluded paths copied: {leaked}")
 
 
-def run_suite(runner: str, cwd: Path) -> int:
-    if runner == "py":
-        cmd = [sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider"]
-        return subprocess.run(cmd, cwd=cwd, capture_output=True, text=True).returncode
-    vitest = (cwd / "frontend" / "node_modules" / ".bin" / "vitest")
-    return subprocess.run([str(vitest), "run"], cwd=cwd / "frontend", capture_output=True, text=True).returncode
+def _classify_pytest(rc: int, junit: Path) -> tuple[str, dict]:
+    """killed = >=1 genuine test failure. Collection/setup/internal errors are NOT kills."""
+    info = {"exit_code": rc, "failures": 0, "errors": 0, "tests": 0, "failed_tests": []}
+    if junit.exists():
+        root = ET.parse(junit).getroot()
+        for suite in root.iter("testsuite"):
+            info["failures"] += int(suite.get("failures", 0))
+            info["errors"] += int(suite.get("errors", 0))
+            info["tests"] += int(suite.get("tests", 0))
+        for case in root.iter("testcase"):
+            if case.find("failure") is not None:
+                info["failed_tests"].append(f"{case.get('classname')}::{case.get('name')}")
+    if rc == 0:
+        return "survived", info
+    if rc == 1 and info["failures"] > 0:
+        return "killed", info
+    return "error", info  # rc 2 collection/interrupt, 3 internal, 4 usage, 5 no tests, or setup errors only
+
+
+def _classify_vitest(rc: int, report: Path) -> tuple[str, dict]:
+    info = {"exit_code": rc, "failures": 0, "errors": 0, "tests": 0, "failed_tests": []}
+    if report.exists():
+        data = json.loads(report.read_text())
+        info["failures"] = data.get("numFailedTests", 0)
+        info["tests"] = data.get("numTotalTests", 0)
+        for suite in data.get("testResults", []):
+            failed = [a for a in suite.get("assertionResults", []) if a.get("status") == "failed"]
+            info["failed_tests"] += [a.get("fullName") for a in failed]
+            if suite.get("status") == "failed" and not failed:
+                info["errors"] += 1  # suite-level error (import/transform/setup)
+    if rc == 0:
+        return "survived", info
+    if info["failures"] > 0:
+        return "killed", info
+    return "error", info
+
+
+def run_suite(runner: str, cwd: Path) -> tuple[str, dict]:
+    out = Path(tempfile.mkdtemp(prefix="docintel-mut-report-"))
+    try:
+        if runner == "py":
+            junit = out / "junit.xml"
+            cmd = [sys.executable, "-m", "pytest", "-q", "-x", "-p", "no:cacheprovider", f"--junitxml={junit}"]
+            rc = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True).returncode
+            return _classify_pytest(rc, junit)
+        report = out / "vitest.json"
+        vitest = cwd / "frontend" / "node_modules" / ".bin" / "vitest"
+        rc = subprocess.run([str(vitest), "run", "--reporter=json", f"--outputFile={report}"],
+                            cwd=cwd / "frontend", capture_output=True, text=True).returncode
+        return _classify_vitest(rc, report)
+    finally:
+        shutil.rmtree(out, ignore_errors=True)
 
 
 def main():
@@ -86,30 +162,45 @@ def main():
     with tempfile.TemporaryDirectory(prefix="docintel-mut-") as tmp:
         base = Path(tmp) / "repo"
         copy_repo(base)
-        # sanity: unmutated suites must pass
-        for r in ("py",) + (("js",) if has_js and not args.backend_only else ()):
-            assert run_suite(r, base) == 0, f"unmutated {r} suite fails; aborting"
+        runners = ("py",) + (("js",) if has_js and not args.backend_only else ())
+        for r in runners:
+            status, info = run_suite(r, base)
+            if status != "survived":
+                raise SystemExit(f"infrastructure failure: unmutated {r} suite did not pass cleanly: {info}")
         for mid, runner, rel, old, new, desc, expect in MUTANTS:
-            if expect == "skip" or (runner == "js" and (args.backend_only or not has_js)):
-                continue
-            path = base / rel
-            original = path.read_text()
-            if original.count(old) != 1:
-                raise SystemExit(f"{mid}: target must occur exactly once in {rel} (found {original.count(old)})")
-            path.write_text(original.replace(old, new))
-            try:
-                rc = run_suite(runner, base)
-            finally:
-                path.write_text(original)
-            detected = rc != 0
-            results.append({"id": mid, "file": rel, "description": desc, "expect": expect,
-                            "result": "killed" if detected else "SURVIVED"})
-            print(f"{mid}  {'killed  ' if detected else 'SURVIVED'}  {rel:38s} {desc}")
-    killed = sum(r["result"] == "killed" for r in results)
-    print(f"\n{killed}/{len(results)} mutants detected")
+            entry = {"id": mid, "runner": runner, "file": rel, "description": desc, "expect": expect}
+            if runner not in runners:
+                entry["result"] = "not_run"
+                entry["reason"] = "frontend tooling unavailable" if runner == "js" else "runner disabled"
+            else:
+                path = base / rel
+                original = path.read_text() if path.exists() else ""
+                n = original.count(old)
+                if n != 1:
+                    entry["result"] = "obsolete"
+                    entry["reason"] = f"target occurs {n} times in {rel} (must be exactly 1)"
+                else:
+                    path.write_text(original.replace(old, new))
+                    t = time.perf_counter()
+                    try:
+                        status, info = run_suite(runner, base)
+                    finally:
+                        path.write_text(original)
+                    entry.update(result=status, seconds=round(time.perf_counter() - t, 2),
+                                 exit_code=info["exit_code"], failures=info["failures"],
+                                 errors=info["errors"], failed_tests=info["failed_tests"][:5])
+            results.append(entry)
+            print(f"{mid}  {entry['result']:9s} {rel:38s} {desc}"
+                  + (f"  [{entry.get('reason')}]" if entry.get("reason") else ""))
+    counts = {k: sum(r["result"] == k for r in results)
+              for k in ("killed", "survived", "error", "obsolete", "not_run")}
+    summary = {"defined": len(results), **counts,
+               "detection_rate_of_executed": f"{counts['killed']}/{counts['killed'] + counts['survived'] + counts['error']}"}
+    print("\n" + json.dumps(summary))
     if args.json:
-        Path(args.json).write_text(json.dumps({"detected": killed, "total": len(results), "mutants": results}, indent=2))
-    return 0 if killed == len(results) else 1
+        Path(args.json).parent.mkdir(parents=True, exist_ok=True)
+        Path(args.json).write_text(json.dumps({"summary": summary, "mutants": results}, indent=2) + "\n")
+    return 0 if counts["killed"] == len(results) else 1
 
 
 if __name__ == "__main__":

@@ -1,0 +1,493 @@
+{
+  "summary": {
+    "defined": 32,
+    "killed": 32,
+    "survived": 0,
+    "error": 0,
+    "obsolete": 0,
+    "not_run": 0,
+    "detection_rate_of_executed": "32/32"
+  },
+  "mutants": [
+    {
+      "id": "M01",
+      "runner": "py",
+      "file": "backend/ingest.py",
+      "description": "remove chunk overlap",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.15,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_ingest.TestChunkText::test_configured_sizes"
+      ]
+    },
+    {
+      "id": "M02",
+      "runner": "py",
+      "file": "backend/ingest.py",
+      "description": "off-by-one window step",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.9,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_ingest.TestChunkText::test_window_positions_and_overlap"
+      ]
+    },
+    {
+      "id": "M03",
+      "runner": "py",
+      "file": "backend/ingest.py",
+      "description": "drop short-chunk filter",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.84,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_ingest.TestChunkText::test_short_text_under_threshold_is_dropped"
+      ]
+    },
+    {
+      "id": "M04",
+      "runner": "py",
+      "file": "backend/ingest.py",
+      "description": "chunk loses last word",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.22,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_ingest.TestChunkText::test_window_positions_and_overlap"
+      ]
+    },
+    {
+      "id": "M05",
+      "runner": "py",
+      "file": "backend/ingest.py",
+      "description": "extract first page only",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.93,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_sources_deduplicated_when_one_document_yields_several_chunks"
+      ]
+    },
+    {
+      "id": "M06",
+      "runner": "py",
+      "file": "backend/ingest.py",
+      "description": "wrong FAISS metric/index type",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.37,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_ingest.TestBuildIndex::test_builds_and_persists_index_and_chunks"
+      ]
+    },
+    {
+      "id": "M07",
+      "runner": "py",
+      "file": "backend/ingest.py",
+      "description": "swap source/text in persisted chunks",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.84,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_sources_are_unique_filenames_of_retrieved_chunks"
+      ]
+    },
+    {
+      "id": "M08",
+      "runner": "py",
+      "file": "backend/ingest.py",
+      "description": "wrong embedding model (ingest)",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.31,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_ingest.TestEmbedding::test_get_embedding_calls_sdk_with_model_and_returns_values"
+      ]
+    },
+    {
+      "id": "M09",
+      "runner": "py",
+      "file": "backend/retriever.py",
+      "description": "source mapping swapped",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.95,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_sources_are_unique_filenames_of_retrieved_chunks"
+      ]
+    },
+    {
+      "id": "M10",
+      "runner": "py",
+      "file": "backend/retriever.py",
+      "description": "default top_k changed",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.75,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_sources_are_unique_filenames_of_retrieved_chunks"
+      ]
+    },
+    {
+      "id": "M11",
+      "runner": "py",
+      "file": "backend/retriever.py",
+      "description": "ranking order reversed",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.44,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_retriever.TestRankingAndMapping::test_results_ordered_by_ascending_l2_distance"
+      ]
+    },
+    {
+      "id": "M12",
+      "runner": "py",
+      "file": "backend/retriever.py",
+      "description": "FIX D-01 (must trip strict xfail)",
+      "expect": "xpass",
+      "result": "killed",
+      "seconds": 2.66,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_retriever.TestKnownDefects::test_fewer_chunks_than_top_k_returns_only_real_chunks"
+      ]
+    },
+    {
+      "id": "M13",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "Gemini ignores domain mode",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.81,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_all_four_modes_end_to_end[legal]"
+      ]
+    },
+    {
+      "id": "M14",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "Groq system prompt sent as user",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.55,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_llm.TestDomainPrompts::test_groq_receives_mode_prompt_as_system_message[enterprise]"
+      ]
+    },
+    {
+      "id": "M15",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "fallback mislabels model",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.35,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_fallback_through_api"
+      ]
+    },
+    {
+      "id": "M16",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "fallback retries Gemini instead of Groq",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.86,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_fallback_through_api"
+      ]
+    },
+    {
+      "id": "M17",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "audit truncation length",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.36,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_llm.TestAuditLog::test_answer_truncated_to_100_chars_plus_ellipsis"
+      ]
+    },
+    {
+      "id": "M18",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "confidence threshold boundary",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.92,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_llm.TestConfidenceHeuristicCharacterization::test_thresholds[lengths1-medium]"
+      ]
+    },
+    {
+      "id": "M19",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "empty evidence not low",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 2.63,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_llm.TestConfidenceContract::test_no_evidence_is_low"
+      ]
+    },
+    {
+      "id": "M20",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "audit logging removed",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.69,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_all_four_modes_end_to_end[enterprise]"
+      ]
+    },
+    {
+      "id": "M21",
+      "runner": "py",
+      "file": "backend/llm.py",
+      "description": "citations stripped from prompt",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.58,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_retrieved_context_with_citations_reaches_llm"
+      ]
+    },
+    {
+      "id": "M22",
+      "runner": "py",
+      "file": "backend/main.py",
+      "description": "API sources not de-duplicated",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.49,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_sources_deduplicated_when_one_document_yields_several_chunks"
+      ]
+    },
+    {
+      "id": "M23",
+      "runner": "py",
+      "file": "backend/main.py",
+      "description": "upload skips indexing",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.24,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestUpload::test_upload_saves_and_indexes"
+      ]
+    },
+    {
+      "id": "M24",
+      "runner": "py",
+      "file": "backend/main.py",
+      "description": "API default mode changed",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.76,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_mode_defaults_to_enterprise"
+      ]
+    },
+    {
+      "id": "M25",
+      "runner": "py",
+      "file": "backend/main.py",
+      "description": "CORS widened",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.45,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api::test_cors_allows_vite_dev_origin_only"
+      ]
+    },
+    {
+      "id": "M26",
+      "runner": "py",
+      "file": "backend/main.py",
+      "description": "empty-index response contract",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.13,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "tests.test_api.TestChat::test_empty_index_returns_guidance_message"
+      ]
+    },
+    {
+      "id": "F01",
+      "runner": "js",
+      "file": "frontend/src/App.jsx",
+      "description": "chat request drops mode",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.52,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "chat workflow POSTs question and current mode to /chat and renders answer, confidence, sources, model"
+      ]
+    },
+    {
+      "id": "F02",
+      "runner": "js",
+      "file": "frontend/src/App.jsx",
+      "description": "mode switch keeps history",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.49,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "chat workflow switching mode clears the conversation"
+      ]
+    },
+    {
+      "id": "F03",
+      "runner": "js",
+      "file": "frontend/src/components/Message.jsx",
+      "description": "confidence colour mapping",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.71,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "chat workflow POSTs question and current mode to /chat and renders answer, confidence, sources, model"
+      ]
+    },
+    {
+      "id": "F04",
+      "runner": "js",
+      "file": "frontend/src/components/Message.jsx",
+      "description": "source pluralisation",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.65,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "chat workflow uses singular 'source' and maps medium/low confidence colours"
+      ]
+    },
+    {
+      "id": "F05",
+      "runner": "js",
+      "file": "frontend/src/components/Chat.jsx",
+      "description": "Shift+Enter sends",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.63,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "chat workflow ignores blank input; Shift+Enter inserts a newline instead of sending"
+      ]
+    },
+    {
+      "id": "F06",
+      "runner": "js",
+      "file": "frontend/src/App.jsx",
+      "description": "uploaded file not listed",
+      "expect": "killed",
+      "result": "killed",
+      "seconds": 1.62,
+      "exit_code": 1,
+      "failures": 1,
+      "errors": 0,
+      "failed_tests": [
+        "upload workflow POSTs multipart 'file' to /upload, lists the document and shows success"
+      ]
+    }
+  ]
+}
