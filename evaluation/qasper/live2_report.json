@@ -1,0 +1,130 @@
+{
+ "scope": "live Groq generation over local BGE retrieval on QASPER text; NOT the full Gemini-FAISS application",
+ "criteria": {
+  "frozen_before": "any live call of this experiment",
+  "questions": "the 123 frozen QASPER test questions (retrieval-eligible; retrieval on this set was examined before; answer-level results for 88 of them are new, 35 were generated in the earlier pilot with configuration A)",
+  "configs": {
+   "A": "structure-aware T=256, dense BGE top-4 (reuses 35 exactly-matching pilot answers)",
+   "REF": "A + MiniLM cross-encoder rerank of the dense top-20 (selected on dev)",
+   "D": "REF with an LLM-rewritten search query; evaluated only if it advances on the 41 dev questions"
+  },
+  "fixed": {
+   "generator": "openai/gpt-oss-120b (Groq)",
+   "temperature": 0,
+   "reasoning_effort": "low",
+   "max_completion_tokens": 1024,
+   "escalation": 2048,
+   "prompt": "evaluation/qasper/live_eval.py SYSTEM (unchanged)",
+   "rewriter": "openai/gpt-oss-20b, sees only the question (never references or evidence), max_completion_tokens 256"
+  },
+  "D_dev_rule": "D advances only if dev evidence recall at 1,024 tokens improves >= 0.02 over REF, or MRR@10 >= 0.03 with recall not lower by more than 0.02",
+  "primary_endpoint": "official QASPER answer F1, REF minus A, paired paper-clustered bootstrap (10,000 reps, seed 7)",
+  "decision": "'improved' if 95% CI lower bound > 0; 'non-inferior' if lower bound > -0.05; 'degraded' if upper bound < -0.05; otherwise 'inconclusive'",
+  "secondary": [
+   "abstention frequency",
+   "provider prompt/completion tokens",
+   "end-to-end latency p50/p95 incl. reranking",
+   "rerank and rewrite overhead"
+  ]
+ },
+ "system_prompt_sha256": "527a9d17c4f1b4159c7fbd201bb76f666d8fab333c33237552a826ffd0da365b",
+ "configs": {
+  "A": {
+   "planned": 123,
+   "answered": 102,
+   "failed": 0,
+   "missing": 21,
+   "reused_from_pilot": 35,
+   "truncated": 0,
+   "answer_f1": 0.3798,
+   "abstained": 29,
+   "new_responses_prompt_tokens_mean": 789.5,
+   "new_responses_completion_tokens_mean": 59.6,
+   "retrieval_ms_p50": 6.5,
+   "end_to_end_ms_p50": 541.6,
+   "end_to_end_ms_p95": 44645.0,
+   "end_to_end_excl_pacing_ms_p50": 541.6,
+   "end_to_end_excl_pacing_ms_p95": 1172.2
+  },
+  "REF": {
+   "planned": 123,
+   "answered": 94,
+   "failed": 0,
+   "missing": 29,
+   "reused_from_pilot": 0,
+   "truncated": 0,
+   "answer_f1": 0.4621,
+   "abstained": 18,
+   "new_responses_prompt_tokens_mean": 817.7,
+   "new_responses_completion_tokens_mean": 63.4,
+   "retrieval_ms_p50": 481.9,
+   "end_to_end_ms_p50": 1011.6,
+   "end_to_end_ms_p95": 49643.1,
+   "end_to_end_excl_pacing_ms_p50": 1011.6,
+   "end_to_end_excl_pacing_ms_p95": 1464.9
+  }
+ },
+ "primary_REF_minus_A_answer_f1": {
+  "mean_diff": 0.0711,
+  "ci95": [
+   -0.0064,
+   0.1453
+  ],
+  "papers": 29,
+  "questions": 94,
+  "verdict": "non-inferior"
+ },
+ "sensitivity_new_responses_only": {
+  "mean_diff": 0.0703,
+  "ci95": [
+   -0.0307,
+   0.1672
+  ],
+  "papers": 25,
+  "questions": 66,
+  "verdict": "non-inferior"
+ },
+ "provider_usage_stage2": {
+  "attempted_requests": 162,
+  "responses": 162,
+  "http_errors": 1,
+  "prompt_tokens": 129759,
+  "completion_tokens": 9959,
+  "reasoning_tokens": 6027,
+  "total_tokens": 139718,
+  "models_reported": [
+   "openai/gpt-oss-120b"
+  ],
+  "quota_checks": [
+   {
+    "event": "quota_check",
+    "t": 1795613677.559577,
+    "headers": {
+     "x-ratelimit-limit-requests": "1000",
+     "x-ratelimit-limit-tokens": "8000",
+     "x-ratelimit-remaining-requests": "999",
+     "x-ratelimit-remaining-tokens": "7101",
+     "x-ratelimit-reset-requests": "1m26.4s",
+     "x-ratelimit-reset-tokens": "6.742s"
+    },
+    "remaining_requests": 999,
+    "planned_remaining": 211,
+    "continue": true
+   }
+  ]
+ },
+ "status": {
+  "complete": false,
+  "reason": "stopped safely on Groq free-tier tokens-per-day limit for openai/gpt-oss-120b (200,000 TPD; 199,711 used incl. the earlier pilot); 1 request refused (429), not retried",
+  "completed_new_requests": 161,
+  "planned_new_requests": 211,
+  "remaining": {
+   "A": 21,
+   "REF": 29
+  },
+  "paired_questions": 94,
+  "frozen_endpoint_questions": 123,
+  "interim_caveat": "missing questions are the last ones in run order (not a random subset); the frozen 123-question endpoint is not yet evaluated",
+  "drift_note": "35 A answers reused from the pilot (identical contexts, prompt hash, model id and settings); provider model weights may change silently between runs; new-responses-only sensitivity reported"
+ }
+}

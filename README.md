@@ -112,7 +112,11 @@ Selected vs A on test (paired, paper-clustered 95 % CI): evidence recall @1,024 
 +0.114 [0.025, 0.208]; MRR@10 +0.172 [0.104, 0.244]; ~+435 ms CPU per query. BM25/RRF was
 eliminated by the frozen dev rule although it helped on test. Available in the app as
 `DOCINTEL_RERANKER=minilm` (default off; optional deps `onnxruntime`, `tokenizers`,
-`huggingface_hub`; pool `DOCINTEL_RERANK_POOL`, default 20). Answer-level effect not yet measured.
+`huggingface_hub`; pool `DOCINTEL_RERANK_POOL`, default 20). Live answer-level comparison (Groq `openai/gpt-oss-120b`, same prompt/settings) **stopped on the
+free-tier daily token limit** after 94 of 123 paired questions: answer F1 0.380 (dense) vs 0.462
+(rerank) overall; paired REF − dense **+0.071 [95 % CI −0.006, +0.145]** → "non-inferior" by the
+frozen rule, not "improved"; abstentions 29/102 vs 18/94; +~470 ms per query (p50, excl. pacing).
+Interim only: the missing questions are the last in run order (`evaluation/qasper/live2_report.json`).
 
 ## Evaluated and rejected (kept for transparency)
 
