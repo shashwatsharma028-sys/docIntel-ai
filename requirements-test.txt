@@ -1,0 +1,18 @@
+# Test-only environment for the Phase 0 baseline suite.
+# NOTE: the repository has no production requirements.txt (README references one;
+# see docs/KNOWN_DEFECTS.md D-11). Runtime packages below are the minimum needed
+# to import the backend; they are unpinned here because no pinned production set exists.
+# Versions verified in Phase 0: pymupdf 2.1, faiss-cpu 1.16.0, google-genai 3.6.1,
+# groq 1.7.0, fastapi 0.165.0, numpy 2.5.5, python-dotenv, python-multipart.
+pymupdf
+faiss-cpu
+numpy
+google-genai
+groq
+fastapi
+python-multipart
+python-dotenv
+# test tooling
+pytest
+pytest-cov
+httpx

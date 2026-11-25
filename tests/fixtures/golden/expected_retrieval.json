@@ -1,0 +1,13 @@
+{
+  "_comment": "Expected top-1 source per query. Defined independently by the fixture author from each document's distinctive vocabulary BEFORE running the system; not generated from system output. Valid only for the offline hashed bag-of-words FakeEmbedder (tests/fakes.py); this is a pipeline-wiring check, not a semantic-quality benchmark.",
+  "cases": [
+    {"query": "How many days of annual leave can be carried forward to the next calendar year?", "mode": "enterprise", "expected_top_source": "enterprise_leave_policy.pdf"},
+    {"query": "When do new employees become eligible for annual leave after probation?", "mode": "enterprise", "expected_top_source": "enterprise_leave_policy.pdf"},
+    {"query": "Is there an automatic renewal clause and what notice is needed to cancel the agreement?", "mode": "legal", "expected_top_source": "legal_service_agreement.pdf"},
+    {"query": "Does the indemnification clause have a cap on liability?", "mode": "legal", "expected_top_source": "legal_service_agreement.pdf"},
+    {"query": "What does low haemoglobin and low ferritin mean for anaemia?", "mode": "medical", "expected_top_source": "medical_blood_report.pdf"},
+    {"query": "Is my fasting glucose in the prediabetes range?", "mode": "medical", "expected_top_source": "medical_blood_report.pdf"},
+    {"query": "Where does the Calvin cycle take place and what does rubisco do?", "mode": "study", "expected_top_source": "study_photosynthesis_notes.pdf"},
+    {"query": "Explain chlorophyll in the thylakoid membranes of the chloroplast", "mode": "study", "expected_top_source": "study_photosynthesis_notes.pdf"}
+  ]
+}

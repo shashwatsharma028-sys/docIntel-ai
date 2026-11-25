@@ -8,3 +8,8 @@ __pycache__/
 *.pyc
 .DS_Store
 dist/
+# Phase 0 test artefacts
+.coverage
+htmlcov/
+.pytest_cache/
+frontend/coverage/
