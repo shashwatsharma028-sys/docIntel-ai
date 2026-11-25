@@ -1,0 +1,12 @@
+{
+ "rule": "a step (B over A, C over B) advances only if dev primary improves by >= 0.02, or MRR@10 improves by >= 0.03 with primary not lower by more than 0.02",
+ "decisions": {
+  "B_over_A": false,
+  "rerank_over_A": true
+ },
+ "chain": [
+  "A",
+  "REF"
+ ],
+ "selected": "REF"
+}
