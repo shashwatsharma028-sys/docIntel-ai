@@ -1,0 +1,22 @@
+{
+ "acceptance": {
+  "max_recall_drop": 0.02,
+  "min_mrr_gain": 0.05,
+  "min_recall_gain": 0.05,
+  "max_token_ratio": 0.8
+ },
+ "B": {
+  "family": "B",
+  "T": 384
+ },
+ "C": {
+  "family": "C",
+  "T": 192,
+  "header": false
+ },
+ "supplementary_size_matched_B": {
+  "family": "B",
+  "T": 192
+ },
+ "supplementary_note": "Declared after dev, before test: B at C's token budget, to separate structure effects from chunk-size effects. Does not change the acceptance rule."
+}
