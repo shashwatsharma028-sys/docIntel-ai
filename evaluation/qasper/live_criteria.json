@@ -1,0 +1,14 @@
+{
+ "frozen_before_any_generation_call": true,
+ "comparison": "structure_T256 minus fixed_T256 (same questions, model, prompt, reasoning and output settings)",
+ "answer_f1": {"metric": "official QASPER answer F1 (max over annotations), per question",
+               "ci": "95% paired bootstrap, clustered by paper, 10,000 reps, seed 7",
+               "non_inferiority_margin": 0.05,
+               "decision": "'better' if CI lower bound > 0; 'non-inferior' if lower bound > -0.05; 'degraded' if CI upper bound < -0.05; otherwise 'inconclusive'"},
+ "faithfulness": {"metric": "RAGAS 0.4.4 Faithfulness, judge openai/gpt-oss-20b, 19 frozen questions x 2 configs",
+                  "decision": "reported with the same paired, paper-clustered CI; no claim if inconclusive"},
+ "missing_failed_truncated": "reported separately; questions missing in either config are excluded from paired comparisons and counted",
+ "quota_rule": "after the first generation response: continue only if x-ratelimit-remaining-requests >= 1.25 x remaining planned requests and the provider did not report a daily-token or paid-tier condition; pace to the per-minute token window; stop on any daily-limit 429",
+ "budgets": {"max_attempted_requests": 200, "max_tokens": 450000,
+             "reservation": "prompt chars/3 + requested completion limit, checked before every request"}
+}
