@@ -1,5 +1,6 @@
 import asyncio
 import os
+import weakref
 import shutil
 import uuid
 from fastapi import FastAPI, HTTPException, UploadFile, File
@@ -29,8 +30,15 @@ PDF_DIR = "data/pdfs"
 # stays responsive; semaphores bound in-flight work, and therefore concurrent provider requests.
 MAX_CONCURRENT_CHAT = int(os.environ.get("DOCINTEL_MAX_CONCURRENT_CHAT", "8"))
 MAX_CONCURRENT_UPLOADS = int(os.environ.get("DOCINTEL_MAX_CONCURRENT_UPLOADS", "2"))
-_chat_slots = asyncio.Semaphore(MAX_CONCURRENT_CHAT)
-_upload_slots = asyncio.Semaphore(MAX_CONCURRENT_UPLOADS)
+_slots: "weakref.WeakKeyDictionary" = weakref.WeakKeyDictionary()
+
+
+def _slot(kind: str) -> asyncio.Semaphore:
+    """Per-event-loop semaphores (an asyncio.Semaphore is bound to the loop that first waits on it)."""
+    per_loop = _slots.setdefault(asyncio.get_running_loop(), {})
+    if kind not in per_loop:
+        per_loop[kind] = asyncio.Semaphore(MAX_CONCURRENT_CHAT if kind == "chat" else MAX_CONCURRENT_UPLOADS)
+    return per_loop[kind]
 
 
 def safe_upload_path(filename: str | None) -> tuple[str, str]:
@@ -64,7 +72,7 @@ def _store_upload(src, name, path):
 async def upload_pdf(file: UploadFile = File(...)):
     os.makedirs(PDF_DIR, exist_ok=True)
     name, path = safe_upload_path(file.filename)
-    async with _upload_slots:
+    async with _slot("upload"):
         await run_in_threadpool(_store_upload, file.file, name, path)
         await run_in_threadpool(build_index)  # builds are serialised by the index build lock
     return {"message": f"{name} uploaded and indexed successfully"}
@@ -86,7 +94,7 @@ def _answer(req: ChatRequest) -> dict:
 
 @app.post("/chat")
 async def chat(req: ChatRequest):
-    async with _chat_slots:
+    async with _slot("chat"):
         return await run_in_threadpool(_answer, req)
 
 @app.get("/health")

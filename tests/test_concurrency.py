@@ -67,7 +67,7 @@ def test_health_responsive_while_chat_blocks_in_provider(indexed, strict_externa
 def test_provider_concurrency_is_bounded(indexed, strict_external_clients, monkeypatch):
     llm = SlowLLM(0.1)
     strict_external_clients["gemini"].models.generate_content.side_effect = llm
-    monkeypatch.setattr(main, "_chat_slots", asyncio.Semaphore(3), raising=False)
+    monkeypatch.setattr(main, "MAX_CONCURRENT_CHAT", 3, raising=False)
 
     async def scenario():
         async with asgi_client() as c:
@@ -104,3 +104,14 @@ def test_concurrent_uploads_incl_duplicate_names_publish_coherent_index(isolated
     on_disk = {p.name: ingest.chunk_text(ingest.parse_pdf(str(p))) for p in (isolated_workdir / "data/pdfs").iterdir()}
     assert sorted(gen.chunks) == sorted((n, t) for n, ts in on_disk.items() for t in ts)  # index == final folder
     assert len(on_disk) == 5
+
+
+def test_bounds_work_across_event_loops(indexed, strict_external_clients):
+    """Regression: a module-level asyncio.Semaphore raised 'bound to a different event loop'."""
+    strict_external_clients["gemini"].models.generate_content.side_effect = SlowLLM(0.01)
+
+    async def burst():
+        async with asgi_client() as c:
+            return await asyncio.gather(*[c.post("/chat", json={"question": "q"}) for _ in range(12)])
+    for _ in range(3):  # three separate event loops, each with contention
+        assert all(r.status_code == 200 for r in run(burst()))

@@ -77,15 +77,19 @@ def load_baseline_app():
 
 
 async def level(app, provider, c):
-    lat, health, errors = [], [], 0
+    lat, lag, gaps, errors = [], [], [], 0
     stop = asyncio.Event()
     async with httpx.AsyncClient(transport=httpx.ASGITransport(app=app), base_url="http://t", timeout=120) as cl:
         async def probe():
+            last_done = time.perf_counter()
             while not stop.is_set():
                 t = time.perf_counter()
-                await cl.get("/health")
-                health.append((time.perf_counter() - t) * 1000)
                 await asyncio.sleep(HEALTH_EVERY_S)
+                lag.append((time.perf_counter() - t - HEALTH_EVERY_S) * 1000)  # event-loop lag
+                await cl.get("/health")
+                now = time.perf_counter()
+                gaps.append((now - last_done) * 1000)  # time between /health responses
+                last_done = now
         queue = list(range(REQUESTS_PER_LEVEL))
 
         async def worker():
@@ -104,7 +108,8 @@ async def level(app, provider, c):
         await p
     return {"concurrency": c, "requests": len(lat), "failures": errors, "wall_s": round(wall, 3),
             "throughput_rps": round(len(lat) / wall, 2), "latency": summarize_ms(lat), "latency_raw_ms": lat,
-            "health": summarize_ms(health), "health_raw_ms": health, "provider_peak_concurrency": provider.peak}
+            "event_loop_lag": summarize_ms(lag), "health_response_gap": summarize_ms(gaps),
+            "event_loop_lag_raw_ms": lag, "health_gap_raw_ms": gaps, "provider_peak_concurrency": provider.peak}
 
 
 def main_():
@@ -136,8 +141,8 @@ def main_():
                 res["audit_rows"] = sum(1 for _ in __import__("csv").reader(f))
             out["results"][name].append(res)
             print(f"{name:9s} c={c:2d} rps {res['throughput_rps']:6.2f} p50 {res['latency']['p50_ms']:8.1f} "
-                  f"p95 {res['latency']['p95_ms']:8.1f} fail {res['failures']} health p95 {res['health']['p95_ms']:7.1f} "
-                  f"max {res['health']['max_ms']:7.1f} peak-provider {res['provider_peak_concurrency']} audit {res['audit_rows']}", flush=True)
+                  f"p95 {res['latency']['p95_ms']:8.1f} fail {res['failures']} loop-lag p95 {res['event_loop_lag']['p95_ms']:7.1f} "
+                  f"max {res['event_loop_lag']['max_ms']:7.1f} health-gap max {res['health_response_gap']['max_ms']:7.1f} peak-provider {res['provider_peak_concurrency']} audit {res['audit_rows']}", flush=True)
     dest = ROOT / "docs" / "phase4" / "load_test.json"
     dest.parent.mkdir(parents=True, exist_ok=True)
     dest.write_text(json.dumps(out, indent=1) + "\n")
