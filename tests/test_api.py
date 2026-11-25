@@ -178,8 +178,7 @@ class TestKnownDefects:
     def test_llm_outage_is_not_reported_as_missing_documents(self, golden_uploaded, gemini_down, groq_down):
         assert golden_uploaded.post("/chat", json={"question": "q"}).json()["answer"] != NO_DOCS["answer"]
 
-    @pytest.mark.known_defect
-    @pytest.mark.xfail(strict=True, reason="D-05: a malformed PDF stays in data/pdfs and breaks every later upload")
+    # D-05 FIXED (Phase 1): strict xfail removed; original assertions unchanged.
     def test_malformed_upload_does_not_break_later_uploads(self, client, embedder):
         upload(client, "corrupt.pdf", b"not a pdf")
         assert upload(client, "enterprise_leave_policy.pdf").status_code == 200

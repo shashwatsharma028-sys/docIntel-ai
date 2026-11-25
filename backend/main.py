@@ -1,9 +1,10 @@
 import os
 import shutil
+import uuid
 from fastapi import FastAPI, HTTPException, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from backend.ingest import build_index
+from backend.ingest import build_index, parse_pdf
 from backend.retriever import retrieve
 from backend.llm import ask
 
@@ -39,8 +40,18 @@ def safe_upload_path(filename: str | None) -> tuple[str, str]:
 async def upload_pdf(file: UploadFile = File(...)):
     os.makedirs(PDF_DIR, exist_ok=True)
     name, path = safe_upload_path(file.filename)
-    with open(path, "wb") as f:
-        shutil.copyfileobj(file.file, f)
+    # D-05: stage under a name the indexer ignores; a PDF that cannot be parsed never enters
+    # the corpus (and never replaces an existing good file). The error still propagates (HTTP 500).
+    staged = os.path.join(PDF_DIR, f".upload-{uuid.uuid4().hex}.partial")
+    try:
+        with open(staged, "wb") as f:
+            shutil.copyfileobj(file.file, f)
+        if name.endswith(".pdf"):
+            parse_pdf(staged)
+        os.replace(staged, path)
+    finally:
+        if os.path.exists(staged):
+            os.remove(staged)
     build_index()
     return {"message": f"{name} uploaded and indexed successfully"}
 
