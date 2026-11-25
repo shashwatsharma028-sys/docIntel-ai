@@ -87,8 +87,59 @@ def cache_info() -> dict:
     return {"entries": entries, "max_entries": MAX_CACHED_GENERATIONS, **STATS}
 
 
+# ---------------------------------------------------------------------------------------------
+# Optional cross-encoder reranking (DOCINTEL_RERANKER=minilm; default off = original dense ranking).
+# The top DOCINTEL_RERANK_POOL dense candidates are rescored by backend.reranker; on any reranker
+# failure the dense order is returned (counted in STATS["rerank_failures"]).
+# ---------------------------------------------------------------------------------------------
+_RERANKER = None
+_reranker_lock = threading.Lock()
+STATS.update(reranked=0, rerank_failures=0)
+
+
+def reranker_mode() -> str:
+    mode = os.environ.get("DOCINTEL_RERANKER", "off")
+    if mode not in ("off", "minilm"):
+        raise ValueError(f"DOCINTEL_RERANKER must be 'off' or 'minilm', got {mode!r}")
+    return mode
+
+
+def rerank_pool() -> int:
+    n = int(os.environ.get("DOCINTEL_RERANK_POOL", "20"))
+    if not 1 <= n <= 100:
+        raise ValueError(f"DOCINTEL_RERANK_POOL must be in 1..100, got {n}")
+    return n
+
+
+def _get_reranker():
+    global _RERANKER
+    with _reranker_lock:
+        if _RERANKER is None:
+            from backend.reranker import MiniLMReranker
+            _RERANKER = MiniLMReranker()
+        return _RERANKER
+
+
+def _retrieve_reranked(gen, query, top_k):
+    index, chunks = gen.index, gen.chunks
+    query_vec = np.array([get_embedding(query)]).astype("float32")
+    pool = max(top_k, rerank_pool())
+    _, indices = index.search(query_vec, pool)
+    cand = [int(i) for i in indices[0] if 0 <= i < len(chunks)]
+    try:
+        scores = _get_reranker().score(query, [chunks[i][1] for i in cand])
+        cand = [cand[j] for j in np.argsort(-np.asarray(scores), kind="stable")]
+        STATS["reranked"] += 1
+    except Exception as e:  # availability: fall back to the dense order
+        STATS["rerank_failures"] += 1
+        print(f"Reranker failed ({type(e).__name__}: {e}); using dense order")
+    return [{"source": chunks[i][0], "text": chunks[i][1]} for i in cand[:top_k]]
+
+
 def retrieve(query: str, top_k: int = 4) -> list[dict]:
     gen = current_generation()
+    if reranker_mode() == "minilm":
+        return _retrieve_reranked(gen, query, top_k)
     index, chunks = gen.index, gen.chunks
     query_vec = np.array([get_embedding(query)]).astype("float32")
     _, indices = index.search(query_vec, top_k)

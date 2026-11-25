@@ -80,6 +80,9 @@ MUTANTS = [
     # ---- Phase 3: optional structure-aware chunking
     ("S01", "py", "backend/structure_chunker.py", 'room = budget - (count(s["head"] + ". ") if s["head"] else 0)', "room = budget", "heading not reserved in chunk budget", "killed"),
     ("S02", "py", "backend/ingest.py", 'os.environ.get("DOCINTEL_CHUNKING", "words")', 'os.environ.get("DOCINTEL_CHUNKING", "structure")', "default chunking strategy changed", "killed"),
+    # ---- optional reranking
+    ("R01", "py", "backend/retriever.py", "    pool = max(top_k, rerank_pool())", "    pool = 100", "rerank candidate pool unbounded", "killed"),
+    ("R02", "py", "backend/retriever.py", '        cand = [cand[j] for j in np.argsort(-np.asarray(scores), kind="stable")]', "        pass", "reranker scores ignored", "killed"),
     ("F01", "js", "frontend/src/App.jsx", "JSON.stringify({ question, mode })", "JSON.stringify({ question })", "chat request drops mode", "killed"),
     ("F02", "js", "frontend/src/App.jsx", "    setMode(newMode)\n    setMessages([])", "    setMode(newMode)", "mode switch keeps history", "killed"),
     ("F03", "js", "frontend/src/components/Message.jsx", 'high: "text-green-400"', 'high: "text-red-400"', "confidence colour mapping", "killed"),
