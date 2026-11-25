@@ -88,8 +88,13 @@ def build_pdfs(folder: Path):
 
 
 class Tok:
+    """Counts BGE WordPiece tokens WITHOUT truncation (the embedding tokenizer truncates at 512,
+    which would cap counts; a first run had this bug and understated configuration A's tokens)."""
     def __init__(self, tokenizer):
-        self.t = tokenizer
+        from tokenizers import Tokenizer
+        self.t = Tokenizer.from_str(tokenizer.to_str())
+        self.t.no_truncation()
+        self.t.no_padding()
 
     def n(self, text):
         return len(self.t.encode(text, add_special_tokens=False).ids)

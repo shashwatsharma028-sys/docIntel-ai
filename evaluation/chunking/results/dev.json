@@ -27,17 +27,17 @@
     "recall@4": 1.0,
     "precision@4": 0.25,
     "rr@10": 0.9583,
-    "context_tokens": 1919.0,
+    "context_tokens": 2018.0,
     "n_questions": 24,
     "n_chunks": 4,
-    "mean_chunk_tokens": 479.8,
-    "max_chunk_tokens": 512,
+    "mean_chunk_tokens": 504.5,
+    "max_chunk_tokens": 611,
     "truncated_by_bge_512": 0.25,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 6.392,
-    "query_latency_p95_ms": 9.512,
-    "index_ms": 448.4
+    "query_latency_p50_ms": 5.895,
+    "query_latency_p95_ms": 7.012,
+    "index_ms": 336.4
    },
    "per_query": [
     {
@@ -45,216 +45,216 @@
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.643
+     "latency_ms": 6.833
     },
     {
      "qid": "D02",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.5
+     "latency_ms": 7.012
     },
     {
      "qid": "D03",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.354
+     "latency_ms": 5.958
     },
     {
      "qid": "D04",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.187
+     "latency_ms": 6.235
     },
     {
      "qid": "D05",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.305
+     "latency_ms": 6.344
     },
     {
      "qid": "D06",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.091
+     "latency_ms": 6.851
     },
     {
      "qid": "D07",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 0.5,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.657
+     "latency_ms": 5.394
     },
     {
      "qid": "D08",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 0.5,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.638
+     "latency_ms": 5.651
     },
     {
      "qid": "D09",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.387
+     "latency_ms": 4.988
     },
     {
      "qid": "D10",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.679
+     "latency_ms": 6.287
     },
     {
      "qid": "D11",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.239
+     "latency_ms": 6.372
     },
     {
      "qid": "D12",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.796
+     "latency_ms": 6.037
     },
     {
      "qid": "D13",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 9.512
+     "latency_ms": 5.481
     },
     {
      "qid": "D14",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.392
+     "latency_ms": 7.869
     },
     {
      "qid": "D15",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.898
+     "latency_ms": 6.296
     },
     {
      "qid": "D16",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.703
+     "latency_ms": 5.895
     },
     {
      "qid": "D17",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.337
+     "latency_ms": 5.543
     },
     {
      "qid": "D18",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.244
+     "latency_ms": 6.413
     },
     {
      "qid": "D19",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.595
+     "latency_ms": 5.11
     },
     {
      "qid": "D20",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.116
+     "latency_ms": 5.84
     },
     {
      "qid": "D21",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.493
+     "latency_ms": 4.97
     },
     {
      "qid": "D22",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 10.345
+     "latency_ms": 5.362
     },
     {
      "qid": "D23",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.893
+     "latency_ms": 5.437
     },
     {
      "qid": "D24",
      "recall@4": 1.0,
      "precision@4": 0.25,
      "rr@10": 1.0,
-     "context_tokens": 1919,
+     "context_tokens": 2018,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.148
+     "latency_ms": 5.571
     }
    ]
   },
@@ -276,9 +276,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 6.225,
-    "query_latency_p95_ms": 8.713,
-    "index_ms": 406.3
+    "query_latency_p50_ms": 5.564,
+    "query_latency_p95_ms": 11.085,
+    "index_ms": 343.4
    },
    "per_query": [
     {
@@ -288,7 +288,7 @@
      "rr@10": 1.0,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.855
+     "latency_ms": 8.238
     },
     {
      "qid": "D02",
@@ -297,7 +297,7 @@
      "rr@10": 1.0,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.962
+     "latency_ms": 9.461
     },
     {
      "qid": "D03",
@@ -306,7 +306,7 @@
      "rr@10": 1.0,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 9.033
+     "latency_ms": 11.112
     },
     {
      "qid": "D04",
@@ -315,7 +315,7 @@
      "rr@10": 0.25,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.538
+     "latency_ms": 11.085
     },
     {
      "qid": "D05",
@@ -324,7 +324,7 @@
      "rr@10": 0.5,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.94
+     "latency_ms": 10.882
     },
     {
      "qid": "D06",
@@ -333,7 +333,7 @@
      "rr@10": 1.0,
      "context_tokens": 510,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.296
+     "latency_ms": 6.488
     },
     {
      "qid": "D07",
@@ -342,7 +342,7 @@
      "rr@10": 1.0,
      "context_tokens": 414,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.182
+     "latency_ms": 5.081
     },
     {
      "qid": "D08",
@@ -351,7 +351,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.905
+     "latency_ms": 5.48
     },
     {
      "qid": "D09",
@@ -360,7 +360,7 @@
      "rr@10": 1.0,
      "context_tokens": 435,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.606
+     "latency_ms": 4.58
     },
     {
      "qid": "D10",
@@ -369,7 +369,7 @@
      "rr@10": 1.0,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.713
+     "latency_ms": 6.156
     },
     {
      "qid": "D11",
@@ -378,7 +378,7 @@
      "rr@10": 1.0,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.191
+     "latency_ms": 5.831
     },
     {
      "qid": "D12",
@@ -387,7 +387,7 @@
      "rr@10": 0.5,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.071
+     "latency_ms": 5.564
     },
     {
      "qid": "D13",
@@ -396,7 +396,7 @@
      "rr@10": 1.0,
      "context_tokens": 413,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.97
+     "latency_ms": 4.768
     },
     {
      "qid": "D14",
@@ -405,7 +405,7 @@
      "rr@10": 1.0,
      "context_tokens": 413,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.591
+     "latency_ms": 5.404
     },
     {
      "qid": "D15",
@@ -414,7 +414,7 @@
      "rr@10": 1.0,
      "context_tokens": 414,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.284
+     "latency_ms": 5.558
     },
     {
      "qid": "D16",
@@ -423,7 +423,7 @@
      "rr@10": 0.5,
      "context_tokens": 493,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.965
+     "latency_ms": 5.851
     },
     {
      "qid": "D17",
@@ -432,7 +432,7 @@
      "rr@10": 0.5,
      "context_tokens": 493,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.156
+     "latency_ms": 4.903
     },
     {
      "qid": "D18",
@@ -441,7 +441,7 @@
      "rr@10": 1.0,
      "context_tokens": 493,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.878
+     "latency_ms": 5.668
     },
     {
      "qid": "D19",
@@ -450,7 +450,7 @@
      "rr@10": 0.5,
      "context_tokens": 493,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.084
+     "latency_ms": 5.032
     },
     {
      "qid": "D20",
@@ -459,7 +459,7 @@
      "rr@10": 1.0,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.84
+     "latency_ms": 5.337
     },
     {
      "qid": "D21",
@@ -468,7 +468,7 @@
      "rr@10": 1.0,
      "context_tokens": 417,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.307
+     "latency_ms": 4.684
     },
     {
      "qid": "D22",
@@ -477,7 +477,7 @@
      "rr@10": 1.0,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.225
+     "latency_ms": 5.432
     },
     {
      "qid": "D23",
@@ -486,7 +486,7 @@
      "rr@10": 1.0,
      "context_tokens": 511,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.301
+     "latency_ms": 5.64
     },
     {
      "qid": "D24",
@@ -497,7 +497,7 @@
      "spans_missing_from_top4": [
       "six carbon dioxide plus six water yields glucose plus six oxygen"
      ],
-     "latency_ms": 6.046
+     "latency_ms": 5.953
     }
    ]
   },
@@ -519,9 +519,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 6.002,
-    "query_latency_p95_ms": 9.994,
-    "index_ms": 368.6
+    "query_latency_p50_ms": 6.356,
+    "query_latency_p95_ms": 9.533,
+    "index_ms": 354.8
    },
    "per_query": [
     {
@@ -531,7 +531,7 @@
      "rr@10": 1.0,
      "context_tokens": 767,
      "spans_missing_from_top4": [],
-     "latency_ms": 10.555
+     "latency_ms": 6.24
     },
     {
      "qid": "D02",
@@ -540,7 +540,7 @@
      "rr@10": 1.0,
      "context_tokens": 719,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.007
+     "latency_ms": 7.26
     },
     {
      "qid": "D03",
@@ -549,7 +549,7 @@
      "rr@10": 1.0,
      "context_tokens": 768,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.557
+     "latency_ms": 5.59
     },
     {
      "qid": "D04",
@@ -558,7 +558,7 @@
      "rr@10": 1.0,
      "context_tokens": 719,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.559
+     "latency_ms": 10.609
     },
     {
      "qid": "D05",
@@ -567,7 +567,7 @@
      "rr@10": 0.5,
      "context_tokens": 686,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.265
+     "latency_ms": 8.442
     },
     {
      "qid": "D06",
@@ -576,7 +576,7 @@
      "rr@10": 1.0,
      "context_tokens": 768,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.402
+     "latency_ms": 9.533
     },
     {
      "qid": "D07",
@@ -585,7 +585,7 @@
      "rr@10": 1.0,
      "context_tokens": 632,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.67
+     "latency_ms": 8.773
     },
     {
      "qid": "D08",
@@ -594,7 +594,7 @@
      "rr@10": 1.0,
      "context_tokens": 680,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.662
+     "latency_ms": 6.88
     },
     {
      "qid": "D09",
@@ -603,7 +603,7 @@
      "rr@10": 0.5,
      "context_tokens": 680,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.443
+     "latency_ms": 5.995
     },
     {
      "qid": "D10",
@@ -612,7 +612,7 @@
      "rr@10": 1.0,
      "context_tokens": 718,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.021
+     "latency_ms": 6.58
     },
     {
      "qid": "D11",
@@ -621,7 +621,7 @@
      "rr@10": 1.0,
      "context_tokens": 718,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.551
+     "latency_ms": 6.354
     },
     {
      "qid": "D12",
@@ -630,7 +630,7 @@
      "rr@10": 1.0,
      "context_tokens": 718,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.473
+     "latency_ms": 5.862
     },
     {
      "qid": "D13",
@@ -639,7 +639,7 @@
      "rr@10": 1.0,
      "context_tokens": 718,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.299
+     "latency_ms": 5.016
     },
     {
      "qid": "D14",
@@ -648,7 +648,7 @@
      "rr@10": 1.0,
      "context_tokens": 719,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.002
+     "latency_ms": 5.885
     },
     {
      "qid": "D15",
@@ -657,7 +657,7 @@
      "rr@10": 1.0,
      "context_tokens": 632,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.851
+     "latency_ms": 7.07
     },
     {
      "qid": "D16",
@@ -666,7 +666,7 @@
      "rr@10": 0.5,
      "context_tokens": 683,
      "spans_missing_from_top4": [],
-     "latency_ms": 9.994
+     "latency_ms": 6.015
     },
     {
      "qid": "D17",
@@ -675,7 +675,7 @@
      "rr@10": 0.5,
      "context_tokens": 639,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.164
+     "latency_ms": 5.87
     },
     {
      "qid": "D18",
@@ -684,7 +684,7 @@
      "rr@10": 1.0,
      "context_tokens": 634,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.514
+     "latency_ms": 6.963
     },
     {
      "qid": "D19",
@@ -693,7 +693,7 @@
      "rr@10": 1.0,
      "context_tokens": 682,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.436
+     "latency_ms": 6.257
     },
     {
      "qid": "D20",
@@ -702,7 +702,7 @@
      "rr@10": 1.0,
      "context_tokens": 722,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.741
+     "latency_ms": 6.43
     },
     {
      "qid": "D21",
@@ -711,7 +711,7 @@
      "rr@10": 1.0,
      "context_tokens": 722,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.053
+     "latency_ms": 5.82
     },
     {
      "qid": "D22",
@@ -720,7 +720,7 @@
      "rr@10": 0.5,
      "context_tokens": 722,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.794
+     "latency_ms": 7.428
     },
     {
      "qid": "D23",
@@ -729,7 +729,7 @@
      "rr@10": 1.0,
      "context_tokens": 722,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.998
+     "latency_ms": 7.139
     },
     {
      "qid": "D24",
@@ -738,7 +738,7 @@
      "rr@10": 1.0,
      "context_tokens": 722,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.957
+     "latency_ms": 6.356
     }
    ]
   },
@@ -760,9 +760,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 5.587,
-    "query_latency_p95_ms": 6.817,
-    "index_ms": 372.5
+    "query_latency_p50_ms": 5.798,
+    "query_latency_p95_ms": 7.76,
+    "index_ms": 380.0
    },
    "per_query": [
     {
@@ -772,7 +772,7 @@
      "rr@10": 1.0,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.817
+     "latency_ms": 6.745
     },
     {
      "qid": "D02",
@@ -781,7 +781,7 @@
      "rr@10": 1.0,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.563
+     "latency_ms": 6.746
     },
     {
      "qid": "D03",
@@ -790,7 +790,7 @@
      "rr@10": 1.0,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.646
+     "latency_ms": 5.875
     },
     {
      "qid": "D04",
@@ -799,7 +799,7 @@
      "rr@10": 1.0,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.819
+     "latency_ms": 5.944
     },
     {
      "qid": "D05",
@@ -808,7 +808,7 @@
      "rr@10": 0.5,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.433
+     "latency_ms": 5.884
     },
     {
      "qid": "D06",
@@ -817,7 +817,7 @@
      "rr@10": 1.0,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.194
+     "latency_ms": 8.35
     },
     {
      "qid": "D07",
@@ -826,7 +826,7 @@
      "rr@10": 1.0,
      "context_tokens": 929,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.023
+     "latency_ms": 5.288
     },
     {
      "qid": "D08",
@@ -835,7 +835,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 929,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.794
+     "latency_ms": 5.203
     },
     {
      "qid": "D09",
@@ -844,7 +844,7 @@
      "rr@10": 1.0,
      "context_tokens": 929,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.429
+     "latency_ms": 4.918
     },
     {
      "qid": "D10",
@@ -853,7 +853,7 @@
      "rr@10": 1.0,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.179
+     "latency_ms": 6.5
     },
     {
      "qid": "D11",
@@ -862,7 +862,7 @@
      "rr@10": 1.0,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 9.66
+     "latency_ms": 5.986
     },
     {
      "qid": "D12",
@@ -871,7 +871,7 @@
      "rr@10": 1.0,
      "context_tokens": 929,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.178
+     "latency_ms": 5.942
     },
     {
      "qid": "D13",
@@ -880,7 +880,7 @@
      "rr@10": 1.0,
      "context_tokens": 1021,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.365
+     "latency_ms": 5.282
     },
     {
      "qid": "D14",
@@ -889,7 +889,7 @@
      "rr@10": 1.0,
      "context_tokens": 929,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.619
+     "latency_ms": 5.415
     },
     {
      "qid": "D15",
@@ -898,7 +898,7 @@
      "rr@10": 0.5,
      "context_tokens": 929,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.674
+     "latency_ms": 5.878
     },
     {
      "qid": "D16",
@@ -907,7 +907,7 @@
      "rr@10": 0.5,
      "context_tokens": 769,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.453
+     "latency_ms": 5.859
     },
     {
      "qid": "D17",
@@ -916,7 +916,7 @@
      "rr@10": 0.5,
      "context_tokens": 768,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.869
+     "latency_ms": 4.824
     },
     {
      "qid": "D18",
@@ -925,7 +925,7 @@
      "rr@10": 1.0,
      "context_tokens": 767,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.195
+     "latency_ms": 5.329
     },
     {
      "qid": "D19",
@@ -934,7 +934,7 @@
      "rr@10": 1.0,
      "context_tokens": 769,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.587
+     "latency_ms": 4.817
     },
     {
      "qid": "D20",
@@ -943,7 +943,7 @@
      "rr@10": 1.0,
      "context_tokens": 768,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.709
+     "latency_ms": 7.76
     },
     {
      "qid": "D21",
@@ -952,7 +952,7 @@
      "rr@10": 1.0,
      "context_tokens": 801,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.305
+     "latency_ms": 4.787
     },
     {
      "qid": "D22",
@@ -961,7 +961,7 @@
      "rr@10": 1.0,
      "context_tokens": 801,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.47
+     "latency_ms": 5.592
     },
     {
      "qid": "D23",
@@ -970,7 +970,7 @@
      "rr@10": 1.0,
      "context_tokens": 801,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.172
+     "latency_ms": 5.798
     },
     {
      "qid": "D24",
@@ -979,7 +979,7 @@
      "rr@10": 1.0,
      "context_tokens": 801,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.979
+     "latency_ms": 5.271
     }
    ]
   },
@@ -1001,9 +1001,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 5.619,
-    "query_latency_p95_ms": 7.1,
-    "index_ms": 565.0
+    "query_latency_p50_ms": 4.749,
+    "query_latency_p95_ms": 6.387,
+    "index_ms": 554.7
    },
    "per_query": [
     {
@@ -1013,7 +1013,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.581
+     "latency_ms": 6.387
     },
     {
      "qid": "D02",
@@ -1022,7 +1022,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.197
+     "latency_ms": 6.359
     },
     {
      "qid": "D03",
@@ -1031,7 +1031,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.031
+     "latency_ms": 5.355
     },
     {
      "qid": "D04",
@@ -1040,7 +1040,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.224
+     "latency_ms": 5.432
     },
     {
      "qid": "D05",
@@ -1049,7 +1049,7 @@
      "rr@10": 1.0,
      "context_tokens": 1153,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.946
+     "latency_ms": 5.343
     },
     {
      "qid": "D06",
@@ -1058,7 +1058,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.1
+     "latency_ms": 6.42
     },
     {
      "qid": "D07",
@@ -1067,7 +1067,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.49
+     "latency_ms": 4.662
     },
     {
      "qid": "D08",
@@ -1076,7 +1076,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.497
+     "latency_ms": 4.779
     },
     {
      "qid": "D09",
@@ -1085,7 +1085,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.929
+     "latency_ms": 4.104
     },
     {
      "qid": "D10",
@@ -1094,7 +1094,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.922
+     "latency_ms": 5.777
     },
     {
      "qid": "D11",
@@ -1103,7 +1103,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.709
+     "latency_ms": 5.418
     },
     {
      "qid": "D12",
@@ -1112,7 +1112,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.043
+     "latency_ms": 4.89
     },
     {
      "qid": "D13",
@@ -1121,7 +1121,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.328
+     "latency_ms": 4.096
     },
     {
      "qid": "D14",
@@ -1130,7 +1130,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.625
+     "latency_ms": 4.451
     },
     {
      "qid": "D15",
@@ -1139,7 +1139,7 @@
      "rr@10": 1.0,
      "context_tokens": 1185,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.114
+     "latency_ms": 4.756
     },
     {
      "qid": "D16",
@@ -1148,7 +1148,7 @@
      "rr@10": 1.0,
      "context_tokens": 1020,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.209
+     "latency_ms": 4.749
     },
     {
      "qid": "D17",
@@ -1157,7 +1157,7 @@
      "rr@10": 1.0,
      "context_tokens": 783,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.71
+     "latency_ms": 3.726
     },
     {
      "qid": "D18",
@@ -1166,7 +1166,7 @@
      "rr@10": 1.0,
      "context_tokens": 783,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.619
+     "latency_ms": 4.389
     },
     {
      "qid": "D19",
@@ -1175,7 +1175,7 @@
      "rr@10": 1.0,
      "context_tokens": 1025,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.086
+     "latency_ms": 4.003
     },
     {
      "qid": "D20",
@@ -1184,7 +1184,7 @@
      "rr@10": 1.0,
      "context_tokens": 1025,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.179
+     "latency_ms": 4.187
     },
     {
      "qid": "D21",
@@ -1193,7 +1193,7 @@
      "rr@10": 1.0,
      "context_tokens": 1025,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.102
+     "latency_ms": 3.666
     },
     {
      "qid": "D22",
@@ -1202,7 +1202,7 @@
      "rr@10": 1.0,
      "context_tokens": 1025,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.616
+     "latency_ms": 4.337
     },
     {
      "qid": "D23",
@@ -1211,7 +1211,7 @@
      "rr@10": 1.0,
      "context_tokens": 1025,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.571
+     "latency_ms": 4.781
     },
     {
      "qid": "D24",
@@ -1220,7 +1220,7 @@
      "rr@10": 1.0,
      "context_tokens": 1025,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.9
+     "latency_ms": 4.452
     }
    ]
   },
@@ -1243,9 +1243,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 5.039,
-    "query_latency_p95_ms": 6.39,
-    "index_ms": 353.3
+    "query_latency_p50_ms": 4.455,
+    "query_latency_p95_ms": 5.763,
+    "index_ms": 407.3
    },
    "per_query": [
     {
@@ -1255,7 +1255,7 @@
      "rr@10": 1.0,
      "context_tokens": 374,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.39
+     "latency_ms": 5.701
     },
     {
      "qid": "D02",
@@ -1264,7 +1264,7 @@
      "rr@10": 0.5,
      "context_tokens": 295,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.394
+     "latency_ms": 5.871
     },
     {
      "qid": "D03",
@@ -1273,7 +1273,7 @@
      "rr@10": 1.0,
      "context_tokens": 447,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.582
+     "latency_ms": 4.8
     },
     {
      "qid": "D04",
@@ -1282,7 +1282,7 @@
      "rr@10": 0.25,
      "context_tokens": 435,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.48
+     "latency_ms": 4.643
     },
     {
      "qid": "D05",
@@ -1291,7 +1291,7 @@
      "rr@10": 0.5,
      "context_tokens": 449,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.384
+     "latency_ms": 4.414
     },
     {
      "qid": "D06",
@@ -1300,7 +1300,7 @@
      "rr@10": 1.0,
      "context_tokens": 374,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.962
+     "latency_ms": 5.204
     },
     {
      "qid": "D07",
@@ -1309,7 +1309,7 @@
      "rr@10": 1.0,
      "context_tokens": 270,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.666
+     "latency_ms": 3.965
     },
     {
      "qid": "D08",
@@ -1318,7 +1318,7 @@
      "rr@10": 1.0,
      "context_tokens": 383,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.778
+     "latency_ms": 4.137
     },
     {
      "qid": "D09",
@@ -1327,7 +1327,7 @@
      "rr@10": 1.0,
      "context_tokens": 402,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.334
+     "latency_ms": 4.455
     },
     {
      "qid": "D10",
@@ -1336,7 +1336,7 @@
      "rr@10": 1.0,
      "context_tokens": 355,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.738
+     "latency_ms": 5.763
     },
     {
      "qid": "D11",
@@ -1345,7 +1345,7 @@
      "rr@10": 1.0,
      "context_tokens": 349,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.565
+     "latency_ms": 5.068
     },
     {
      "qid": "D12",
@@ -1354,7 +1354,7 @@
      "rr@10": 1.0,
      "context_tokens": 392,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.281
+     "latency_ms": 4.577
     },
     {
      "qid": "D13",
@@ -1363,7 +1363,7 @@
      "rr@10": 1.0,
      "context_tokens": 431,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.458
+     "latency_ms": 3.852
     },
     {
      "qid": "D14",
@@ -1372,7 +1372,7 @@
      "rr@10": 1.0,
      "context_tokens": 377,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.706
+     "latency_ms": 4.439
     },
     {
      "qid": "D15",
@@ -1381,7 +1381,7 @@
      "rr@10": 0.5,
      "context_tokens": 402,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.059
+     "latency_ms": 4.961
     },
     {
      "qid": "D16",
@@ -1390,7 +1390,7 @@
      "rr@10": 0.5,
      "context_tokens": 357,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.071
+     "latency_ms": 4.854
     },
     {
      "qid": "D17",
@@ -1399,7 +1399,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 357,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.479
+     "latency_ms": 3.895
     },
     {
      "qid": "D18",
@@ -1408,7 +1408,7 @@
      "rr@10": 1.0,
      "context_tokens": 357,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.914
+     "latency_ms": 4.315
     },
     {
      "qid": "D19",
@@ -1417,7 +1417,7 @@
      "rr@10": 1.0,
      "context_tokens": 339,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.534
+     "latency_ms": 4.157
     },
     {
      "qid": "D20",
@@ -1426,7 +1426,7 @@
      "rr@10": 1.0,
      "context_tokens": 397,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.855
+     "latency_ms": 4.539
     },
     {
      "qid": "D21",
@@ -1435,7 +1435,7 @@
      "rr@10": 1.0,
      "context_tokens": 394,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.587
+     "latency_ms": 3.825
     },
     {
      "qid": "D22",
@@ -1444,7 +1444,7 @@
      "rr@10": 1.0,
      "context_tokens": 397,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.964
+     "latency_ms": 4.237
     },
     {
      "qid": "D23",
@@ -1453,7 +1453,7 @@
      "rr@10": 1.0,
      "context_tokens": 309,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.039
+     "latency_ms": 4.513
     },
     {
      "qid": "D24",
@@ -1462,7 +1462,7 @@
      "rr@10": 1.0,
      "context_tokens": 397,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.305
+     "latency_ms": 4.437
     }
    ]
   },
@@ -1485,9 +1485,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 6.654,
-    "query_latency_p95_ms": 8.71,
-    "index_ms": 463.7
+    "query_latency_p50_ms": 4.473,
+    "query_latency_p95_ms": 5.606,
+    "index_ms": 434.1
    },
    "per_query": [
     {
@@ -1497,7 +1497,7 @@
      "rr@10": 1.0,
      "context_tokens": 418,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.852
+     "latency_ms": 5.606
     },
     {
      "qid": "D02",
@@ -1506,7 +1506,7 @@
      "rr@10": 0.5,
      "context_tokens": 358,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.064
+     "latency_ms": 5.79
     },
     {
      "qid": "D03",
@@ -1515,7 +1515,7 @@
      "rr@10": 1.0,
      "context_tokens": 418,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.167
+     "latency_ms": 5.106
     },
     {
      "qid": "D04",
@@ -1524,7 +1524,7 @@
      "rr@10": 1.0,
      "context_tokens": 358,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.778
+     "latency_ms": 5.11
     },
     {
      "qid": "D05",
@@ -1533,7 +1533,7 @@
      "rr@10": 0.5,
      "context_tokens": 418,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.833
+     "latency_ms": 5.578
     },
     {
      "qid": "D06",
@@ -1542,7 +1542,7 @@
      "rr@10": 1.0,
      "context_tokens": 418,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.297
+     "latency_ms": 5.598
     },
     {
      "qid": "D07",
@@ -1551,7 +1551,7 @@
      "rr@10": 1.0,
      "context_tokens": 311,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.684
+     "latency_ms": 4.573
     },
     {
      "qid": "D08",
@@ -1560,7 +1560,7 @@
      "rr@10": 1.0,
      "context_tokens": 393,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.938
+     "latency_ms": 4.601
     },
     {
      "qid": "D09",
@@ -1569,7 +1569,7 @@
      "rr@10": 1.0,
      "context_tokens": 354,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.664
+     "latency_ms": 3.842
     },
     {
      "qid": "D10",
@@ -1578,7 +1578,7 @@
      "rr@10": 1.0,
      "context_tokens": 381,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.71
+     "latency_ms": 5.408
     },
     {
      "qid": "D11",
@@ -1587,7 +1587,7 @@
      "rr@10": 1.0,
      "context_tokens": 388,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.649
+     "latency_ms": 5.055
     },
     {
      "qid": "D12",
@@ -1596,7 +1596,7 @@
      "rr@10": 1.0,
      "context_tokens": 388,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.534
+     "latency_ms": 5.099
     },
     {
      "qid": "D13",
@@ -1605,7 +1605,7 @@
      "rr@10": 1.0,
      "context_tokens": 353,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.284
+     "latency_ms": 3.577
     },
     {
      "qid": "D14",
@@ -1614,7 +1614,7 @@
      "rr@10": 1.0,
      "context_tokens": 360,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.566
+     "latency_ms": 4.473
     },
     {
      "qid": "D15",
@@ -1623,7 +1623,7 @@
      "rr@10": 0.5,
      "context_tokens": 354,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.654
+     "latency_ms": 4.385
     },
     {
      "qid": "D16",
@@ -1632,7 +1632,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 398,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.093
+     "latency_ms": 4.749
     },
     {
      "qid": "D17",
@@ -1641,7 +1641,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 398,
      "spans_missing_from_top4": [],
-     "latency_ms": 8.298
+     "latency_ms": 3.999
     },
     {
      "qid": "D18",
@@ -1650,7 +1650,7 @@
      "rr@10": 1.0,
      "context_tokens": 398,
      "spans_missing_from_top4": [],
-     "latency_ms": 9.162
+     "latency_ms": 3.872
     },
     {
      "qid": "D19",
@@ -1659,7 +1659,7 @@
      "rr@10": 1.0,
      "context_tokens": 398,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.033
+     "latency_ms": 3.925
     },
     {
      "qid": "D20",
@@ -1668,7 +1668,7 @@
      "rr@10": 1.0,
      "context_tokens": 417,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.119
+     "latency_ms": 3.729
     },
     {
      "qid": "D21",
@@ -1677,7 +1677,7 @@
      "rr@10": 1.0,
      "context_tokens": 414,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.084
+     "latency_ms": 3.426
     },
     {
      "qid": "D22",
@@ -1686,7 +1686,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 417,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.373
+     "latency_ms": 4.21
     },
     {
      "qid": "D23",
@@ -1695,7 +1695,7 @@
      "rr@10": 1.0,
      "context_tokens": 388,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.311
+     "latency_ms": 4.238
     },
     {
      "qid": "D24",
@@ -1704,7 +1704,7 @@
      "rr@10": 1.0,
      "context_tokens": 417,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.385
+     "latency_ms": 4.338
     }
    ]
   },
@@ -1727,9 +1727,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 4.333,
-    "query_latency_p95_ms": 5.892,
-    "index_ms": 537.9
+    "query_latency_p50_ms": 5.008,
+    "query_latency_p95_ms": 6.122,
+    "index_ms": 458.7
    },
    "per_query": [
     {
@@ -1739,7 +1739,7 @@
      "rr@10": 1.0,
      "context_tokens": 531,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.581
+     "latency_ms": 5.76
     },
     {
      "qid": "D02",
@@ -1748,7 +1748,7 @@
      "rr@10": 1.0,
      "context_tokens": 531,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.892
+     "latency_ms": 6.572
     },
     {
      "qid": "D03",
@@ -1757,7 +1757,7 @@
      "rr@10": 1.0,
      "context_tokens": 531,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.951
+     "latency_ms": 6.106
     },
     {
      "qid": "D04",
@@ -1766,7 +1766,7 @@
      "rr@10": 1.0,
      "context_tokens": 574,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.741
+     "latency_ms": 5.471
     },
     {
      "qid": "D05",
@@ -1775,7 +1775,7 @@
      "rr@10": 0.5,
      "context_tokens": 581,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.64
+     "latency_ms": 5.65
     },
     {
      "qid": "D06",
@@ -1784,7 +1784,7 @@
      "rr@10": 1.0,
      "context_tokens": 581,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.773
+     "latency_ms": 5.784
     },
     {
      "qid": "D07",
@@ -1793,7 +1793,7 @@
      "rr@10": 1.0,
      "context_tokens": 406,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.901
+     "latency_ms": 4.583
     },
     {
      "qid": "D08",
@@ -1802,7 +1802,7 @@
      "rr@10": 1.0,
      "context_tokens": 523,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.227
+     "latency_ms": 4.966
     },
     {
      "qid": "D09",
@@ -1811,7 +1811,7 @@
      "rr@10": 1.0,
      "context_tokens": 367,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.999
+     "latency_ms": 3.921
     },
     {
      "qid": "D10",
@@ -1820,7 +1820,7 @@
      "rr@10": 1.0,
      "context_tokens": 583,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.277
+     "latency_ms": 6.122
     },
     {
      "qid": "D11",
@@ -1829,7 +1829,7 @@
      "rr@10": 1.0,
      "context_tokens": 517,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.936
+     "latency_ms": 5.239
     },
     {
      "qid": "D12",
@@ -1838,7 +1838,7 @@
      "rr@10": 1.0,
      "context_tokens": 480,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.978
+     "latency_ms": 5.061
     },
     {
      "qid": "D13",
@@ -1847,7 +1847,7 @@
      "rr@10": 1.0,
      "context_tokens": 479,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.74
+     "latency_ms": 4.464
     },
     {
      "qid": "D14",
@@ -1856,7 +1856,7 @@
      "rr@10": 1.0,
      "context_tokens": 498,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.308
+     "latency_ms": 4.363
     },
     {
      "qid": "D15",
@@ -1865,7 +1865,7 @@
      "rr@10": 1.0,
      "context_tokens": 498,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.566
+     "latency_ms": 5.468
     },
     {
      "qid": "D16",
@@ -1874,7 +1874,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 448,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.534
+     "latency_ms": 5.13
     },
     {
      "qid": "D17",
@@ -1883,7 +1883,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 448,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.546
+     "latency_ms": 4.376
     },
     {
      "qid": "D18",
@@ -1892,7 +1892,7 @@
      "rr@10": 1.0,
      "context_tokens": 448,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.224
+     "latency_ms": 5.013
     },
     {
      "qid": "D19",
@@ -1901,7 +1901,7 @@
      "rr@10": 1.0,
      "context_tokens": 448,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.024
+     "latency_ms": 4.461
     },
     {
      "qid": "D20",
@@ -1910,7 +1910,7 @@
      "rr@10": 1.0,
      "context_tokens": 485,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.333
+     "latency_ms": 4.363
     },
     {
      "qid": "D21",
@@ -1919,7 +1919,7 @@
      "rr@10": 1.0,
      "context_tokens": 485,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.803
+     "latency_ms": 4.643
     },
     {
      "qid": "D22",
@@ -1928,7 +1928,7 @@
      "rr@10": 1.0,
      "context_tokens": 485,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.234
+     "latency_ms": 4.594
     },
     {
      "qid": "D23",
@@ -1937,7 +1937,7 @@
      "rr@10": 1.0,
      "context_tokens": 485,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.287
+     "latency_ms": 5.008
     },
     {
      "qid": "D24",
@@ -1946,7 +1946,7 @@
      "rr@10": 1.0,
      "context_tokens": 485,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.281
+     "latency_ms": 4.961
     }
    ]
   },
@@ -1969,9 +1969,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 4.138,
-    "query_latency_p95_ms": 5.396,
-    "index_ms": 438.4
+    "query_latency_p50_ms": 5.044,
+    "query_latency_p95_ms": 6.818,
+    "index_ms": 470.9
    },
    "per_query": [
     {
@@ -1981,7 +1981,7 @@
      "rr@10": 1.0,
      "context_tokens": 563,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.354
+     "latency_ms": 5.866
     },
     {
      "qid": "D02",
@@ -1990,7 +1990,7 @@
      "rr@10": 1.0,
      "context_tokens": 575,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.576
+     "latency_ms": 6.04
     },
     {
      "qid": "D03",
@@ -1999,7 +1999,7 @@
      "rr@10": 1.0,
      "context_tokens": 563,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.867
+     "latency_ms": 4.814
     },
     {
      "qid": "D04",
@@ -2008,7 +2008,7 @@
      "rr@10": 1.0,
      "context_tokens": 593,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.91
+     "latency_ms": 5.132
     },
     {
      "qid": "D05",
@@ -2017,7 +2017,7 @@
      "rr@10": 0.5,
      "context_tokens": 600,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.822
+     "latency_ms": 5.393
     },
     {
      "qid": "D06",
@@ -2026,7 +2026,7 @@
      "rr@10": 1.0,
      "context_tokens": 600,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.396
+     "latency_ms": 6.708
     },
     {
      "qid": "D07",
@@ -2035,7 +2035,7 @@
      "rr@10": 1.0,
      "context_tokens": 329,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.11
+     "latency_ms": 4.894
     },
     {
      "qid": "D08",
@@ -2044,7 +2044,7 @@
      "rr@10": 1.0,
      "context_tokens": 535,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.138
+     "latency_ms": 6.28
     },
     {
      "qid": "D09",
@@ -2053,7 +2053,7 @@
      "rr@10": 1.0,
      "context_tokens": 402,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.661
+     "latency_ms": 5.044
     },
     {
      "qid": "D10",
@@ -2062,7 +2062,7 @@
      "rr@10": 1.0,
      "context_tokens": 596,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.088
+     "latency_ms": 6.078
     },
     {
      "qid": "D11",
@@ -2071,7 +2071,7 @@
      "rr@10": 1.0,
      "context_tokens": 549,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.523
+     "latency_ms": 6.83
     },
     {
      "qid": "D12",
@@ -2080,7 +2080,7 @@
      "rr@10": 1.0,
      "context_tokens": 505,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.046
+     "latency_ms": 5.489
     },
     {
      "qid": "D13",
@@ -2089,7 +2089,7 @@
      "rr@10": 1.0,
      "context_tokens": 457,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.367
+     "latency_ms": 4.274
     },
     {
      "qid": "D14",
@@ -2098,7 +2098,7 @@
      "rr@10": 1.0,
      "context_tokens": 439,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.827
+     "latency_ms": 4.947
     },
     {
      "qid": "D15",
@@ -2107,7 +2107,7 @@
      "rr@10": 1.0,
      "context_tokens": 402,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.171
+     "latency_ms": 6.818
     },
     {
      "qid": "D16",
@@ -2116,7 +2116,7 @@
      "rr@10": 0.3333333333333333,
      "context_tokens": 489,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.186
+     "latency_ms": 5.753
     },
     {
      "qid": "D17",
@@ -2125,7 +2125,7 @@
      "rr@10": 0.25,
      "context_tokens": 489,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.295
+     "latency_ms": 4.086
     },
     {
      "qid": "D18",
@@ -2134,7 +2134,7 @@
      "rr@10": 1.0,
      "context_tokens": 489,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.818
+     "latency_ms": 4.862
     },
     {
      "qid": "D19",
@@ -2143,7 +2143,7 @@
      "rr@10": 1.0,
      "context_tokens": 489,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.848
+     "latency_ms": 4.945
     },
     {
      "qid": "D20",
@@ -2152,7 +2152,7 @@
      "rr@10": 1.0,
      "context_tokens": 505,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.184
+     "latency_ms": 4.641
     },
     {
      "qid": "D21",
@@ -2161,7 +2161,7 @@
      "rr@10": 1.0,
      "context_tokens": 505,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.38
+     "latency_ms": 3.896
     },
     {
      "qid": "D22",
@@ -2170,7 +2170,7 @@
      "rr@10": 1.0,
      "context_tokens": 505,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.873
+     "latency_ms": 4.846
     },
     {
      "qid": "D23",
@@ -2179,7 +2179,7 @@
      "rr@10": 1.0,
      "context_tokens": 505,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.035
+     "latency_ms": 4.96
     },
     {
      "qid": "D24",
@@ -2188,7 +2188,7 @@
      "rr@10": 1.0,
      "context_tokens": 505,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.191
+     "latency_ms": 5.28
     }
    ]
   },
@@ -2211,9 +2211,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 4.225,
-    "query_latency_p95_ms": 5.979,
-    "index_ms": 390.9
+    "query_latency_p50_ms": 4.908,
+    "query_latency_p95_ms": 6.219,
+    "index_ms": 555.3
    },
    "per_query": [
     {
@@ -2223,7 +2223,7 @@
      "rr@10": 1.0,
      "context_tokens": 811,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.395
+     "latency_ms": 5.664
     },
     {
      "qid": "D02",
@@ -2232,7 +2232,7 @@
      "rr@10": 1.0,
      "context_tokens": 643,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.141
+     "latency_ms": 6.419
     },
     {
      "qid": "D03",
@@ -2241,7 +2241,7 @@
      "rr@10": 1.0,
      "context_tokens": 820,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.627
+     "latency_ms": 5.335
     },
     {
      "qid": "D04",
@@ -2250,7 +2250,7 @@
      "rr@10": 1.0,
      "context_tokens": 791,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.827
+     "latency_ms": 5.118
     },
     {
      "qid": "D05",
@@ -2259,7 +2259,7 @@
      "rr@10": 0.5,
      "context_tokens": 619,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.548
+     "latency_ms": 4.922
     },
     {
      "qid": "D06",
@@ -2268,7 +2268,7 @@
      "rr@10": 1.0,
      "context_tokens": 791,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.979
+     "latency_ms": 6.219
     },
     {
      "qid": "D07",
@@ -2277,7 +2277,7 @@
      "rr@10": 1.0,
      "context_tokens": 712,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.501
+     "latency_ms": 4.212
     },
     {
      "qid": "D08",
@@ -2286,7 +2286,7 @@
      "rr@10": 1.0,
      "context_tokens": 686,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.689
+     "latency_ms": 4.908
     },
     {
      "qid": "D09",
@@ -2295,7 +2295,7 @@
      "rr@10": 1.0,
      "context_tokens": 795,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.019
+     "latency_ms": 3.853
     },
     {
      "qid": "D10",
@@ -2304,7 +2304,7 @@
      "rr@10": 1.0,
      "context_tokens": 627,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.742
+     "latency_ms": 5.647
     },
     {
      "qid": "D11",
@@ -2313,7 +2313,7 @@
      "rr@10": 1.0,
      "context_tokens": 627,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.236
+     "latency_ms": 5.413
     },
     {
      "qid": "D12",
@@ -2322,7 +2322,7 @@
      "rr@10": 1.0,
      "context_tokens": 627,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.317
+     "latency_ms": 5.598
     },
     {
      "qid": "D13",
@@ -2331,7 +2331,7 @@
      "rr@10": 1.0,
      "context_tokens": 820,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.402
+     "latency_ms": 3.803
     },
     {
      "qid": "D14",
@@ -2340,7 +2340,7 @@
      "rr@10": 1.0,
      "context_tokens": 791,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.772
+     "latency_ms": 4.425
     },
     {
      "qid": "D15",
@@ -2349,7 +2349,7 @@
      "rr@10": 0.5,
      "context_tokens": 686,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.248
+     "latency_ms": 5.26
     },
     {
      "qid": "D16",
@@ -2358,7 +2358,7 @@
      "rr@10": 0.5,
      "context_tokens": 724,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.225
+     "latency_ms": 5.489
     },
     {
      "qid": "D17",
@@ -2367,7 +2367,7 @@
      "rr@10": 0.5,
      "context_tokens": 707,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.605
+     "latency_ms": 3.83
     },
     {
      "qid": "D18",
@@ -2376,7 +2376,7 @@
      "rr@10": 1.0,
      "context_tokens": 884,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.837
+     "latency_ms": 4.645
     },
     {
      "qid": "D19",
@@ -2385,7 +2385,7 @@
      "rr@10": 1.0,
      "context_tokens": 718,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.495
+     "latency_ms": 4.187
     },
     {
      "qid": "D20",
@@ -2394,7 +2394,7 @@
      "rr@10": 1.0,
      "context_tokens": 724,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.652
+     "latency_ms": 4.331
     },
     {
      "qid": "D21",
@@ -2403,7 +2403,7 @@
      "rr@10": 1.0,
      "context_tokens": 724,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.473
+     "latency_ms": 3.735
     },
     {
      "qid": "D22",
@@ -2412,7 +2412,7 @@
      "rr@10": 1.0,
      "context_tokens": 724,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.93
+     "latency_ms": 4.351
     },
     {
      "qid": "D23",
@@ -2421,7 +2421,7 @@
      "rr@10": 1.0,
      "context_tokens": 724,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.789
+     "latency_ms": 4.923
     },
     {
      "qid": "D24",
@@ -2430,7 +2430,7 @@
      "rr@10": 1.0,
      "context_tokens": 724,
      "spans_missing_from_top4": [],
-     "latency_ms": 3.778
+     "latency_ms": 4.873
     }
    ]
   },
@@ -2453,9 +2453,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 5.239,
-    "query_latency_p95_ms": 6.667,
-    "index_ms": 427.4
+    "query_latency_p50_ms": 3.808,
+    "query_latency_p95_ms": 5.257,
+    "index_ms": 457.6
    },
    "per_query": [
     {
@@ -2465,7 +2465,7 @@
      "rr@10": 1.0,
      "context_tokens": 662,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.667
+     "latency_ms": 5.257
     },
     {
      "qid": "D02",
@@ -2474,7 +2474,7 @@
      "rr@10": 1.0,
      "context_tokens": 662,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.736
+     "latency_ms": 5.776
     },
     {
      "qid": "D03",
@@ -2483,7 +2483,7 @@
      "rr@10": 1.0,
      "context_tokens": 642,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.302
+     "latency_ms": 4.582
     },
     {
      "qid": "D04",
@@ -2492,7 +2492,7 @@
      "rr@10": 1.0,
      "context_tokens": 633,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.528
+     "latency_ms": 4.569
     },
     {
      "qid": "D05",
@@ -2501,7 +2501,7 @@
      "rr@10": 0.5,
      "context_tokens": 638,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.213
+     "latency_ms": 4.227
     },
     {
      "qid": "D06",
@@ -2510,7 +2510,7 @@
      "rr@10": 1.0,
      "context_tokens": 642,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.13
+     "latency_ms": 5.101
     },
     {
      "qid": "D07",
@@ -2519,7 +2519,7 @@
      "rr@10": 1.0,
      "context_tokens": 731,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.732
+     "latency_ms": 3.732
     },
     {
      "qid": "D08",
@@ -2528,7 +2528,7 @@
      "rr@10": 1.0,
      "context_tokens": 705,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.827
+     "latency_ms": 3.716
     },
     {
      "qid": "D09",
@@ -2537,7 +2537,7 @@
      "rr@10": 1.0,
      "context_tokens": 629,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.194
+     "latency_ms": 3.139
     },
     {
      "qid": "D10",
@@ -2546,7 +2546,7 @@
      "rr@10": 1.0,
      "context_tokens": 548,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.1
+     "latency_ms": 4.935
     },
     {
      "qid": "D11",
@@ -2555,7 +2555,7 @@
      "rr@10": 1.0,
      "context_tokens": 548,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.673
+     "latency_ms": 4.481
     },
     {
      "qid": "D12",
@@ -2564,7 +2564,7 @@
      "rr@10": 1.0,
      "context_tokens": 548,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.314
+     "latency_ms": 4.105
     },
     {
      "qid": "D13",
@@ -2573,7 +2573,7 @@
      "rr@10": 1.0,
      "context_tokens": 646,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.364
+     "latency_ms": 3.355
     },
     {
      "qid": "D14",
@@ -2582,7 +2582,7 @@
      "rr@10": 1.0,
      "context_tokens": 617,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.83
+     "latency_ms": 3.808
     },
     {
      "qid": "D15",
@@ -2591,7 +2591,7 @@
      "rr@10": 0.5,
      "context_tokens": 705,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.273
+     "latency_ms": 4.177
     },
     {
      "qid": "D16",
@@ -2600,7 +2600,7 @@
      "rr@10": 0.5,
      "context_tokens": 732,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.303
+     "latency_ms": 4.157
     },
     {
      "qid": "D17",
@@ -2609,7 +2609,7 @@
      "rr@10": 0.5,
      "context_tokens": 726,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.364
+     "latency_ms": 3.213
     },
     {
      "qid": "D18",
@@ -2618,7 +2618,7 @@
      "rr@10": 1.0,
      "context_tokens": 716,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.194
+     "latency_ms": 3.692
     },
     {
      "qid": "D19",
@@ -2627,7 +2627,7 @@
      "rr@10": 1.0,
      "context_tokens": 728,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.878
+     "latency_ms": 3.436
     },
     {
      "qid": "D20",
@@ -2636,7 +2636,7 @@
      "rr@10": 1.0,
      "context_tokens": 734,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.061
+     "latency_ms": 3.647
     },
     {
      "qid": "D21",
@@ -2645,7 +2645,7 @@
      "rr@10": 1.0,
      "context_tokens": 734,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.601
+     "latency_ms": 3.17
     },
     {
      "qid": "D22",
@@ -2654,7 +2654,7 @@
      "rr@10": 1.0,
      "context_tokens": 734,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.239
+     "latency_ms": 3.542
     },
     {
      "qid": "D23",
@@ -2663,7 +2663,7 @@
      "rr@10": 1.0,
      "context_tokens": 734,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.29
+     "latency_ms": 4.008
     },
     {
      "qid": "D24",
@@ -2672,7 +2672,7 @@
      "rr@10": 1.0,
      "context_tokens": 734,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.265
+     "latency_ms": 3.798
     }
    ]
   },
@@ -2695,9 +2695,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 5.731,
-    "query_latency_p95_ms": 6.837,
-    "index_ms": 418.7
+    "query_latency_p50_ms": 4.039,
+    "query_latency_p95_ms": 4.995,
+    "index_ms": 314.3
    },
    "per_query": [
     {
@@ -2707,7 +2707,7 @@
      "rr@10": 1.0,
      "context_tokens": 881,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.837
+     "latency_ms": 4.889
     },
     {
      "qid": "D02",
@@ -2716,7 +2716,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.909
+     "latency_ms": 5.129
     },
     {
      "qid": "D03",
@@ -2725,7 +2725,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.015
+     "latency_ms": 4.335
     },
     {
      "qid": "D04",
@@ -2734,7 +2734,7 @@
      "rr@10": 1.0,
      "context_tokens": 827,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.99
+     "latency_ms": 4.179
     },
     {
      "qid": "D05",
@@ -2743,7 +2743,7 @@
      "rr@10": 0.5,
      "context_tokens": 832,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.731
+     "latency_ms": 3.865
     },
     {
      "qid": "D06",
@@ -2752,7 +2752,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.711
+     "latency_ms": 4.995
     },
     {
      "qid": "D07",
@@ -2761,7 +2761,7 @@
      "rr@10": 1.0,
      "context_tokens": 855,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.054
+     "latency_ms": 3.667
     },
     {
      "qid": "D08",
@@ -2770,7 +2770,7 @@
      "rr@10": 1.0,
      "context_tokens": 829,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.302
+     "latency_ms": 4.055
     },
     {
      "qid": "D09",
@@ -2779,7 +2779,7 @@
      "rr@10": 1.0,
      "context_tokens": 829,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.844
+     "latency_ms": 3.444
     },
     {
      "qid": "D10",
@@ -2788,7 +2788,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.443
+     "latency_ms": 4.881
     },
     {
      "qid": "D11",
@@ -2797,7 +2797,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.236
+     "latency_ms": 4.45
     },
     {
      "qid": "D12",
@@ -2806,7 +2806,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.838
+     "latency_ms": 4.212
     },
     {
      "qid": "D13",
@@ -2815,7 +2815,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.952
+     "latency_ms": 3.418
     },
     {
      "qid": "D14",
@@ -2824,7 +2824,7 @@
      "rr@10": 1.0,
      "context_tokens": 829,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.461
+     "latency_ms": 3.861
     },
     {
      "qid": "D15",
@@ -2833,7 +2833,7 @@
      "rr@10": 0.5,
      "context_tokens": 829,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.059
+     "latency_ms": 4.285
     },
     {
      "qid": "D16",
@@ -2842,7 +2842,7 @@
      "rr@10": 0.5,
      "context_tokens": 858,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.927
+     "latency_ms": 4.204
     },
     {
      "qid": "D17",
@@ -2851,7 +2851,7 @@
      "rr@10": 0.5,
      "context_tokens": 983,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.302
+     "latency_ms": 3.336
     },
     {
      "qid": "D18",
@@ -2860,7 +2860,7 @@
      "rr@10": 1.0,
      "context_tokens": 931,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.727
+     "latency_ms": 3.938
     },
     {
      "qid": "D19",
@@ -2869,7 +2869,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.114
+     "latency_ms": 3.466
     },
     {
      "qid": "D20",
@@ -2878,7 +2878,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.242
+     "latency_ms": 3.723
     },
     {
      "qid": "D21",
@@ -2887,7 +2887,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.916
+     "latency_ms": 3.171
     },
     {
      "qid": "D22",
@@ -2896,7 +2896,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.482
+     "latency_ms": 3.846
     },
     {
      "qid": "D23",
@@ -2905,7 +2905,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.767
+     "latency_ms": 4.039
     },
     {
      "qid": "D24",
@@ -2914,7 +2914,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.76
+     "latency_ms": 4.144
     }
    ]
   },
@@ -2937,9 +2937,9 @@
     "truncated_by_bge_512": 0.0,
     "over_gemini_2048_proxy": 0.0,
     "spans_split_by_chunking": 0.0,
-    "query_latency_p50_ms": 5.842,
-    "query_latency_p95_ms": 7.242,
-    "index_ms": 350.3
+    "query_latency_p50_ms": 4.058,
+    "query_latency_p95_ms": 5.622,
+    "index_ms": 379.1
    },
    "per_query": [
     {
@@ -2949,7 +2949,7 @@
      "rr@10": 1.0,
      "context_tokens": 881,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.913
+     "latency_ms": 5.336
     },
     {
      "qid": "D02",
@@ -2958,7 +2958,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.242
+     "latency_ms": 5.779
     },
     {
      "qid": "D03",
@@ -2967,7 +2967,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.084
+     "latency_ms": 4.817
     },
     {
      "qid": "D04",
@@ -2976,7 +2976,7 @@
      "rr@10": 1.0,
      "context_tokens": 827,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.26
+     "latency_ms": 4.874
     },
     {
      "qid": "D05",
@@ -2985,7 +2985,7 @@
      "rr@10": 0.5,
      "context_tokens": 832,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.013
+     "latency_ms": 4.773
     },
     {
      "qid": "D06",
@@ -2994,7 +2994,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.031
+     "latency_ms": 5.622
     },
     {
      "qid": "D07",
@@ -3003,7 +3003,7 @@
      "rr@10": 1.0,
      "context_tokens": 855,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.553
+     "latency_ms": 4.058
     },
     {
      "qid": "D08",
@@ -3012,7 +3012,7 @@
      "rr@10": 1.0,
      "context_tokens": 829,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.402
+     "latency_ms": 4.145
     },
     {
      "qid": "D09",
@@ -3021,7 +3021,7 @@
      "rr@10": 1.0,
      "context_tokens": 829,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.005
+     "latency_ms": 3.503
     },
     {
      "qid": "D10",
@@ -3030,7 +3030,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 7.082
+     "latency_ms": 5.179
     },
     {
      "qid": "D11",
@@ -3039,7 +3039,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.649
+     "latency_ms": 4.635
     },
     {
      "qid": "D12",
@@ -3048,7 +3048,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.794
+     "latency_ms": 4.175
     },
     {
      "qid": "D13",
@@ -3057,7 +3057,7 @@
      "rr@10": 1.0,
      "context_tokens": 890,
      "spans_missing_from_top4": [],
-     "latency_ms": 4.864
+     "latency_ms": 3.5
     },
     {
      "qid": "D14",
@@ -3066,7 +3066,7 @@
      "rr@10": 1.0,
      "context_tokens": 829,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.734
+     "latency_ms": 3.932
     },
     {
      "qid": "D15",
@@ -3075,7 +3075,7 @@
      "rr@10": 0.5,
      "context_tokens": 829,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.296
+     "latency_ms": 4.423
     },
     {
      "qid": "D16",
@@ -3084,7 +3084,7 @@
      "rr@10": 0.5,
      "context_tokens": 858,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.842
+     "latency_ms": 4.247
     },
     {
      "qid": "D17",
@@ -3093,7 +3093,7 @@
      "rr@10": 0.5,
      "context_tokens": 983,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.162
+     "latency_ms": 2.993
     },
     {
      "qid": "D18",
@@ -3102,7 +3102,7 @@
      "rr@10": 1.0,
      "context_tokens": 931,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.526
+     "latency_ms": 3.513
     },
     {
      "qid": "D19",
@@ -3111,7 +3111,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 10.68
+     "latency_ms": 3.42
     },
     {
      "qid": "D20",
@@ -3120,7 +3120,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.494
+     "latency_ms": 3.72
     },
     {
      "qid": "D21",
@@ -3129,7 +3129,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.185
+     "latency_ms": 2.885
     },
     {
      "qid": "D22",
@@ -3138,7 +3138,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 6.314
+     "latency_ms": 3.426
     },
     {
      "qid": "D23",
@@ -3147,7 +3147,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.259
+     "latency_ms": 3.866
     },
     {
      "qid": "D24",
@@ -3156,7 +3156,7 @@
      "rr@10": 1.0,
      "context_tokens": 933,
      "spans_missing_from_top4": [],
-     "latency_ms": 5.906
+     "latency_ms": 3.648
     }
    ]
   }
