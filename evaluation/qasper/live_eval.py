@@ -218,9 +218,15 @@ try:
     TRACE_ACKS = HERE / "live_trace_acks.jsonl"
     if _LS_CLIENT is not None:  # record LangSmith's acknowledgement of every trace upload (tracing keys cannot read back)
         def _ack(resp, *a, **k):
-            if resp.request.method == "POST" and "/runs" in resp.request.url:
-                append(TRACE_ACKS, {"t": time.time(), "path": resp.request.url.split("?")[0].rsplit("/", 2)[-2:],
-                                    "status": resp.status_code, "bytes": len(resp.request.body or b"")})
+            # Must never raise: an exception here makes LangSmith treat the upload as failed
+            # (an earlier len(BytesIO) bug dropped all generation-run traces).
+            try:
+                if resp.request.method == "POST" and "/runs" in resp.request.url:
+                    append(TRACE_ACKS, {"t": time.time(), "path": resp.request.url.split("?")[0].rsplit("/", 2)[-2:],
+                                        "status": resp.status_code,
+                                        "bytes": int(resp.request.headers.get("Content-Length") or 0)})
+            except Exception:
+                pass
         _LS_CLIENT.session.hooks["response"].append(_ack)
 
 
@@ -364,6 +370,10 @@ def run_faithfulness(limit=None):
             continue
         if limit is not None and n >= limit:
             return
+        if ae.normalize_answer(g["answer"]) == "unanswerable":  # criteria addendum: undefined, not judged
+            append(FAITH_LOG, {"config": cfg, "question_id": qid, "paper_id": g["paper_id"], "score": None,
+                               "error": None, "skipped": "abstention"})
+            continue
         try:
             row = {"score": traced_score(questions[qid], g["answer"], g["contexts"])["score"], "error": None}
         except Exception as e:
@@ -419,7 +429,9 @@ def report():
         s_ = [v["score"] for (c, _), v in faith.items() if c == cfg]
         out["configs"][cfg].update(faithfulness_mean=round(statistics.fmean(s_), 4) if s_ else None,
                                    faithfulness_n=len(s_),
-                                   faithfulness_failed=sum(1 for (c, _), v in flatest.items() if c == cfg and v.get("score") is None))
+                                   faithfulness_skipped_abstentions=sum(1 for (c, _), v in flatest.items() if c == cfg and v.get("skipped")),
+                                   faithfulness_failed=sum(1 for (c, _), v in flatest.items()
+                                                           if c == cfg and v.get("score") is None and not v.get("skipped")))
 
     def paired(table, key):
         a, b = [], []
