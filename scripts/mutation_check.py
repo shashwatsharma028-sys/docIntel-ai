@@ -73,6 +73,10 @@ MUTANTS = [
     ("P10", "py", "backend/ingest.py", "            stats[\"published\"] = index_store.publish_empty()", "            stats[\"published\"] = False", "empty corpus leaves stale generation (D-09a)", "killed"),
     ("P11", "py", "backend/main.py", "        if name.endswith(\".pdf\"):\n            parse_pdf(staged)", "        if False:\n            parse_pdf(staged)", "upload validation skipped (D-05)", "killed"),
     ("P12", "py", "backend/main.py", 'name = os.path.basename((filename or "").replace("\\\\", "/"))', 'name = (filename or "")', "upload path not confined (D-08)", "killed"),
+    # ---- Phase 1 / P1B: version-aware generation cache
+    ("P13", "py", "backend/index_store.py", "def read_lock():\n    return _lock(PUBLISH_LOCK, exclusive=False)", "def read_lock():\n    return contextlib.nullcontext()", "readers ignore the publish lock", "killed"),
+    ("P14", "py", "backend/retriever.py", "if gen is not None and gen.key == key:", "if gen is not None:", "cache never invalidated", "killed"),
+    ("P15", "py", "backend/retriever.py", "            while len(_cache) > max(1, MAX_CACHED_GENERATIONS):", "            while False:", "cache size unbounded", "killed"),
     ("F01", "js", "frontend/src/App.jsx", "JSON.stringify({ question, mode })", "JSON.stringify({ question })", "chat request drops mode", "killed"),
     ("F02", "js", "frontend/src/App.jsx", "    setMode(newMode)\n    setMessages([])", "    setMode(newMode)", "mode switch keeps history", "killed"),
     ("F03", "js", "frontend/src/components/Message.jsx", 'high: "text-green-400"', 'high: "text-red-400"', "confidence colour mapping", "killed"),
