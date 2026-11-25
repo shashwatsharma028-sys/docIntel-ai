@@ -1,299 +1,98 @@
-# DocIntel AI — Multi-Domain Document Intelligence Platform
+# DocIntel AI — Multi-Domain RAG Document Q&A
 
-![Python](https://img.shields.io/badge/Python-3.11-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![FastAPI](https://img.shields.io/badge/FastAPI-0.110-009688?style=for-the-badge&logo=fastapi&logoColor=white)
-![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
-![Google Gemini](https://img.shields.io/badge/Gemini_2.0_Flash-4285F4?style=for-the-badge&logo=google&logoColor=white)
-![FAISS](https://img.shields.io/badge/FAISS-Vector_Search-FF6F00?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
+Upload PDFs and ask questions about them in four domain modes (enterprise SOP, legal, medical,
+study). FastAPI backend, React frontend, FAISS vector search, Gemini embeddings and generation
+with a Groq fallback.
 
-> An enterprise-grade RAG (Retrieval-Augmented Generation) platform that lets users upload PDFs and query them in natural language — across 4 specialized domains with source citations, confidence scoring, and audit logging.
+> Resume-supporting work lives on branch `claude/youthful-gates-7szl31`
+> (final checkpoint: see the latest commit on that branch). `main` holds the original version.
 
----
+## Features (implemented)
 
-## 🎯 Problem Statement
+- PDF upload → PyMuPDF text extraction → chunking → `gemini-embedding-001` → FAISS `IndexFlatL2`.
+- Four domain system prompts; Gemini `gemini-2.0-flash` with automatic fallback to Groq
+  `llama-3.3-70b-versatile` when the Gemini call raises.
+- Document-level source list per answer; CSV audit log of every answered query.
+- "Confidence" label (high/medium/low). **Caveat:** it is a chunk-length heuristic, not a
+  relevance or calibration measure (known defect D-02).
+- **Incremental indexing** — document fingerprints + content-addressed, namespaced embedding
+  cache: only new or changed chunks are embedded; atomic, crash-detectable index publication.
+- **Version-aware retrieval cache** — the FAISS index and chunk metadata are kept in memory as one
+  validated generation and reloaded only when a new index is published.
+- **Safe persistence** — chunk metadata is never loaded with an unrestricted unpickler; uploads are
+  confined to the PDF directory and validated before they enter the corpus.
+- **Optional structure-aware, token-aware chunking** (`DOCINTEL_CHUNKING=structure`): paragraph
+  blocks packed within document sections up to ~192 tokens. Default remains 800-word windows.
 
-Organizations and individuals deal with large volumes of documents — legal contracts, medical reports, company SOPs, research papers — that are time-consuming to read and hard to query. DocIntel AI solves this by enabling instant, accurate, natural language Q&A over any uploaded document, with domain-specific AI behavior for each use case.
-
----
-
-## ✨ Features
-
-- 📄 **PDF Upload & Indexing** — Upload any PDF and index it in seconds using Google Gemini Embeddings + FAISS vector search
-- 🤖 **Multi-Domain AI Modes** — 4 specialized modes with tailored system prompts:
-  - 🏢 **Enterprise / SOP** — Query company policies, manuals, and procedures
-  - ⚖️ **Legal / Contracts** — Simplify legal language, identify risky clauses
-  - 🏥 **Medical Reports** — Explain medical terms in plain language
-  - 🎓 **Study Assistant** — Summarize notes, generate Q&A pairs
-- 🔍 **Source Citations** — Every answer references the exact source document
-- 📊 **Confidence Scoring** — High / Medium / Low confidence on every response
-- 📝 **Audit Logging** — Every query logged to CSV for enterprise traceability
-- 🔄 **LLM Fallback** — Gemini 2.0 Flash primary, Groq Llama 3.3 70B as fallback
-- ⚡ **Fast Responses** — Sub-second retrieval with FAISS IndexFlatL2
-
----
-
-## 🏗️ Architecture
+## Architecture
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                        USER (Browser)                        │
-│                  React + Tailwind Frontend                   │
-│         PDF Upload │ Mode Selector │ Chat Interface          │
-└────────────────────────┬────────────────────────────────────┘
-                         │ REST API (HTTP)
-                         ▼
-┌─────────────────────────────────────────────────────────────┐
-│                    FastAPI Backend                           │
-│                                                              │
-│   POST /upload          POST /chat          GET /health      │
-│       │                     │                               │
-│       ▼                     ▼                               │
-│  ┌─────────┐         ┌─────────────┐                        │
-│  │ ingest  │         │  retriever  │                        │
-│  │  .py    │         │    .py      │                        │
-│  └────┬────┘         └──────┬──────┘                        │
-│       │                     │                               │
-│       ▼                     ▼                               │
-│  ┌─────────────────────────────────┐                        │
-│  │         FAISS Vector Index       │                        │
-│  │   (gemini-embedding-001, 768d)   │                        │
-│  └─────────────────────────────────┘                        │
-│                     │                                        │
-│                     ▼                                        │
-│              ┌─────────┐                                     │
-│              │  llm.py │                                     │
-│              └────┬────┘                                     │
-│                   │                                          │
-│         ┌─────────┴──────────┐                              │
-│         ▼                    ▼                              │
-│  ┌─────────────┐    ┌──────────────┐                        │
-│  │Gemini 2.0   │    │ Groq Llama   │                        │
-│  │Flash (Primary)   │3.3 (Fallback)│                        │
-│  └─────────────┘    └──────────────┘                        │
-└─────────────────────────────────────────────────────────────┘
+React UI ──REST──> FastAPI  POST /upload ─> stage + validate PDF ─> build_index()
+                            POST /chat   ─> retrieve() ─> llm.ask() ─> answer + sources + audit row
+build_index(): fingerprint docs ─> reuse unchanged chunk texts ─> embed cache misses only
+               ─> rebuild IndexFlatL2 ─> atomic publish (faiss.index, chunks.pkl, manifest.json)
+retrieve():    validate cached generation (3 stat calls) ─> reload only if changed ─> top-4 L2 search
 ```
 
-### RAG Pipeline Flow
+Key modules: `backend/ingest.py`, `backend/index_store.py`, `backend/embedding_cache.py`,
+`backend/retriever.py`, `backend/structure_chunker.py`, `backend/llm.py`, `backend/main.py`.
 
-```
-PDF Upload
-    │
-    ▼
-PyMuPDF (Text Extraction)
-    │
-    ▼
-Text Chunking (800 tokens, 100 overlap)
-    │
-    ▼
-Gemini Embeddings (gemini-embedding-001)
-    │
-    ▼
-FAISS Index (IndexFlatL2) ──── Persisted to disk
-    │
-User Query
-    │
-    ▼
-Query Embedding → FAISS Search → Top-4 Chunks
-    │
-    ▼
-Domain System Prompt + Context → Gemini 2.0 Flash
-    │
-    ▼
-Answer + Sources + Confidence Score + Audit Log
-```
+## Measured results (offline; evidence committed in the repository)
 
----
+| Result | Conditions | Evidence |
+|---|---|---|
+| Embedding requests for 100 sequential single-chunk uploads: **5,050 → 100 (−98.0 %)**; per-upload indexing p50 66.6 → 5.6 ms | Offline fake embedder (exact call counts, zero network latency); 3 alternating repetitions; baseline = original code loaded from git | `docs/phase1/bench/p1a_indexing.json` |
+| Local warm-cache retrieval p50 **69.9 → 2.8 ms (25.1×)** at 20,000 × 768-d; 7.1–15.2× at 1k–5k chunks; identical results 50/50 queries | Precomputed query vectors, no network/LLM time; 4 alternating rounds | `docs/phase1/bench/p1b_retrieval.json` |
+| Structure-aware chunking: **−57 % top-4 context tokens** (1,149.5 → 493.8) at equal evidence recall@4 (1.000) and MRR 0.875 → 0.896 vs dev-selected fixed token windows | Real PDF extraction, local `BAAI/bge-small-en-v1.5`, 16 fresh frozen questions with span-level evidence; acceptance rule pre-registered | `evaluation/chunking/results/test.json` |
 
-## 🛠️ Tech Stack
+Not measured: live Gemini/Groq latency, provider billing, answer quality.
 
-| Layer | Technology | Purpose |
-|-------|-----------|---------|
-| LLM | Google Gemini 2.0 Flash | Primary answer generation |
-| LLM Fallback | Groq — Llama 3.3 70B | Fallback when Gemini fails |
-| Embeddings | Gemini Embedding 001 | Document & query vectorization |
-| Vector DB | FAISS (IndexFlatL2) | Semantic similarity search |
-| PDF Parsing | PyMuPDF (fitz) | Text extraction from PDFs |
-| Backend | FastAPI + Uvicorn | REST API server |
-| Frontend | React 18 + Vite | Chat UI |
-| Styling | Tailwind CSS 3 | UI components |
-| Icons | Lucide React | UI icons |
+## Evaluated and rejected (kept for transparency)
 
----
+- **Hybrid BM25 + dense (RRF)** — best on dev, worse on held-out (MRR@10 0.792 vs dense 0.865);
+  not deployed. `evaluation/results/RESULTS.md`
+- **Cross-encoder reranking** — no quality gain on dev, ~16–20× latency; not selected.
+- **Relevance-margin context pruning** — −51.5 % context tokens on an unseen set, but evidence
+  retention 0.944 missed the pre-registered 0.95; not deployed. `evaluation/results/context_unseen.json`
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Python 3.11+
-- Node.js 18+
-- Google Gemini API key → [aistudio.google.com](https://aistudio.google.com)
-- Groq API key → [console.groq.com](https://console.groq.com)
-
-### 1. Clone the repository
+## Reproduce
 
 ```bash
-git clone https://github.com/your_username/docIntel-ai.git
-cd docIntel-ai
+pip install -r requirements-test.txt        # backend runtime + test deps (unpinned)
+python -m pytest                             # offline: no credentials, network blocked
+scripts/run_frontend_tests.sh                # Vitest; does not modify frontend manifests
+python scripts/mutation_check.py --json /tmp/mutation.json
+python scripts/phase1_bench_indexing.py --reps 3 --out /tmp/p1a.json
+python scripts/phase1_bench_retrieval.py --large --out /tmp/p1b.json
+# real-model evaluations (need onnxruntime, tokenizers, huggingface_hub and Hugging Face access):
+python evaluation/run_retrieval_eval.py --split dev
+python evaluation/chunking/run_chunking_eval.py --split dev && python evaluation/chunking/run_chunking_eval.py --split test
 ```
 
-### 2. Backend setup
+## Run the app
 
 ```bash
-# Create and activate virtual environment
-python3 -m venv venv
-source venv/bin/activate  # Mac/Linux
-# venv\Scripts\activate   # Windows
-
-# Install dependencies
-pip install -r requirements.txt
+echo "GEMINI_API_KEY=...\nGROQ_API_KEY=..." > .env
+PYTHONPATH=. uvicorn backend.main:app --reload     # http://127.0.0.1:8000
+cd frontend && npm install && npm run dev          # http://localhost:5173
 ```
 
-### 3. Environment variables
+API: `GET /health`; `POST /upload` (multipart `file`); `POST /chat` `{"question", "mode"}` →
+`{"answer", "model", "confidence", "sources"}`.
 
-Create a `.env` file in the project root:
+## Limitations
 
-```bash
-GEMINI_API_KEY=your_gemini_api_key_here
-GROQ_API_KEY=your_groq_api_key_here
-```
+- Benchmarks are offline and single-machine; evaluation corpora are small and synthetic
+  (9 documents; 16–24 questions per split). Quality results use a local model, not Gemini.
+- No authentication, upload size limit or multi-user isolation; locking is single-host (POSIX `flock`).
+- Open defects are tracked in `docs/KNOWN_DEFECTS.md` (e.g. confidence heuristic, error masking in `/chat`).
+- No pinned production `requirements.txt` yet.
 
-### 4. Run the backend
+## Author
 
-```bash
-PYTHONPATH=. uvicorn backend.main:app --reload
-```
+**Shashwat Sharma** — [GitHub](https://github.com/shashwatsharma028-sys/docIntel-ai) ·
+[LinkedIn](https://www.linkedin.com/in/shashwat-sharma-138b21213)
 
-Backend runs at `http://127.0.0.1:8000`
-API docs at `http://127.0.0.1:8000/docs`
+## License
 
-### 5. Frontend setup
-
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
-Frontend runs at `http://localhost:5173`
-
----
-
-## 📖 Usage
-
-1. **Select a document mode** from the sidebar (Enterprise, Legal, Medical, Study)
-2. **Upload a PDF** by dragging and dropping or clicking the upload area
-3. **Wait for indexing** (usually 10–30 seconds depending on PDF size)
-4. **Ask questions** in natural language in the chat interface
-5. **View sources** by clicking the sources toggle under each answer
-6. **Check confidence** — green = high, yellow = medium, red = low
-
-### Example Queries by Mode
-
-| Mode | Example Query |
-|------|--------------|
-| 🏢 Enterprise | "What is the leave policy for new employees?" |
-| ⚖️ Legal | "What am I agreeing to? Are there any red flags?" |
-| 🏥 Medical | "What does my blood test result mean?" |
-| 🎓 Study | "Summarize the key concepts in chapter 3" |
-
----
-
-## 📁 Project Structure
-
-```
-docIntel-ai/
-├── backend/
-│   ├── __init__.py
-│   ├── ingest.py        # PDF parsing, chunking, embedding, FAISS indexing
-│   ├── retriever.py     # Semantic search over FAISS index
-│   ├── llm.py           # Gemini + Groq integration, confidence scoring, audit log
-│   └── main.py          # FastAPI app, REST endpoints
-├── frontend/
-│   ├── src/
-│   │   ├── components/
-│   │   │   ├── Sidebar.jsx   # Mode selector + PDF uploader
-│   │   │   ├── Chat.jsx      # Chat interface + input
-│   │   │   └── Message.jsx   # Message bubbles + sources + confidence
-│   │   ├── App.jsx           # Root component + state management
-│   │   └── index.css         # Tailwind directives
-│   ├── tailwind.config.js
-│   └── package.json
-├── data/
-│   ├── pdfs/            # Uploaded PDFs (gitignored)
-│   ├── index/           # FAISS index files (gitignored)
-│   └── audit_log.csv    # Query audit trail (gitignored)
-├── requirements.txt
-├── .env                 # API keys (gitignored)
-├── .gitignore
-└── README.md
-```
-
----
-
-## 🔑 API Endpoints
-
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| `GET` | `/health` | Health check |
-| `POST` | `/upload` | Upload and index a PDF |
-| `POST` | `/chat` | Query the indexed documents |
-
-### Chat Request Body
-
-```json
-{
-  "question": "What are the key terms in this contract?",
-  "mode": "legal"
-}
-```
-
-### Chat Response
-
-```json
-{
-  "answer": "The key terms include...",
-  "model": "gemini-2.0-flash",
-  "confidence": "high",
-  "sources": ["contract.pdf"]
-}
-```
-
----
-
-## 🔒 Enterprise Features
-
-- **Audit Logging** — Every query, answer, mode, and source logged to `data/audit_log.csv` with timestamp
-- **Source Citations** — Every answer references exact source documents
-- **Confidence Scoring** — Transparency about answer reliability
-- **LLM Fallback** — Automatic failover from Gemini to Groq ensures 99%+ uptime
-- **Domain Isolation** — Mode switching clears chat history to prevent cross-domain confusion
-
----
-
-## 🛣️ Roadmap
-
-- [ ] Multi-file indexing without re-indexing on every upload
-- [ ] Hybrid search (BM25 + semantic) for better retrieval
-- [ ] User authentication and per-user document isolation
-- [ ] Docker deployment
-- [ ] Cloud deployment on Render / GCP
-
----
-
-## 👨‍💻 Author
-
-**Shashwat Sharma**
-- GitHub: [shashwatsharma028-sys] (https://github.com/shashwatsharma028-sys/docIntel-ai)
-- LinkedIn: [Shashwat Sharma](www.linkedin.com/in/shashwat-sharma-138b21213)
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-
-*Built with ❤️ using Google Gemini, FAISS, FastAPI, and React*
+MIT
