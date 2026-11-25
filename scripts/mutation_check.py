@@ -77,6 +77,9 @@ MUTANTS = [
     ("P13", "py", "backend/index_store.py", "def read_lock():\n    return _lock(PUBLISH_LOCK, exclusive=False)", "def read_lock():\n    return contextlib.nullcontext()", "readers ignore the publish lock", "killed"),
     ("P14", "py", "backend/retriever.py", "if gen is not None and gen.key == key:", "if gen is not None:", "cache never invalidated", "killed"),
     ("P15", "py", "backend/retriever.py", "            while len(_cache) > max(1, MAX_CACHED_GENERATIONS):", "            while False:", "cache size unbounded", "killed"),
+    # ---- Phase 3: optional structure-aware chunking
+    ("S01", "py", "backend/structure_chunker.py", 'room = budget - (count(s["head"] + ". ") if s["head"] else 0)', "room = budget", "heading not reserved in chunk budget", "killed"),
+    ("S02", "py", "backend/ingest.py", 'os.environ.get("DOCINTEL_CHUNKING", "words")', 'os.environ.get("DOCINTEL_CHUNKING", "structure")', "default chunking strategy changed", "killed"),
     ("F01", "js", "frontend/src/App.jsx", "JSON.stringify({ question, mode })", "JSON.stringify({ question })", "chat request drops mode", "killed"),
     ("F02", "js", "frontend/src/App.jsx", "    setMode(newMode)\n    setMessages([])", "    setMode(newMode)", "mode switch keeps history", "killed"),
     ("F03", "js", "frontend/src/components/Message.jsx", 'high: "text-green-400"', 'high: "text-red-400"', "confidence colour mapping", "killed"),

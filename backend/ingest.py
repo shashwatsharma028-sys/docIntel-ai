@@ -7,7 +7,7 @@ import numpy as np
 from dotenv import load_dotenv
 from google import genai
 
-from backend import index_store
+from backend import index_store, structure_chunker
 from backend.embedding_cache import DimensionChanged, EmbeddingCache, text_key
 
 load_dotenv()
@@ -46,8 +46,24 @@ def embedding_namespace() -> dict:
             "output_dimensionality": EMBEDDING_OUTPUT_DIMENSIONALITY, "task_type": EMBEDDING_TASK_TYPE}
 
 
+def chunking_strategy() -> str:
+    """'words' (default, original 800/100-word windows) or 'structure' (opt-in, see structure_chunker)."""
+    strategy = os.environ.get("DOCINTEL_CHUNKING", "words")
+    if strategy not in ("words", "structure"):
+        raise ValueError(f"unknown DOCINTEL_CHUNKING={strategy!r}")
+    return strategy
+
+
 def chunker_signature() -> str:
+    if chunking_strategy() == "structure":
+        return f"structure:budget={structure_chunker.TOKEN_BUDGET}:est=wordpiece7:v{CHUNKER_VERSION}"
     return f"words:size={CHUNK_SIZE}:overlap={CHUNK_OVERLAP}:min_chars={MIN_CHUNK_CHARS}:v{CHUNKER_VERSION}"
+
+
+def chunk_document(path: str) -> list[str]:
+    if chunking_strategy() == "structure":
+        return structure_chunker.chunk_pdf_structured(path)
+    return chunk_text(parse_pdf(path))
 
 
 def _corpus_fingerprint(chunks, namespace) -> str:
@@ -95,7 +111,7 @@ def build_index(pdf_folder: str = "data/pdfs") -> dict:
             texts = reusable.get(doc_key)
             if texts is None:
                 print(f"Processing: {filename}")
-                texts = chunk_text(parse_pdf(path))
+                texts = chunk_document(path)
                 stats["documents_parsed"] += 1
             else:
                 stats["documents_reused"] += 1
