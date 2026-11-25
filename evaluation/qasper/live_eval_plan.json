@@ -1,0 +1,24 @@
+{
+ "context_tokens_bge_at_top4": {
+  "fixed": 994.8618,
+  "structure": 663.9024
+ },
+ "pilot": {
+  "questions": 40,
+  "generation_requests": 80,
+  "generation_input_tokens": 92703,
+  "generation_output_tokens_max": 12000,
+  "ragas_judge_requests_est": 720,
+  "ragas_judge_input_tokens_est": 1152000,
+  "ragas_judge_output_tokens_est": 180000
+ },
+ "full": {
+  "questions": 135,
+  "generation_requests": 270,
+  "generation_input_tokens": 312873,
+  "generation_output_tokens_max": 40500,
+  "ragas_judge_requests_est": 2430,
+  "ragas_judge_input_tokens_est": 3888000,
+  "ragas_judge_output_tokens_est": 607500
+ }
+}
