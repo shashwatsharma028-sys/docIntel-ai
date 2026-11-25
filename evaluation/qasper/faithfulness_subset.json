@@ -1,0 +1,31 @@
+{
+ "rule": "RAGAS Faithfulness subset: seeded, stratified 50% of each answerable type in the 40-question pilot; unanswerable excluded (faithfulness undefined for abstentions). Frozen before any live call.",
+ "seed": 20261127,
+ "n": 19,
+ "type_distribution": {
+  "extractive": 9,
+  "abstractive": 7,
+  "boolean": 3
+ },
+ "question_ids": [
+  "cbb4eba59434d596749408be5b923efda7560890",
+  "3fd8eab282569b1c18b82f20d579b335ae70e79f",
+  "63cdac43a643fc1e06da44910458e89b2c7cd921",
+  "7cf44877dae8873139aede381fb9908dd0c546c4",
+  "f9ae1b31c1a60aacb9ef869e1cc6b0e70c6e5d8e",
+  "bd255aadf099854541d06997f83a0e478f526120",
+  "7c398615141ca416a32c9f72dbb785d3a6986a0f",
+  "833d3ae7613500f2867ed8b33d233d71781014e7",
+  "175cddfd0bcd77b7327b62f99e57d8ea93f8d8ba",
+  "9262292ca4cc78de515b5617f6a91e540eb2678c",
+  "1e582319df1739dcd07ba0ba39e8f70187fba049",
+  "5d0a3f8ca3882f87773cf8c2ef1b4f72b9cc241e",
+  "f15bc40960bd3f81bc791f43ab5c94c52378692d",
+  "5aa6556ffd7142933f820a015f1294d38e8cd96c",
+  "3a40559e5a3c2a87c7b9031c89e762b828249c05",
+  "8e9561541f2e928eb239860c2455a254b5aceaeb",
+  "6ec267f66a1c5f996519aed8aa0befb5e5aec205",
+  "3e5162e6399c7d03ecc7007efd21d06c04cf2843",
+  "441be93e2830cc0fc65afad6959db92754c9f5a8"
+ ]
+}
