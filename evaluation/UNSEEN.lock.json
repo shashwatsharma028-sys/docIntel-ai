@@ -1,0 +1,8 @@
+{
+ "frozen_at_utc": "2026-11-25T09:18:09+00:00",
+ "statement": "Unseen evaluation set for context-selection methods, written from passage text only and frozen BEFORE any method was run on it. Not used for tuning.",
+ "count": 16,
+ "sha256": {
+  "questions/unseen.jsonl": "4f1d9b712bdfc0b202284d3435968707c7dd391c65142391bb2f54afcc9c2fc7"
+ }
+}

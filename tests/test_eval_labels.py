@@ -57,3 +57,20 @@ def test_query_type_coverage():
     types = Counter(t for q in QUESTIONS for t in q["query_types"])
     for t in ("numerical", "paraphrase", "distractor", "multi_passage", "factual"):
         assert types[t] >= 5, (t, types)
+
+
+# ---------------------------------------------------------------- unseen set (frozen separately)
+UNSEEN_LOCK = json.loads((EVAL / "UNSEEN.lock.json").read_text())
+UNSEEN = [json.loads(l) for l in (EVAL / "questions/unseen.jsonl").read_text().splitlines()]
+
+
+def test_unseen_set_frozen_and_well_formed():
+    for rel, digest in UNSEEN_LOCK["sha256"].items():
+        assert hashlib.sha256((EVAL / rel).read_bytes()).hexdigest() == digest
+    assert len(UNSEEN) == UNSEEN_LOCK["count"]
+    existing = {q["question"].lower() for q in QUESTIONS}
+    for q in UNSEEN:
+        assert q["question"].lower() not in existing
+        test_labels_are_well_formed.__wrapped__(q) if hasattr(test_labels_are_well_formed, "__wrapped__") else None
+        rel, neg = set(q["relevant_passage_ids"]), set(q["hard_negative_passage_ids"])
+        assert rel and rel <= set(PASSAGES) and neg <= set(PASSAGES) and not rel & neg
